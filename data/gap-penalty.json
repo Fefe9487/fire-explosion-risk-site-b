@@ -1,0 +1,2129 @@
+{
+  "fire_n": 28,
+  "year_total": {
+    "all": 28,
+    "113": 12,
+    "114": 12,
+    "115": 4
+  },
+  "arts": [
+    {
+      "art": 177,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 11,
+        "113": 8,
+        "114": 3,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "177",
+      "label": "設規第177條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177"
+    },
+    {
+      "art": 60,
+      "sub": null,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 3,
+        "113": 1,
+        "114": 1,
+        "115": 1
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-60",
+      "label": "高壓則第60條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=60"
+    },
+    {
+      "art": 198,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 3,
+        "113": 2,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "198",
+      "label": "設規第198條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=198"
+    },
+    {
+      "art": 37,
+      "sub": 1,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 2,
+        "113": 2,
+        "114": 0,
+        "115": 0
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-37-1",
+      "label": "高壓則第37條之1",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=37-1"
+    },
+    {
+      "art": 188,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 2,
+        "113": 0,
+        "114": 1,
+        "115": 1
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "188",
+      "label": "設規第188條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=188"
+    },
+    {
+      "art": 196,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 2,
+        "113": 0,
+        "114": 2,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "196",
+      "label": "設規第196條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=196"
+    },
+    {
+      "art": 54,
+      "sub": null,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 0,
+        "115": 1
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-54",
+      "label": "高壓則第54條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=54"
+    },
+    {
+      "art": 71,
+      "sub": null,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-71",
+      "label": "高壓則第71條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=71"
+    },
+    {
+      "art": 107,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "107",
+      "label": "設規第107條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=107"
+    },
+    {
+      "art": 108,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "108",
+      "label": "設規第108條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=108"
+    },
+    {
+      "art": 171,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 0,
+        "115": 1
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "171",
+      "label": "設規第171條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=171"
+    },
+    {
+      "art": 184,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "184",
+      "label": "設規第184條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184"
+    },
+    {
+      "art": 184,
+      "sub": 1,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "184-1",
+      "label": "設規第184條之1",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184-1"
+    },
+    {
+      "art": 191,
+      "sub": 1,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-191-1",
+      "label": "高壓則第191條之1",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=191-1"
+    },
+    {
+      "art": 209,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "209",
+      "label": "設規第209條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=209"
+    },
+    {
+      "art": 285,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 1,
+        "114": 0,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "285",
+      "label": "設規第285條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=285"
+    }
+  ],
+  "topArts": [
+    {
+      "art": 177,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 11,
+        "113": 8,
+        "114": 3,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "177",
+      "label": "設規第177條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177"
+    },
+    {
+      "art": 198,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 3,
+        "113": 2,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "198",
+      "label": "設規第198條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=198"
+    },
+    {
+      "art": 188,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 2,
+        "113": 0,
+        "114": 1,
+        "115": 1
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "188",
+      "label": "設規第188條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=188"
+    },
+    {
+      "art": 196,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 2,
+        "113": 0,
+        "114": 2,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "196",
+      "label": "設規第196條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=196"
+    },
+    {
+      "art": 107,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "107",
+      "label": "設規第107條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=107"
+    },
+    {
+      "art": 108,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "108",
+      "label": "設規第108條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=108"
+    },
+    {
+      "art": 171,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 0,
+        "115": 1
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "171",
+      "label": "設規第171條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=171"
+    },
+    {
+      "art": 184,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "184",
+      "label": "設規第184條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184"
+    },
+    {
+      "art": 184,
+      "sub": 1,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "184-1",
+      "label": "設規第184條之1",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184-1"
+    },
+    {
+      "art": 209,
+      "sub": null,
+      "lawShort": "設規",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "職業安全衛生設施規則",
+      "key": "209",
+      "label": "設規第209條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=209"
+    },
+    {
+      "art": 60,
+      "sub": null,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 3,
+        "113": 1,
+        "114": 1,
+        "115": 1
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-60",
+      "label": "高壓則第60條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=60"
+    },
+    {
+      "art": 37,
+      "sub": 1,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 2,
+        "113": 2,
+        "114": 0,
+        "115": 0
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-37-1",
+      "label": "高壓則第37條之1",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=37-1"
+    },
+    {
+      "art": 54,
+      "sub": null,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 0,
+        "115": 1
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-54",
+      "label": "高壓則第54條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=54"
+    },
+    {
+      "art": 71,
+      "sub": null,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-71",
+      "label": "高壓則第71條",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=71"
+    },
+    {
+      "art": 191,
+      "sub": 1,
+      "lawShort": "高壓則",
+      "y": {
+        "all": 1,
+        "113": 0,
+        "114": 1,
+        "115": 0
+      },
+      "law": "高壓氣體勞工安全規則",
+      "key": "hp-191-1",
+      "label": "高壓則第191條之1",
+      "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=191-1"
+    }
+  ],
+  "filterLimit": 10,
+  "lawTotals": {
+    "設規": {
+      "all": 22,
+      "113": 11,
+      "114": 9,
+      "115": 2
+    },
+    "高壓則": {
+      "all": 8,
+      "113": 3,
+      "114": 3,
+      "115": 2
+    }
+  },
+  "note": "清冊場所的裁罰資料；只計能確認屬於清冊場所、民國113至115年與火災爆炸相關的處分，資料至115年10月1日。兩部法規分開計算，同一處分在同一部法規只算一件。",
+  "lawGroups": [
+    {
+      "law": "職業安全衛生設施規則",
+      "short": "設規",
+      "articleCount": 11,
+      "topKeys": [
+        "177",
+        "198",
+        "188",
+        "196",
+        "107",
+        "108",
+        "171",
+        "184",
+        "184-1",
+        "209"
+      ]
+    },
+    {
+      "law": "高壓氣體勞工安全規則",
+      "short": "高壓則",
+      "articleCount": 5,
+      "topKeys": [
+        "hp-60",
+        "hp-37-1",
+        "hp-54",
+        "hp-71",
+        "hp-191-1"
+      ]
+    }
+  ],
+  "scope": "roster",
+  "rosterPlaces": 973,
+  "sourceThrough": "115/10/01",
+  "fireCriteria": {
+    "version": 3,
+    "method": "cited-law-and-article",
+    "reviewedAt": "2026-10-06",
+    "groups": [
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "topic": "氣體容器、儲存與危險物作業",
+        "articles": [
+          "106",
+          "107",
+          "108",
+          "109",
+          "112",
+          "128",
+          "154",
+          "158"
+        ]
+      },
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "topic": "防火、防爆、動火與靜電控制",
+        "articles": [
+          "169",
+          "170",
+          "171",
+          "172",
+          "173",
+          "174",
+          "175",
+          "176",
+          "177",
+          "177-1",
+          "177-2",
+          "177-3"
+        ]
+      },
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "topic": "危險物、化學設備與高熱物的爆炸防止",
+        "articles": [
+          "180",
+          "181",
+          "182",
+          "184",
+          "185",
+          "186",
+          "187",
+          "188",
+          "189",
+          "190",
+          "191",
+          "192",
+          "193",
+          "194",
+          "195",
+          "196",
+          "197",
+          "198",
+          "179-1",
+          "184-1",
+          "185-1"
+        ]
+      },
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "topic": "乾燥設備與氣體熔接裝置",
+        "articles": [
+          "199",
+          "200",
+          "201",
+          "202",
+          "203",
+          "204",
+          "205",
+          "206",
+          "207",
+          "208",
+          "209",
+          "210",
+          "211",
+          "212",
+          "213",
+          "214",
+          "215",
+          "216",
+          "217",
+          "218"
+        ]
+      },
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "topic": "電弧火源、靜電與高溫作業爆炸防護",
+        "articles": [
+          "240",
+          "252",
+          "285"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "topic": "製造設備的防火、防爆、耐壓與洩壓設施",
+        "articles": [
+          "32",
+          "33",
+          "34",
+          "35",
+          "36",
+          "37",
+          "38",
+          "39",
+          "40",
+          "41",
+          "42",
+          "43",
+          "44",
+          "45",
+          "46",
+          "47",
+          "48",
+          "49",
+          "50",
+          "51",
+          "52",
+          "53",
+          "54",
+          "55",
+          "56",
+          "57",
+          "58",
+          "59",
+          "60",
+          "37-1",
+          "37-2"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "topic": "製造作業、灌裝、氣體管線與設備修理",
+        "articles": [
+          "62",
+          "66",
+          "67",
+          "69",
+          "70",
+          "71",
+          "72",
+          "74",
+          "75",
+          "76",
+          "77",
+          "78",
+          "79",
+          "80",
+          "81",
+          "82",
+          "83",
+          "84",
+          "85",
+          "86",
+          "87",
+          "88",
+          "90",
+          "91",
+          "92",
+          "93",
+          "94",
+          "95",
+          "96",
+          "97",
+          "98",
+          "99",
+          "100",
+          "101",
+          "102",
+          "103"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "topic": "供應、儲存與運輸的防漏及容器安全",
+        "articles": [
+          "105",
+          "106",
+          "107",
+          "108",
+          "109",
+          "110",
+          "111",
+          "112",
+          "113",
+          "116",
+          "119",
+          "120",
+          "121",
+          "122",
+          "124",
+          "125",
+          "126",
+          "128",
+          "129",
+          "130",
+          "131",
+          "132",
+          "133",
+          "134",
+          "143",
+          "153"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "topic": "消費設備、火源控制及液化石油氣容器串接",
+        "articles": [
+          "155",
+          "156",
+          "157",
+          "158",
+          "159",
+          "160",
+          "162",
+          "166",
+          "167",
+          "168",
+          "169",
+          "170",
+          "172",
+          "173",
+          "174",
+          "175",
+          "176",
+          "177",
+          "178",
+          "179",
+          "180",
+          "181",
+          "183",
+          "184",
+          "185",
+          "186",
+          "187",
+          "189",
+          "190",
+          "191",
+          "192",
+          "191-1"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "topic": "冷媒設備耐壓、防漏、氣體廢棄與安全維護",
+        "articles": [
+          "205",
+          "206",
+          "207",
+          "210",
+          "211",
+          "213",
+          "214",
+          "215",
+          "216",
+          "217",
+          "240"
+        ]
+      }
+    ],
+    "sources": {
+      "職業安全衛生設施規則": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060009",
+      "高壓氣體勞工安全規則": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060030"
+    },
+    "unit": "處分字號",
+    "independentLawTotals": true,
+    "note": "依公告引用的法規與條號判斷；僅計入本網站列出的火災爆炸預防及高壓氣體安全條文。",
+    "historicalArticles": [
+      {
+        "law": "職業安全衛生設施規則",
+        "article": "186",
+        "note": "保留歷史危險物灌注、卸收與儲藏處分；本條於115年7月1日刪除。",
+        "source": "https://laws.mol.gov.tw/FLAW/FLAWDOC04.aspx?id=FL015021&ldate=20240801&lno=186"
+      }
+    ]
+  },
+  "nationalPenalty": {
+    "fire_n": 490,
+    "year_total": {
+      "all": 490,
+      "113": 184,
+      "114": 188,
+      "115": 118
+    },
+    "arts": [
+      {
+        "art": 108,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 136,
+          "113": 58,
+          "114": 51,
+          "115": 27
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "108",
+        "label": "設規第108條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=108"
+      },
+      {
+        "art": 177,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 116,
+          "113": 45,
+          "114": 46,
+          "115": 25
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177",
+        "label": "設規第177條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177"
+      },
+      {
+        "art": 171,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 37,
+          "113": 5,
+          "114": 14,
+          "115": 18
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "171",
+        "label": "設規第171條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=171"
+      },
+      {
+        "art": 191,
+        "sub": 1,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 33,
+          "113": 4,
+          "114": 10,
+          "115": 19
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-191-1",
+        "label": "高壓則第191條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=191-1"
+      },
+      {
+        "art": 106,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 31,
+          "113": 15,
+          "114": 8,
+          "115": 8
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "106",
+        "label": "設規第106條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=106"
+      },
+      {
+        "art": 209,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 31,
+          "113": 12,
+          "114": 13,
+          "115": 6
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "209",
+        "label": "設規第209條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=209"
+      },
+      {
+        "art": 188,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 30,
+          "113": 2,
+          "114": 17,
+          "115": 11
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "188",
+        "label": "設規第188條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=188"
+      },
+      {
+        "art": 177,
+        "sub": 2,
+        "lawShort": "設規",
+        "y": {
+          "all": 15,
+          "113": 11,
+          "114": 3,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177-2",
+        "label": "設規第177條之2",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177-2"
+      },
+      {
+        "art": 184,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "all": 14,
+          "113": 3,
+          "114": 7,
+          "115": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "184-1",
+        "label": "設規第184條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184-1"
+      },
+      {
+        "art": 190,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 14,
+          "113": 3,
+          "114": 6,
+          "115": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "190",
+        "label": "設規第190條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=190"
+      },
+      {
+        "art": 173,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 13,
+          "113": 4,
+          "114": 4,
+          "115": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "173",
+        "label": "設規第173條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=173"
+      },
+      {
+        "art": 175,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 13,
+          "113": 8,
+          "114": 1,
+          "115": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "175",
+        "label": "設規第175條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=175"
+      },
+      {
+        "art": 198,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 12,
+          "113": 5,
+          "114": 7,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "198",
+        "label": "設規第198條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=198"
+      },
+      {
+        "art": 196,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 11,
+          "113": 2,
+          "114": 8,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "196",
+        "label": "設規第196條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=196"
+      },
+      {
+        "art": 176,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 9,
+          "113": 6,
+          "114": 3,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "176",
+        "label": "設規第176條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=176"
+      },
+      {
+        "art": 184,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 9,
+          "113": 6,
+          "114": 3,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "184",
+        "label": "設規第184條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184"
+      },
+      {
+        "art": 285,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 9,
+          "113": 6,
+          "114": 1,
+          "115": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "285",
+        "label": "設規第285條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=285"
+      },
+      {
+        "art": 60,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 7,
+          "113": 2,
+          "114": 3,
+          "115": 2
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-60",
+        "label": "高壓則第60條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=60"
+      },
+      {
+        "art": 197,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 5,
+          "113": 3,
+          "114": 2,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "197",
+        "label": "設規第197條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=197"
+      },
+      {
+        "art": 212,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 4,
+          "113": 3,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "212",
+        "label": "設規第212條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=212"
+      },
+      {
+        "art": 107,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 3,
+          "113": 1,
+          "114": 2,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "107",
+        "label": "設規第107條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=107"
+      },
+      {
+        "art": 154,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 3,
+          "113": 1,
+          "114": 2,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "154",
+        "label": "設規第154條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=154"
+      },
+      {
+        "art": 37,
+        "sub": 1,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 2,
+          "113": 2,
+          "114": 0,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-37-1",
+        "label": "高壓則第37條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=37-1"
+      },
+      {
+        "art": 54,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 2,
+          "113": 0,
+          "114": 1,
+          "115": 1
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-54",
+        "label": "高壓則第54條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=54"
+      },
+      {
+        "art": 187,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 2,
+          "113": 1,
+          "114": 0,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "187",
+        "label": "設規第187條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=187"
+      },
+      {
+        "art": 192,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 2,
+          "113": 0,
+          "114": 1,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "192",
+        "label": "設規第192條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=192"
+      },
+      {
+        "art": 214,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 2,
+          "113": 2,
+          "114": 0,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "214",
+        "label": "設規第214條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=214"
+      },
+      {
+        "art": 49,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-49",
+        "label": "高壓則第49條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=49"
+      },
+      {
+        "art": 69,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 1,
+          "114": 0,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-69",
+        "label": "高壓則第69條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=69"
+      },
+      {
+        "art": 71,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-71",
+        "label": "高壓則第71條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=71"
+      },
+      {
+        "art": 93,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-93",
+        "label": "高壓則第93條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=93"
+      },
+      {
+        "art": 128,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 1,
+          "114": 0,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "128",
+        "label": "設規第128條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=128"
+      },
+      {
+        "art": 158,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "158",
+        "label": "設規第158條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=158"
+      },
+      {
+        "art": 166,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-166",
+        "label": "高壓則第166條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=166"
+      },
+      {
+        "art": 169,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "169",
+        "label": "設規第169條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=169"
+      },
+      {
+        "art": 172,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 0,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "172",
+        "label": "設規第172條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=172"
+      },
+      {
+        "art": 177,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177-1",
+        "label": "設規第177條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177-1"
+      },
+      {
+        "art": 179,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 0,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "179-1",
+        "label": "設規第179條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=179-1"
+      },
+      {
+        "art": 185,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 0,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "185",
+        "label": "設規第185條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=185"
+      },
+      {
+        "art": 186,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "186",
+        "label": "設規第186條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=186"
+      },
+      {
+        "art": 191,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 1,
+          "114": 0,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "191",
+        "label": "設規第191條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=191"
+      },
+      {
+        "art": 195,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 1,
+          "114": 0,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "195",
+        "label": "設規第195條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=195"
+      },
+      {
+        "art": 200,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "200",
+        "label": "設規第200條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=200"
+      },
+      {
+        "art": 202,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "202",
+        "label": "設規第202條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=202"
+      }
+    ],
+    "topArts": [
+      {
+        "art": 108,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 136,
+          "113": 58,
+          "114": 51,
+          "115": 27
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "108",
+        "label": "設規第108條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=108"
+      },
+      {
+        "art": 177,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 116,
+          "113": 45,
+          "114": 46,
+          "115": 25
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177",
+        "label": "設規第177條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177"
+      },
+      {
+        "art": 171,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 37,
+          "113": 5,
+          "114": 14,
+          "115": 18
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "171",
+        "label": "設規第171條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=171"
+      },
+      {
+        "art": 106,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 31,
+          "113": 15,
+          "114": 8,
+          "115": 8
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "106",
+        "label": "設規第106條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=106"
+      },
+      {
+        "art": 209,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 31,
+          "113": 12,
+          "114": 13,
+          "115": 6
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "209",
+        "label": "設規第209條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=209"
+      },
+      {
+        "art": 188,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 30,
+          "113": 2,
+          "114": 17,
+          "115": 11
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "188",
+        "label": "設規第188條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=188"
+      },
+      {
+        "art": 177,
+        "sub": 2,
+        "lawShort": "設規",
+        "y": {
+          "all": 15,
+          "113": 11,
+          "114": 3,
+          "115": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177-2",
+        "label": "設規第177條之2",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177-2"
+      },
+      {
+        "art": 184,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "all": 14,
+          "113": 3,
+          "114": 7,
+          "115": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "184-1",
+        "label": "設規第184條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184-1"
+      },
+      {
+        "art": 190,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 14,
+          "113": 3,
+          "114": 6,
+          "115": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "190",
+        "label": "設規第190條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=190"
+      },
+      {
+        "art": 173,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "all": 13,
+          "113": 4,
+          "114": 4,
+          "115": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "173",
+        "label": "設規第173條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=173"
+      },
+      {
+        "art": 191,
+        "sub": 1,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 33,
+          "113": 4,
+          "114": 10,
+          "115": 19
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-191-1",
+        "label": "高壓則第191條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=191-1"
+      },
+      {
+        "art": 60,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 7,
+          "113": 2,
+          "114": 3,
+          "115": 2
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-60",
+        "label": "高壓則第60條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=60"
+      },
+      {
+        "art": 37,
+        "sub": 1,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 2,
+          "113": 2,
+          "114": 0,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-37-1",
+        "label": "高壓則第37條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=37-1"
+      },
+      {
+        "art": 54,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 2,
+          "113": 0,
+          "114": 1,
+          "115": 1
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-54",
+        "label": "高壓則第54條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=54"
+      },
+      {
+        "art": 49,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-49",
+        "label": "高壓則第49條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=49"
+      },
+      {
+        "art": 69,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 1,
+          "114": 0,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-69",
+        "label": "高壓則第69條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=69"
+      },
+      {
+        "art": 71,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-71",
+        "label": "高壓則第71條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=71"
+      },
+      {
+        "art": 93,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-93",
+        "label": "高壓則第93條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=93"
+      },
+      {
+        "art": 166,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "all": 1,
+          "113": 0,
+          "114": 1,
+          "115": 0
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-166",
+        "label": "高壓則第166條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=166"
+      }
+    ],
+    "filterLimit": 10,
+    "lawTotals": {
+      "設規": {
+        "all": 457,
+        "113": 181,
+        "114": 174,
+        "115": 102
+      },
+      "高壓則": {
+        "all": 49,
+        "113": 9,
+        "114": 18,
+        "115": 22
+      }
+    },
+    "note": "全臺事業單位的公開裁罰資料；只計民國113至115年與火災爆炸相關的處分，資料至115年10月1日。兩部法規分開計算，同一處分在同一部法規只算一件。",
+    "lawGroups": [
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "articleCount": 35,
+        "topKeys": [
+          "108",
+          "177",
+          "171",
+          "106",
+          "209",
+          "188",
+          "177-2",
+          "184-1",
+          "190",
+          "173"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "articleCount": 9,
+        "topKeys": [
+          "hp-191-1",
+          "hp-60",
+          "hp-37-1",
+          "hp-54",
+          "hp-49",
+          "hp-69",
+          "hp-71",
+          "hp-93",
+          "hp-166"
+        ]
+      }
+    ],
+    "scope": "national",
+    "statisticsYears": [
+      113,
+      115
+    ],
+    "sourceThrough": "115/10/01",
+    "fireCriteria": {
+      "version": 3,
+      "method": "cited-law-and-article",
+      "reviewedAt": "2026-10-06",
+      "groups": [
+        {
+          "law": "職業安全衛生設施規則",
+          "short": "設規",
+          "topic": "氣體容器、儲存與危險物作業",
+          "articles": [
+            "106",
+            "107",
+            "108",
+            "109",
+            "112",
+            "128",
+            "154",
+            "158"
+          ]
+        },
+        {
+          "law": "職業安全衛生設施規則",
+          "short": "設規",
+          "topic": "防火、防爆、動火與靜電控制",
+          "articles": [
+            "169",
+            "170",
+            "171",
+            "172",
+            "173",
+            "174",
+            "175",
+            "176",
+            "177",
+            "177-1",
+            "177-2",
+            "177-3"
+          ]
+        },
+        {
+          "law": "職業安全衛生設施規則",
+          "short": "設規",
+          "topic": "危險物、化學設備與高熱物的爆炸防止",
+          "articles": [
+            "180",
+            "181",
+            "182",
+            "184",
+            "185",
+            "186",
+            "187",
+            "188",
+            "189",
+            "190",
+            "191",
+            "192",
+            "193",
+            "194",
+            "195",
+            "196",
+            "197",
+            "198",
+            "179-1",
+            "184-1",
+            "185-1"
+          ]
+        },
+        {
+          "law": "職業安全衛生設施規則",
+          "short": "設規",
+          "topic": "乾燥設備與氣體熔接裝置",
+          "articles": [
+            "199",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "209",
+            "210",
+            "211",
+            "212",
+            "213",
+            "214",
+            "215",
+            "216",
+            "217",
+            "218"
+          ]
+        },
+        {
+          "law": "職業安全衛生設施規則",
+          "short": "設規",
+          "topic": "電弧火源、靜電與高溫作業爆炸防護",
+          "articles": [
+            "240",
+            "252",
+            "285"
+          ]
+        },
+        {
+          "law": "高壓氣體勞工安全規則",
+          "short": "高壓則",
+          "topic": "製造設備的防火、防爆、耐壓與洩壓設施",
+          "articles": [
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "37-1",
+            "37-2"
+          ]
+        },
+        {
+          "law": "高壓氣體勞工安全規則",
+          "short": "高壓則",
+          "topic": "製造作業、灌裝、氣體管線與設備修理",
+          "articles": [
+            "62",
+            "66",
+            "67",
+            "69",
+            "70",
+            "71",
+            "72",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103"
+          ]
+        },
+        {
+          "law": "高壓氣體勞工安全規則",
+          "short": "高壓則",
+          "topic": "供應、儲存與運輸的防漏及容器安全",
+          "articles": [
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "116",
+            "119",
+            "120",
+            "121",
+            "122",
+            "124",
+            "125",
+            "126",
+            "128",
+            "129",
+            "130",
+            "131",
+            "132",
+            "133",
+            "134",
+            "143",
+            "153"
+          ]
+        },
+        {
+          "law": "高壓氣體勞工安全規則",
+          "short": "高壓則",
+          "topic": "消費設備、火源控制及液化石油氣容器串接",
+          "articles": [
+            "155",
+            "156",
+            "157",
+            "158",
+            "159",
+            "160",
+            "162",
+            "166",
+            "167",
+            "168",
+            "169",
+            "170",
+            "172",
+            "173",
+            "174",
+            "175",
+            "176",
+            "177",
+            "178",
+            "179",
+            "180",
+            "181",
+            "183",
+            "184",
+            "185",
+            "186",
+            "187",
+            "189",
+            "190",
+            "191",
+            "192",
+            "191-1"
+          ]
+        },
+        {
+          "law": "高壓氣體勞工安全規則",
+          "short": "高壓則",
+          "topic": "冷媒設備耐壓、防漏、氣體廢棄與安全維護",
+          "articles": [
+            "205",
+            "206",
+            "207",
+            "210",
+            "211",
+            "213",
+            "214",
+            "215",
+            "216",
+            "217",
+            "240"
+          ]
+        }
+      ],
+      "sources": {
+        "職業安全衛生設施規則": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060009",
+        "高壓氣體勞工安全規則": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060030"
+      },
+      "unit": "處分字號",
+      "independentLawTotals": true,
+      "note": "依公告引用的法規與條號判斷；僅計入本網站列出的火災爆炸預防及高壓氣體安全條文。",
+      "historicalArticles": [
+        {
+          "law": "職業安全衛生設施規則",
+          "article": "186",
+          "note": "保留歷史危險物灌注、卸收與儲藏處分；本條於115年7月1日刪除。",
+          "source": "https://laws.mol.gov.tw/FLAW/FLAWDOC04.aspx?id=FL015021&ldate=20240801&lno=186"
+        }
+      ]
+    }
+  },
+  "sourceUpdatedAt": "2026-10-06",
+  "sourceCutoff": "115/10/06"
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>資料來源與查詢說明</title>
+<style>
+:root{--navy:#1e4b6b;--blue:#3b82f6;--text:#1e293b;--muted:#64748b;--line:#e2e8f0;--bg:#eef2f6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}
+.wrap{max-width:1100px;margin:28px auto 56px;padding:0 16px}
+.card{background:#fff;border-radius:12px;padding:28px 32px;box-shadow:0 8px 24px #0f172a0f}
+h1{color:var(--navy);font-size:26px;margin:0 0 12px}
+h2{font-size:18px;color:var(--navy);margin:22px 0 8px}
+p{margin:0 0 12px}
+a{color:#2464b0}
+.site-nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 18px;font-size:14px}
+.site-nav a{color:var(--navy);text-decoration:none;padding:6px 0}
+.site-nav a[aria-current]{font-weight:700;border-bottom:2px solid var(--blue)}
+.rule{height:3px;background:var(--blue);border:0;margin:0 0 22px}
+ul{margin:0 0 12px;padding-left:1.2em}
+li{margin:0 0 6px}
+.caption{color:var(--muted);font-size:12px;line-height:1.7}
+.sources{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+.sources table{width:100%;border-collapse:collapse;font-size:13px}
+.sources th,.sources td{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.sources th{color:var(--muted);font-weight:500}
+.sources th:first-child{width:24%}
+.sources th:nth-child(2){width:28%}
+.sources td p{margin:0 0 8px}
+.sources td p:last-child{margin:0}
+footer{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media(max-width:700px){
+.wrap{margin:12px auto 24px;padding:0 10px}.card{padding:18px 14px}h1{font-size:22px}.site-nav{gap:6px 14px}
+.sources table,.sources tbody,.sources tr,.sources td{display:block}
+.sources thead{display:none}
+.sources td{padding:6px 0;border:0}
+.sources tr{padding:10px 0;border-bottom:1px solid var(--line)}
+.sources td:first-child{font-weight:700;color:var(--navy)}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><main class="card">
+<nav class="site-nav" aria-label="主要頁面"><a href="index.html">事業單位紀錄查詢</a><a href="gaps.html">近三年裁罰與職災</a><a href="method.html" aria-current="page">資料來源與查詢說明</a></nav>
+<h1>資料來源與查詢說明</h1>
+<hr class="rule">
+<p>本系統整合公開職業災害、勞動法令裁罰及相關公開資料，使用者可透過事業單位名稱或統一編號查詢相關紀錄。資料比對可能受事業單位名稱、場所名稱、地址及公開資料完整性影響，查無紀錄不代表未曾發生事故或違規。</p>
+<section class="sources" id="category-laws" aria-labelledby="category-title">
+<h2 id="category-title">相關場所類型與法規</h2>
+<p class="caption">以下介紹與本網站主題相關的場所及化學品管理制度，不代表個別場所符合所有條件。</p>
+<table><thead><tr><th>場所或物質類型</th><th>法源依據</th><th>適用範圍與管理重點</th></tr></thead><tbody>
+<tr><td>甲類工作場所<br>乙類工作場所<br>丙類工作場所（使用可燃氣體）</td><td><a href="https://laws.mol.gov.tw/FLAW/FLAWDOC01.aspx?flno=26&amp;id=FL015071" target="_blank" rel="noopener">勞動檢查法第26條</a><br><a href="https://laws.mol.gov.tw/FLAW/FLAWDOC01.aspx?flno=2&amp;id=FL015049" target="_blank" rel="noopener">危險性工作場所審查及檢查辦法第2條</a></td><td><p><strong>甲類：</strong>包括符合規定數量的石化原料、危險物或有害物工作場所。</p><p><strong>乙類：</strong>包括法規列明的特定農藥、爆竹煙火及爆炸性物品製造場所。</p><p><strong>丙類：</strong>包括符合規模的高壓氣體設備等場所；本網站關注其中使用可燃性氣體的情形。</p><p>這些工作場所依法須經審查或檢查合格，才可使勞工在該場所作業。實際適用條件請見法規原文。</p></td></tr>
+<tr><td>優先管理化學品達報備臨界量</td><td><a href="https://laws.mol.gov.tw/FLAW/FLAWDOC01.aspx?flno=14&amp;id=FL015013" target="_blank" rel="noopener">職業安全衛生法第14條</a><br><a href="https://laws.mol.gov.tw/FLAW/FLAWDOC01.aspx?flno=6&amp;id=FL075575" target="_blank" rel="noopener">優先管理化學品之指定及運作管理辦法第6條及附表三</a></td><td><p>指定化學品的運作量達法定臨界量時，須依規定報請備查；多種化學品也須依規定合併計算。實際門檻和例外請見法規原文。</p></td></tr>
+<tr><td>公共危險物品達管制量</td><td><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0120001&amp;flno=15" target="_blank" rel="noopener">消防法第15條</a><br><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0120025&amp;flno=3" target="_blank" rel="noopener">公共危險物品及可燃性高壓氣體製造儲存處理場所設置標準暨安全管理辦法第3條及附表一</a></td><td><p>公共危險物品達法定管制量時，儲存、處理等須符合消防安全規定。物品種類和管制量請見法規原文。</p></td></tr>
+</tbody></table>
+<p class="caption">法源核對日期：2026-10-05。本網站介紹相關制度，不逐一判定場所是否達到法定門檻。</p>
+</section>
+<h2>怎麼查詢</h2>
+<ul>
+<li>在查詢頁輸入事業單位名稱的一部分，或統一編號，再按查詢。</li>
+<li>若有多筆可能符合的場所，請先選擇其中一筆。</li>
+<li>選定之後，頁面只顯示該筆場所的職災相關處分與裁罰紀錄。</li>
+<li>沒有輸入條件時不會查詢，也不會列出場所。</li>
+</ul>
+<h2 id="penalty-method">裁罰統計頁在看什麼</h2>
+<p>近三年裁罰與職災頁依公開裁罰公告，整理火災爆炸預防及高壓氣體安全相關條文的引用情形，並提供法規摘要、檢查建議與技術指引。該頁不列出個別事業單位，也不把事業單位分成可以互相比較的名單。</p>
+<p>同一處分在同一部法規只算一件。若同一處分同時引用兩部法規，兩邊各算一件，件數不宜直接相加。紅字與粗體只用於標示查詢結果裡和這些條文對得上的文字。</p>
+<h2>資料來源</h2>
+<ul>
+<li>裁罰紀錄：<a href="https://announcement.mol.gov.tw/cmpqry/c" target="_blank" rel="noopener">勞動部違反勞動法令事業單位查詢</a></li>
+<li>職災相關處分：<a href="https://toshms.osha.gov.tw/Disaster/Content/DisasterList" target="_blank" rel="noopener">職場重大災害檢查訊息</a></li>
+<li>法規條文：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060009" target="_blank" rel="noopener">職業安全衛生設施規則</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060030" target="_blank" rel="noopener">高壓氣體勞工安全規則</a></li>
+</ul>
+<footer>查無紀錄不代表未曾發生事故或違規。統計頁的件數是處分件數，不等於事故場次。</footer>
+</main></div>
+<script>
+function initializeOverview() {}
+async function boot() {
+}
+boot();
+</script>
+</body></html>
