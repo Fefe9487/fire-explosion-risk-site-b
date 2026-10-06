@@ -763,7 +763,7 @@ const DEMO={"plants":[{"id":"p-795","name":"一天企業有限公司","core":"�
       }
       matches = findMatches(name, tax);
       if (!matches.length) {
-        document.getElementById("stage").innerHTML = statusHtml("本系統目前未查得符合條件的場所。");
+        document.getElementById("stage").innerHTML = statusHtml("非屬具火災爆炸高風險事業單位");
         return;
       }
       if (matches.length > CANDIDATE_LIMIT && name.length <= 2 && tax.length < 4) {
