@@ -52,7 +52,8 @@ def build(path):
             arts.update(labels)
         focuses.append({"kind":kind,"n":counts[kind]["all"],
             "topArts":[{"art":a,"n":n} for a,n in sorted(arts.items(),key=lambda x:(-x[1],x[0]))[:10]],
-            "summary":summaries[kind],
+            "summary":summaries[kind]["summary"],
+            "bullets":summaries[kind]["bullets"],
             "fix":guidance[kind]})
     through = max(r["處分日期"].strip() for r in rows)
     output = {"scope":"全臺公開職災相關處分資料，民國113至115年，按處分年度統計；不以特定場所名單限制。處分件數不等於事故場次、傷亡人數或全臺所有職災。",

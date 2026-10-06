@@ -276,6 +276,7 @@
     let sortDir = -1;
     let accYear = "all";
 
+    function escapeText(value) { return String(value ?? "").replace(/[&<>\"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c])); }
     function dateLabel(date) { return date ? date.split('/').map(Number).join('/') : '來源最新日期'; }
 
     function countOf(a) { return a.y[year] || 0; }
@@ -386,7 +387,9 @@
         return `<article class="law">
           <h3>${f.kind}（${f.n}件）</h3>
           <p class="meta">${arts ? "常見引用條文（前10項）：" + arts : ""}</p>
-          <p><strong>資料解讀　</strong>${f.summary}</p>
+          <p class="meta"><strong>近三年常見缺失</strong></p>
+          <p>${escapeText(f.summary)}</p>
+          <ul>${(f.bullets || []).map((item) => `<li>${escapeText(item)}</li>`).join("")}</ul>
           <p class="fix"><strong>檢查建議　</strong>${f.fix}</p>
         </article>`;
       }).join("");
@@ -449,4 +452,3 @@
   </script>
 </body>
 </html>
-
