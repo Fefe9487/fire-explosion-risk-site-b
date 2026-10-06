@@ -6,7 +6,7 @@
   "hostInferred": 4,
   "penaltyPeriod": "裁罰處分日期 105/09/12–115/10/01（約10年）",
   "accidentPeriod": "職災處分日期 113/01/02–115/09/18",
-  "scope": "場所查詢與職災統計涵蓋115年度高風險清冊場所；裁罰統計可切換全臺事業單位與清冊場所，兩者都只計火災爆炸相關處分。每件處分只算一次，處分件數不等於事故場次。",
+  "scope": "場所查詢呈現能配對到選定場所的公開紀錄；裁罰與職災統計使用全臺公開資料，不以特定場所名單限制。處分件數不等於事故場次或傷亡人數。",
   "rosterCores": 679,
   "csvYears": [
     105,
@@ -20,7 +20,7 @@
     113,
     115
   ],
-  "statisticsScope": "roster-and-national",
+  "statisticsScope": "national",
   "sourceUpdatedAt": "2026-10-06",
   "sourceCutoff": "115/10/06",
   "penaltySourceThrough": "115/10/01",

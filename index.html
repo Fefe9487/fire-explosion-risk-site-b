@@ -139,9 +139,9 @@
       <h1>事業單位職災與違規紀錄查詢</h1>
       <p class="lede">提供事業單位職業災害、勞動法令裁罰及火災爆炸相關安全資訊查詢。</p>
       <ul class="highlight" aria-label="平台亮點">
-        <li><strong><span class="highlight-no" aria-hidden="true">01</span>整合裁罰與職災紀錄</strong><p>串聯約10年裁罰紀錄，提供近五年職災紀錄查詢，依場所彙整歷史違規與職災相關處分。</p></li>
-        <li><strong><span class="highlight-no" aria-hidden="true">02</span>聚焦重大火災爆炸風險</strong><p>以化學雲及勞動檢查資料建立的高風險清冊為基礎，聚焦具重大火災爆炸風險的事業單位。</p></li>
-        <li><strong><span class="highlight-no" aria-hidden="true">03</span>掌握場所紀錄與產業分布</strong><p>提供清冊場所近五年紀錄查詢與近三年裁罰、職災統計，搭配行業及縣市分布，並清楚列示資料來源。</p></li>
+        <li><strong><span class="highlight-no" aria-hidden="true">01</span>整合裁罰與職災紀錄</strong><p>整合公開裁罰與職災相關處分資料，確認場所後查看該場所的歷史紀錄。</p></li>
+        <li><strong><span class="highlight-no" aria-hidden="true">02</span>確認場所後查詢</strong><p>先以名稱或統一編號尋找候選項目，再核對地址，選定場所後查看紀錄及篩選工具。</p></li>
+        <li><strong><span class="highlight-no" aria-hidden="true">03</span>安全預防資訊</strong><p>提供全臺公開裁罰與職災相關處分統計，搭配法規摘要、檢查建議及預防指引。</p></li>
       </ul>
       <hr class="rule" />
       <form id="form">
@@ -365,16 +365,16 @@
         <h2 class="block-title">${esc(p.name)}</h2>
         <p class="block-note">${esc(placeLine(p))}</p>
         <div class="detail-tools">
-          <label>縣市<select id="q-city" disabled><option>${esc(p.city || "未提供")}</option></select></label>
+          
           <label>排序<select id="q-sort">${options([["","最近處分日優先"],["oldest","最早處分日優先"]], view.sort)}</select></label>
-          <label>是否有職災<select id="q-acc">${options([["","全部"],["fire","火災"],["boom","爆炸"],["other","其他職災"],["none","本資料未查得"]], view.acc)}</select></label>
-          <label>是否違規<select id="q-viol">${options([["","全部"],["direct","火災爆炸相關違規"],["other","其他違規"],["none","本資料未查得"]], view.viol)}</select></label>
+          <label>職災紀錄類型<select id="q-acc">${options([["","全部"],["fire","火災"],["boom","爆炸"],["other","其他職災"]], view.acc)}</select></label>
+          <label>裁罰紀錄類別<select id="q-viol">${options([["","全部"],["direct","火災爆炸相關違規"],["other","其他違規"]], view.viol)}</select></label>
           <label>處分年度<select id="q-year">${yearOptions}</select></label>
           <label>近三年常見裁罰條文<select id="q-art">${articleOptions(view.art)}</select></label>
           <label class="check"><input id="q-host" type="checkbox"${view.host ? " checked" : ""} />含承攬／共同作業</label>
           <button type="button" class="text-btn" id="reset-filters">重設篩選</button>
         </div>
-        <p class="block-note">篩選僅適用於此場所。職災類型篩選職災紀錄，違規類別與條文篩選裁罰紀錄；年度與排序適用於兩者。條文選單沿用清冊場所近三年排行，可查近五年紀錄。</p>
+        <p class="block-note">篩選僅適用於此場所。職災類型篩選職災紀錄，違規類別與條文篩選裁罰紀錄；年度與排序適用於兩者。條文選單採全臺公開火災爆炸相關裁罰近三年排行，可篩選本場所近五年紀錄。</p>
         <p class="block-title">職災危害類型</p>
         <div class="chips" id="q-kinds"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((k) => `<button type="button" data-kind="${esc(k)}" aria-pressed="${view.kinds.includes(k)}">${esc(k)}</button>`).join("")}</div>
         ${dossierHtml(p, view)}
@@ -398,7 +398,7 @@
       }
       matches = findMatches(name, tax);
       if (!matches.length) {
-        document.getElementById("stage").innerHTML = statusHtml("非屬具火災爆炸高風險事業單位");
+        document.getElementById("stage").innerHTML = statusHtml("本系統目前未查得符合條件的場所。");
         return;
       }
       if (matches.length > CANDIDATE_LIMIT && name.length <= 2 && tax.length < 4) {
@@ -464,7 +464,7 @@
       for (const x of PEN) if (x.plantId && x.link === "plant") (penByPlant[x.plantId] ||= []).push(x);
     }
     function initializeQuery(meta, plants, penalties, accidents, ranking) {
-      RANKING = ranking;
+      RANKING = ranking.nationalPenalty || ranking;
       FIRE_ARTICLE_KEYS = new Set((ranking.fireCriteria?.groups || []).flatMap((g) => g.articles.map((ref) => g.short + "|" + ref)));
       META = meta;
       PLANTS = plants;
