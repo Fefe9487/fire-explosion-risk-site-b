@@ -92,6 +92,11 @@
     .detail { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
     .detail-tools { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: end; margin: 12px 0; }
     .detail-tools label { font-size: 13px; font-weight: 600; color: var(--navy); display: flex; flex-direction: column; gap: 6px; }
+    .detail-tools label { max-width: 100%; }
+    .detail-tools select { max-width: 100%; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; }
+    .chips button { font: inherit; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 999px; padding: 6px 12px; background: #fff; color: var(--navy); cursor: pointer; }
+    .chips button[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
     .check { flex-direction: row !important; align-items: center; gap: 8px !important; min-height: 40px; }
     .text-btn { font: inherit; font-weight: 600; color: var(--blue); background: none; border: 0; padding: 0; cursor: pointer; }
     .block-title { font-size: 14px; font-weight: 600; color: var(--navy); margin: 8px 0 6px; }
@@ -157,6 +162,8 @@
   </div>
   <script>
     const CANDIDATE_LIMIT = 40;
+    const KINDS_17 = ["墜落、滾落","被夾、被捲","物體飛落","物體倒塌、崩塌","跌倒","被刺、割、擦傷","被撞","感電","與高溫、低溫之接觸","與有害物等之接觸","不當動作","衝撞","火災","爆炸","溺斃","踩踏(踏穿)","物體破裂"];
+    let RANKING = null;
     let META = null, PLANTS = [], PEN = [], ACC = [];
     let FIRE_ARTICLE_KEYS = new Set();
     let accByPlant = {}, penByPlant = {};
@@ -172,7 +179,8 @@
       return parseInt(m[1], 10) * 10000 + parseInt(m[2], 10) * 100 + parseInt(m[3], 10);
     }
     function recentFirst(list, dateKey) {
-      return [...list].sort((a, b) => rocNum(b[dateKey]) - rocNum(a[dateKey]));
+      const direction = viewState().sort === "oldest" ? 1 : -1;
+      return [...list].sort((a, b) => direction * (rocNum(a[dateKey]) - rocNum(b[dateKey])));
     }
     function inYearWindow(date, start, end, selected) {
       const match = String(date || "").match(/^(\d{2,3})\//);
@@ -184,13 +192,17 @@
       return inYearWindow(date, start, end, year || "");
     }
     function accBundle(p, view) {
-      const all = (accByPlant[p.id] || []).filter((a) => queryDateHit(a.dispDate, view.year));
+      const all = (accByPlant[p.id] || []).filter((a) => queryDateHit(a.dispDate, view.year))
+        .filter((a) => (!view.kinds?.length || view.kinds.includes(a.kind)) &&
+          (!view.acc || (view.acc === "fire" ? a.kind === "火災" : view.acc === "boom" ? a.kind === "爆炸" : view.acc === "other" ? !["火災","爆炸"].includes(a.kind) : false)));
       const plant = all.filter((a) => a.link === "plant");
       const hosts = view.host ? all.filter((a) => a.link === "host-inferred") : [];
       return { plant, hosts, shown: plant.concat(hosts) };
     }
     function penBundle(p, view) {
-      const plant = (penByPlant[p.id] || []).filter((x) => x.link === "plant" && queryDateHit(x.date, view.year));
+      const plant = (penByPlant[p.id] || []).filter((x) => x.link === "plant" && queryDateHit(x.date, view.year))
+        .filter((x) => (!view.viol || (view.viol === "direct" ? ["direct","broad"].includes(x.tagFire) : view.viol === "other" ? !["direct","broad"].includes(x.tagFire) : false)) &&
+          (!view.art || hasArt(x, view.art)));
       return { plant, shown: plant };
     }
     function tagCell(row) {
@@ -264,7 +276,7 @@
       if (a.plant.length) bits.push("<p class=\"block-title\">職災相關處分（本場所）</p>" + accTable(a.plant));
       if (a.hosts.length) bits.push("<p class=\"block-title\">職災相關處分（承攬／共同作業）</p><p class=\"block-note\">處分對象為承攬人或共同作業單位，發生地經比對後推估屬於本場所。</p>" + accTable(a.hosts));
       if (pe.plant.length) bits.push("<p class=\"block-title\">裁罰（本場所）</p>" + penTable(pe.plant));
-      if (!a.shown.length && !pe.plant.length) bits.push("<p class=\"block-note\">在所選處分年度內未查得紀錄。查無紀錄不代表未曾發生事故或違規。</p>");
+      if (!a.shown.length && !pe.plant.length) bits.push("<p class=\"block-note\">沒有符合目前篩選條件的紀錄。可重設篩選查看此場所的其他紀錄；查無紀錄不代表未曾發生事故或違規。</p>");
       if (a.plant.some((x) => x.note === "district")) bits.push("<p class=\"block-note\">部分紀錄依行政區輔助配對，縣市或行政區相同不代表同一廠區。</p>");
       return bits.join("");
     }
@@ -318,7 +330,22 @@
     function viewState() {
       const yearEl = document.getElementById("q-year");
       const hostEl = document.getElementById("q-host");
-      return { year: yearEl ? yearEl.value : "", host: !!(hostEl && hostEl.checked) };
+      const value = (id) => document.getElementById(id)?.value || "";
+      return { year: yearEl ? yearEl.value : "", host: !!(hostEl && hostEl.checked),
+        sort: value("q-sort"), acc: value("q-acc"), viol: value("q-viol"), art: value("q-art"),
+        kinds: [...document.querySelectorAll('#q-kinds [data-kind][aria-pressed="true"]')].map((b) => b.dataset.kind) };
+    }
+    function hasArt(row, key) {
+      const high = key.startsWith("hp-"), ref = high ? key.slice(3) : key;
+      const laws = high ? ["高壓則","高壓氣體勞工安全規則"] : ["設規","職業安全衛生設施規則"];
+      return (row.arts || []).some((a) => laws.includes(a.law) && String(a.n) + (a.sub == null ? "" : "-" + a.sub) === ref);
+    }
+    function options(items, selected) {
+      return items.map(([value, label]) => `<option value="${esc(value)}"${value === selected ? " selected" : ""}>${esc(label)}</option>`).join("");
+    }
+    function articleOptions(selected) {
+      const groups = RANKING.lawGroups || [{law:"職業安全衛生設施規則",short:"設規"}];
+      return '<option value="">全部條文</option>' + groups.map((g) => `<optgroup label="${esc(g.law)}">${options((RANKING.topArts || []).filter((a) => (a.lawShort || "設規") === g.short).map((a) => [a.key, a.label]), selected)}</optgroup>`).join("");
     }
     function renderCandidates() {
       selectedId = "";
@@ -338,9 +365,18 @@
         <h2 class="block-title">${esc(p.name)}</h2>
         <p class="block-note">${esc(placeLine(p))}</p>
         <div class="detail-tools">
+          <label>縣市<select id="q-city" disabled><option>${esc(p.city || "未提供")}</option></select></label>
+          <label>排序<select id="q-sort">${options([["","最近處分日優先"],["oldest","最早處分日優先"]], view.sort)}</select></label>
+          <label>是否有職災<select id="q-acc">${options([["","全部"],["fire","火災"],["boom","爆炸"],["other","其他職災"],["none","本資料未查得"]], view.acc)}</select></label>
+          <label>是否違規<select id="q-viol">${options([["","全部"],["direct","火災爆炸相關違規"],["other","其他違規"],["none","本資料未查得"]], view.viol)}</select></label>
           <label>處分年度<select id="q-year">${yearOptions}</select></label>
+          <label>近三年常見裁罰條文<select id="q-art">${articleOptions(view.art)}</select></label>
           <label class="check"><input id="q-host" type="checkbox"${view.host ? " checked" : ""} />含承攬／共同作業</label>
+          <button type="button" class="text-btn" id="reset-filters">重設篩選</button>
         </div>
+        <p class="block-note">篩選僅適用於此場所。職災類型篩選職災紀錄，違規類別與條文篩選裁罰紀錄；年度與排序適用於兩者。條文選單沿用清冊場所近三年排行，可查近五年紀錄。</p>
+        <p class="block-title">職災危害類型</p>
+        <div class="chips" id="q-kinds"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((k) => `<button type="button" data-kind="${esc(k)}" aria-pressed="${view.kinds.includes(k)}">${esc(k)}</button>`).join("")}</div>
         ${dossierHtml(p, view)}
       </article>`;
     }
@@ -393,13 +429,32 @@
         renderCandidates();
         return;
       }
+      if (e.target.closest("#reset-filters")) {
+        document.querySelectorAll(".detail-tools select:not(:disabled)").forEach((el) => el.value = "");
+        document.getElementById("q-host").checked = false;
+        document.querySelectorAll("#q-kinds [data-kind]").forEach((el) => el.setAttribute("aria-pressed", "false"));
+        renderDetail();
+        return;
+      }
+      const kind = e.target.closest("#q-kinds button");
+      if (kind) {
+        if (kind.hasAttribute("data-all")) document.querySelectorAll("#q-kinds [data-kind]").forEach((el) => el.setAttribute("aria-pressed", "false"));
+        else kind.setAttribute("aria-pressed", String(kind.getAttribute("aria-pressed") !== "true"));
+        renderDetail();
+        document.querySelector(kind.hasAttribute("data-all") ? "#q-kinds [data-all]" : '#q-kinds [data-kind="' + kind.dataset.kind + '"]')?.focus();
+        return;
+      }
       const button = e.target.closest(".candidate");
       if (!button) return;
       selectedId = button.dataset.id;
       renderDetail();
     });
     document.getElementById("stage").addEventListener("change", (e) => {
-      if (e.target.id === "q-year" || e.target.id === "q-host") renderDetail();
+      if (["q-year","q-host","q-sort","q-acc","q-viol","q-art"].includes(e.target.id)) {
+        const id = e.target.id;
+        renderDetail();
+        document.getElementById(id)?.focus();
+      }
     });
 
     function indexRows() {
@@ -409,6 +464,7 @@
       for (const x of PEN) if (x.plantId && x.link === "plant") (penByPlant[x.plantId] ||= []).push(x);
     }
     function initializeQuery(meta, plants, penalties, accidents, ranking) {
+      RANKING = ranking;
       FIRE_ARTICLE_KEYS = new Set((ranking.fireCriteria?.groups || []).flatMap((g) => g.articles.map((ref) => g.short + "|" + ref)));
       META = meta;
       PLANTS = plants;
