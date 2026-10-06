@@ -584,11 +584,10 @@ const DEMO={"plants":[{"id":"p-795","name":"一天企業有限公司","core":"�
         <td class="code">${esc(c.no)}</td>
         <td>${["火災", "爆炸"].includes(c.kind) ? `<span class="fire-kind-badge">${esc(c.kind)}</span>` : esc(c.kind)}</td>
         <td>${esc(c.place || "")}</td>
-        <td>${penaltyArticleHtml(c)}</td>
-        <td>${["火災", "爆炸"].includes(c.kind) ? `<strong class="fire-text">${esc(c.text)}</strong>` : esc(c.text)}${c.sourceWarning ? `<p class="source-note">原始資料待核對：${esc(c.sourceWarning)}</p>` : ""}</td>
+        <td>${penaltyArticleHtml(c)}${c.sourceWarning ? `<p class="source-note">原始資料待核對：${esc(c.sourceWarning)}</p>` : ""}</td>
         <td>${tagCell(c)}</td>
       </tr>`).join("");
-      return `<div class="case-scroll"><table class="cases"><caption>火災及爆炸處分說明以粗體顯示；相關法規條文以紅字顯示。</caption><thead><tr><th>處分日期</th><th>處分字號</th><th>災害類型</th><th>發生地</th><th>條文</th><th>說明</th><th>標籤</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      return `<div class="case-scroll"><table class="cases"><caption>火災爆炸相關法規條文以紅字顯示。</caption><thead><tr><th>處分日期</th><th>處分字號</th><th>災害類型</th><th>發生地</th><th>條文</th><th>標籤</th></tr></thead><tbody>${body}</tbody></table></div>`;
     }
     function fireArticleKey(article) {
       const short = { "職業安全衛生設施規則": "設規", "高壓氣體勞工安全規則": "高壓則" }[article.law] || article.law;
