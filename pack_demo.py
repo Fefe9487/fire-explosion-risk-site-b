@@ -27,7 +27,7 @@ def main():
     boots={
       'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
       'gaps':"applyGapData(DEMO['gap-penalty'],DEMO['gap-accident'],DEMO['law-profiles']);window.gapsShowTab=showTab;",
-      'method':"initializeOverview(DEMO.plants,DEMO.meta,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty']);",
+      'method':"initializeOverview(DEMO.plants,DEMO.meta,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty']);renderFireRules(DEMO['gap-penalty'].fireCriteria);",
     }
     for name,file in [('query','index.html'),('gaps','gaps.html'),('method','method.html')]:
         style,body,script=extract(file)

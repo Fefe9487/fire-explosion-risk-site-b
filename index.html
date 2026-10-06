@@ -112,6 +112,14 @@
     .pen-cases caption { text-align: left; font-size: 12px; color: var(--muted); padding: 0 0 8px; }
     .pen-cases .fire-law { color: #b42318; font-weight: 600; }
     .pen-cases .fire-text { font-weight: 700; }
+    .cases .fire-law { color: #b42318; font-weight: 600; }
+    .cases .fire-text { font-weight: 700; }
+    .fire-kind-badge { display: inline-block; margin-left: 5px; padding: 1px 7px; border-radius: 999px; background: #fef2f2; color: #b42318; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .fire-summary { margin: 12px 0 16px; padding: 14px 16px; border-left: 4px solid #b42318; background: #fff7f7; }
+    .fire-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; margin: 8px 0; }
+    .fire-summary-grid strong { display: block; font-size: 22px; color: var(--navy); font-variant-numeric: tabular-nums; }
+    .fire-summary-actions { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+    .fire-summary-alert { color: #9f2d20; }
     .case-preview, .case-full { display: block; }
     .case-preview[hidden], .case-full[hidden] { display: none; }
     .case-more { display: block; margin: 8px 0; padding: 0; border: 0; background: transparent; color: #2464b0; font: inherit; text-decoration: underline; cursor: pointer; }
@@ -129,6 +137,7 @@
       .highlight { grid-template-columns: 1fr; gap: 12px; padding: 10px 12px; }
       .highlight li { padding: 0; }
       .highlight li + li { border-left: 0; border-top: 1px solid #d4e3ef; padding-top: 12px; }
+      .fire-summary-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -199,6 +208,30 @@
       const hosts = view.host ? all.filter((a) => a.link === "host-inferred") : [];
       return { plant, hosts, shown: plant.concat(hosts) };
     }
+    function dispositionKey(row) { return String(row.no || row.id || "").trim(); }
+    function dispositionCount(rows) { return new Set(rows.map(dispositionKey).filter(Boolean)).size; }
+    function fireRelatedPenalty(row) {
+      return ["direct", "broad"].includes(row.tagFire) || (row.arts || []).some((a) => FIRE_ARTICLE_KEYS.has(fireArticleKey(a)));
+    }
+    function fireSummaryHtml(p, view, shownAcc, shownPen) {
+      const [start, end] = META.queryYears || [111, 115];
+      const allAcc = accByPlant[p.id] || [];
+      const coreAcc = allAcc.filter((x) => x.link === "plant" && queryDateHit(x.dispDate, "") && ["火災", "爆炸"].includes(x.kind));
+      const hostAcc = allAcc.filter((x) => x.link === "host-inferred" && queryDateHit(x.dispDate, "") && ["火災", "爆炸"].includes(x.kind));
+      const corePen = (penByPlant[p.id] || []).filter((x) => queryDateHit(x.date, "") && fireRelatedPenalty(x));
+      const coreAccCount = dispositionCount(coreAcc), hostAccCount = dispositionCount(hostAcc), corePenCount = dispositionCount(corePen);
+      const visibleAccCount = dispositionCount(shownAcc.filter((x) => ["火災", "爆炸"].includes(x.kind)));
+      const visiblePenCount = dispositionCount(shownPen.filter(fireRelatedPenalty));
+      const hidden = visibleAccCount < coreAccCount || visiblePenCount < corePenCount;
+      return `<section class="fire-summary" id="dossier-fire-summary" aria-label="本場所近五年火災爆炸紀錄摘要" tabindex="-1">
+        <p class="block-title">本場所近五年火災爆炸相關紀錄</p>
+        <p class="block-note">民國${start}–${end}年；以下以能配對至本場所的紀錄為準，承攬／共同作業另列，不併入本場所件數。</p>
+        <div class="fire-summary-grid"><div>火災／爆炸職災處分<strong>${coreAccCount} 件</strong></div><div>火災爆炸相關裁罰<strong>${corePenCount} 件</strong></div></div>
+        ${hostAccCount ? `<p class="block-note">承攬／共同作業另列：火災／爆炸職災處分 ${hostAccCount} 件（發生地比對推估，處分對象可能為承攬或共同作業單位）。</p>` : ""}
+        <div class="fire-summary-actions">${shownAcc.some((x) => ["火災", "爆炸"].includes(x.kind)) ? '<a href="#dossier-acc">跳至職災紀錄</a>' : ""}${shownPen.some(fireRelatedPenalty) ? '<a href="#dossier-pen">跳至裁罰紀錄</a>' : ""}</div>
+        ${hidden ? '<p class="block-note fire-summary-alert">目前篩選隱藏了部分本場所既有火災爆炸相關紀錄。</p><button class="text-btn" type="button" data-reset-record-filters>重設篩選並顯示完整近五年紀錄</button>' : ""}
+      </section>`;
+    }
     function penBundle(p, view) {
       const plant = (penByPlant[p.id] || []).filter((x) => x.link === "plant" && queryDateHit(x.date, view.year))
         .filter((x) => (!view.viol || (view.viol === "direct" ? ["direct","broad"].includes(x.tagFire) : view.viol === "other" ? !["direct","broad"].includes(x.tagFire) : false)) &&
@@ -218,13 +251,13 @@
       const body = recentFirst(list, "dispDate").map((c) => `<tr>
         <td>${esc(c.dispDate)}</td>
         <td class="code">${esc(c.no)}</td>
-        <td>${esc(c.kind)}</td>
+        <td>${["火災", "爆炸"].includes(c.kind) ? `<span class="fire-kind-badge">${esc(c.kind)}</span>` : esc(c.kind)}</td>
         <td>${esc(c.place || "")}</td>
-        <td>${esc(articleText(c))}</td>
-        <td>${esc(c.text)}${c.sourceWarning ? `<p class="source-note">原始資料待核對：${esc(c.sourceWarning)}</p>` : ""}</td>
+        <td>${penaltyArticleHtml(c)}</td>
+        <td>${["火災", "爆炸"].includes(c.kind) ? `<strong class="fire-text">${esc(c.text)}</strong>` : esc(c.text)}${c.sourceWarning ? `<p class="source-note">原始資料待核對：${esc(c.sourceWarning)}</p>` : ""}</td>
         <td>${tagCell(c)}</td>
       </tr>`).join("");
-      return `<div class="case-scroll"><table class="cases"><thead><tr><th>處分日期</th><th>處分字號</th><th>災害類型</th><th>發生地</th><th>條文</th><th>說明</th><th>標籤</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      return `<div class="case-scroll"><table class="cases"><caption>火災及爆炸處分說明以粗體顯示；相關法規條文以紅字顯示。</caption><thead><tr><th>處分日期</th><th>處分字號</th><th>災害類型</th><th>發生地</th><th>條文</th><th>說明</th><th>標籤</th></tr></thead><tbody>${body}</tbody></table></div>`;
     }
     function fireArticleKey(article) {
       const short = { "職業安全衛生設施規則": "設規", "高壓氣體勞工安全規則": "高壓則" }[article.law] || article.law;
@@ -273,9 +306,9 @@
       const source = actualIndustry ? (p.industrySource || "未提供") : (p.industryDescription ? "經濟部商工登記營業項目（統編查詢）" : "未提供");
       const bits = [`<p class="block-title">場所資料</p><p class="block-note">行業資料：${esc(label)}<br>資料來源：${esc(source)}</p>`];
       if (p.addressSource) bits.push(`<p class="block-note">地址來源：${esc(p.addressSource)}</p>`);
-      if (a.plant.length) bits.push("<p class=\"block-title\">職災相關處分（本場所）</p>" + accTable(a.plant));
+      if (a.plant.length) bits.push("<p class=\"block-title\" id=\"dossier-acc\">職災相關處分（本場所）</p>" + accTable(a.plant));
       if (a.hosts.length) bits.push("<p class=\"block-title\">職災相關處分（承攬／共同作業）</p><p class=\"block-note\">處分對象為承攬人或共同作業單位，發生地經比對後推估屬於本場所。</p>" + accTable(a.hosts));
-      if (pe.plant.length) bits.push("<p class=\"block-title\">裁罰（本場所）</p>" + penTable(pe.plant));
+      if (pe.plant.length) bits.push("<p class=\"block-title\" id=\"dossier-pen\">裁罰（本場所）</p>" + penTable(pe.plant));
       if (!a.shown.length && !pe.plant.length) bits.push("<p class=\"block-note\">沒有符合目前篩選條件的紀錄。可重設篩選查看此場所的其他紀錄；查無紀錄不代表未曾發生事故或違規。</p>");
       if (a.plant.some((x) => x.note === "district")) bits.push("<p class=\"block-note\">部分紀錄依行政區輔助配對，縣市或行政區相同不代表同一廠區。</p>");
       return bits.join("");
@@ -356,6 +389,7 @@
       const p = PLANTS.find((item) => item.id === selectedId);
       if (!p) return;
       const view = viewState();
+      const summaryAcc = accBundle(p, view), summaryPen = penBundle(p, view);
       const [start, end] = META.queryYears || [111, 115];
       const years = Array.from({ length: end - start + 1 }, (_, i) => end - i);
       const yearOptions = `<option value=""${view.year ? "" : " selected"}>近五年（${start}–${end}年）</option>` +
@@ -364,6 +398,7 @@
         <button class="text-btn" id="back-candidates" type="button">返回候選項目</button>
         <h2 class="block-title">${esc(p.name)}</h2>
         <p class="block-note">${esc(placeLine(p))}</p>
+        ${fireSummaryHtml(p, view, summaryAcc.plant, summaryPen.plant)}
         <div class="detail-tools">
           
           <label>排序<select id="q-sort">${options([["","最近處分日優先"],["oldest","最早處分日優先"]], view.sort)}</select></label>
@@ -434,6 +469,14 @@
         document.getElementById("q-host").checked = false;
         document.querySelectorAll("#q-kinds [data-kind]").forEach((el) => el.setAttribute("aria-pressed", "false"));
         renderDetail();
+        return;
+      }
+      if (e.target.closest("[data-reset-record-filters]")) {
+        document.querySelectorAll(".detail-tools select:not(:disabled)").forEach((el) => el.value = "");
+        document.getElementById("q-host").checked = false;
+        document.querySelectorAll("#q-kinds [data-kind]").forEach((el) => el.setAttribute("aria-pressed", "false"));
+        renderDetail();
+        document.getElementById("dossier-fire-summary")?.focus();
         return;
       }
       const kind = e.target.closest("#q-kinds button");
