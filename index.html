@@ -317,6 +317,7 @@
       const source = actualIndustry ? (p.industrySource || "未提供") : (p.industryDescription ? "經濟部商工登記營業項目（統編查詢）" : "未提供");
       const bits = [`<p class="block-title">場所資料</p><p class="block-note">行業資料：${esc(label)}<br>資料來源：${esc(source)}</p>`];
       if (p.addressSource) bits.push(`<p class="block-note">地址來源：${esc(p.addressSource)}</p>`);
+      if (a.plant.concat(pe.plant).some((x) => x.note === "headquarters")) bits.push("<p class=\"block-note\">這一筆是公司名稱。同統編、公告沒有寫明廠別的紀錄記在這裡；發生地以各筆為準，不代表都發生在上方地址。</p>");
       if (a.plant.length) bits.push("<p class=\"block-title\" id=\"dossier-acc\">職災相關處分（本場所）</p>" + accTable(a.plant));
       if (a.hosts.length) bits.push("<p class=\"block-title\">職災相關處分（承攬／共同作業）</p><p class=\"block-note\">處分對象為承攬人或共同作業單位，發生地經比對後推估屬於本場所。</p>" + accTable(a.hosts));
       if (pe.plant.length) bits.push("<p class=\"block-title\" id=\"dossier-pen\">裁罰（本場所）</p>" + penTable(pe.plant));
