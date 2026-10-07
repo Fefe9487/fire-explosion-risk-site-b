@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-10-06 09:40",
+  "builtAt": "2026-10-07 09:30",
   "plants": 973,
-  "penalties": 1096,
-  "accidents": 210,
+  "penalties": 1488,
+  "accidents": 363,
   "hostInferred": 4,
   "penaltyPeriod": "裁罰處分日期 105/09/12–115/10/01（約10年）",
   "accidentPeriod": "職災處分日期 113/01/02–115/09/18",
@@ -26,6 +26,6 @@
   "penaltySourceThrough": "115/10/01",
   "accidentSourceThrough": "115/09/18",
   "penaltyPublishedThrough": "115/10/05",
-  "fireCriteriaVersion": 3,
-  "methodUpdatedAt": "2026-10-06"
+  "fireCriteriaVersion": 4,
+  "methodUpdatedAt": "2026-10-07"
 }
