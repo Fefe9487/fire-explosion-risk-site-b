@@ -212,8 +212,7 @@
       const all = (accByPlant[p.id] || []).filter((a) => accPasses(a, view));
       const plant = all.filter((a) => a.link === "plant");
       const hosts = view.host ? all.filter((a) => a.link === "host-inferred") : [];
-      const tax = p.tax && p.tax.length === 8 ? (accByTax[p.tax] || []).filter((a) => accPasses(a, view)) : [];
-      return { plant, hosts, tax, shown: plant.concat(hosts, tax) };
+      return { plant, hosts, tax: [], shown: plant.concat(hosts) };
     }
     function dispositionKey(row) { return String(row.no || row.id || "").trim(); }
     function dispositionCount(rows) { return new Set(rows.map(dispositionKey).filter(Boolean)).size; }
@@ -226,10 +225,7 @@
       const coreAcc = allAcc.filter((x) => x.link === "plant" && queryDateHit(x.dispDate, "") && ["火災", "爆炸"].includes(x.kind));
       const hostAcc = allAcc.filter((x) => x.link === "host-inferred" && queryDateHit(x.dispDate, "") && ["火災", "爆炸"].includes(x.kind));
       const corePen = (penByPlant[p.id] || []).filter((x) => queryDateHit(x.date, "") && fireRelatedPenalty(x));
-      const taxAcc = (p.tax && p.tax.length === 8 ? accByTax[p.tax] || [] : []).filter((x) => queryDateHit(x.dispDate, "") && ["火災", "爆炸"].includes(x.kind));
-      const taxPen = (p.tax && p.tax.length === 8 ? penByTax[p.tax] || [] : []).filter((x) => queryDateHit(x.date, "") && fireRelatedPenalty(x));
       const coreAccCount = dispositionCount(coreAcc), hostAccCount = dispositionCount(hostAcc), corePenCount = dispositionCount(corePen);
-      const taxAccCount = dispositionCount(taxAcc), taxPenCount = dispositionCount(taxPen);
       const visibleAccCount = dispositionCount(shownAcc.filter((x) => ["火災", "爆炸"].includes(x.kind)));
       const visiblePenCount = dispositionCount(shownPen.filter(fireRelatedPenalty));
       const hidden = visibleAccCount < coreAccCount || visiblePenCount < corePenCount;
@@ -238,7 +234,6 @@
         <p class="block-note">民國${start}–${end}年；以下以能配對至本場所的紀錄為準，承攬／共同作業另列，不併入本場所件數。</p>
         <div class="fire-summary-grid"><div>火災／爆炸職災處分<strong>${coreAccCount} 件</strong></div><div>火災爆炸相關裁罰<strong>${corePenCount} 件</strong></div></div>
         ${hostAccCount ? `<p class="block-note">承攬／共同作業另列：火災／爆炸職災處分 ${hostAccCount} 件（發生地比對推估，處分對象可能為承攬或共同作業單位）。</p>` : ""}
-        ${taxAccCount || taxPenCount ? `<p class="block-note">統編彙總另列：火災／爆炸職災處分 ${taxAccCount} 件、火災爆炸相關裁罰 ${taxPenCount} 件。同一統編有多個場所，這些處分沒有歸到單一廠，也不計入上方的本場所件數。</p>` : ""}
         <div class="fire-summary-actions">${shownAcc.some((x) => ["火災", "爆炸"].includes(x.kind)) ? '<a href="#dossier-acc">跳至職災紀錄</a>' : ""}${shownPen.some(fireRelatedPenalty) ? '<a href="#dossier-pen">跳至裁罰紀錄</a>' : ""}</div>
         ${hidden ? '<p class="block-note fire-summary-alert">目前篩選隱藏了部分本場所既有火災爆炸相關紀錄。</p><button class="text-btn" type="button" data-reset-record-filters>重設篩選並顯示完整近五年紀錄</button>' : ""}
       </section>`;
@@ -250,11 +245,10 @@
     }
     function penBundle(p, view) {
       const plant = (penByPlant[p.id] || []).filter((x) => x.link === "plant" && penPasses(x, view));
-      const tax = p.tax && p.tax.length === 8 ? (penByTax[p.tax] || []).filter((x) => penPasses(x, view)) : [];
-      return { plant, tax, shown: plant.concat(tax) };
+      return { plant, tax: [], shown: plant };
     }
     function tagCell(row) {
-      if (row.link === "tax") return `<span class="tag">${esc(row.tag || "統編彙總")}</span>`;
+      if (row.link === "tax") return "";
       return row.link === "host-inferred" ? `<span class="tag">${esc(row.tag)}</span>` : "";
     }
     function articleText(row) {
@@ -314,7 +308,7 @@
         <td class="case-text">${penaltyDescription(c)}</td>
         <td>${tagCell(c)}</td>
       </tr>`).join("");
-      return `<div class="case-scroll"><table class="cases pen-cases"><caption>紅字為火災爆炸相關條文；粗體為可對應相關條文的說明。統編彙總不是單一場所的專屬處分。預設顯示前200字，點「查看更多」展開全文；表格可左右捲動。</caption><colgroup><col style="width:100px"><col style="width:170px"><col style="width:220px"><col><col style="width:96px"></colgroup><thead><tr><th>處分日期</th><th>處分字號</th><th>條文</th><th>裁罰說明</th><th>標籤</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      return `<div class="case-scroll"><table class="cases pen-cases"><caption>紅字為火災爆炸相關條文；粗體為可對應相關條文的說明。預設顯示前200字，點「查看更多」展開全文；表格可左右捲動。</caption><colgroup><col style="width:100px"><col style="width:170px"><col style="width:220px"><col><col style="width:96px"></colgroup><thead><tr><th>處分日期</th><th>處分字號</th><th>條文</th><th>裁罰說明</th><th>標籤</th></tr></thead><tbody>${body}</tbody></table></div>`;
     }
     function dossierHtml(p, view) {
       const a = accBundle(p, view), pe = penBundle(p, view);
@@ -325,9 +319,7 @@
       if (p.addressSource) bits.push(`<p class="block-note">地址來源：${esc(p.addressSource)}</p>`);
       if (a.plant.length) bits.push("<p class=\"block-title\" id=\"dossier-acc\">職災相關處分（本場所）</p>" + accTable(a.plant));
       if (a.hosts.length) bits.push("<p class=\"block-title\">職災相關處分（承攬／共同作業）</p><p class=\"block-note\">處分對象為承攬人或共同作業單位，發生地經比對後推估屬於本場所。</p>" + accTable(a.hosts));
-      if (a.tax.length) bits.push(`<p class="block-title"${a.plant.length ? "" : " id=\"dossier-acc\""}>職災相關處分（統編彙總）</p><p class="block-note">同一統編有多個場所，這筆處分對不到其中一廠，所以沒有寫成單一場所的紀錄。</p>` + accTable(a.tax));
       if (pe.plant.length) bits.push("<p class=\"block-title\" id=\"dossier-pen\">裁罰（本場所）</p>" + penTable(pe.plant));
-      if (pe.tax.length) bits.push(`<p class="block-title"${pe.plant.length ? "" : " id=\"dossier-pen\""}>裁罰（統編彙總）</p><p class="block-note">同一統編有多個場所，這筆處分對不到其中一廠，所以沒有寫成單一場所的紀錄。</p>` + penTable(pe.tax));
       if (!a.shown.length && !pe.shown.length) bits.push("<p class=\"block-note\">沒有符合目前篩選條件的紀錄。可重設篩選查看此場所的其他紀錄；查無紀錄不代表未曾發生事故或違規。</p>");
       if (a.plant.some((x) => x.note === "district")) bits.push("<p class=\"block-note\">部分紀錄依行政區輔助配對，縣市或行政區相同不代表同一廠區。</p>");
       return bits.join("");
