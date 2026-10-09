@@ -1,12 +1,12 @@
 {
-  "builtAt": "2026-10-07 16:08",
+  "builtAt": "2026-10-09 08:40",
   "plants": 973,
   "penalties": 1207,
   "accidents": 213,
   "hostInferred": 4,
   "penaltyPeriod": "裁罰處分日期 105/09/12–115/10/01（約10年）",
   "accidentPeriod": "職災處分日期 113/01/02–115/09/18",
-  "scope": "場所查詢呈現能配對到選定場所的公開紀錄；裁罰與職災統計使用全臺公開資料，不以特定場所名單限制。處分件數不等於事故場次或傷亡人數。",
+  "scope": "查詢以統一編號的母公司合計紀錄，不標示個別場所，未查詢時不列出公司。統計頁為全臺公開處分，不列出事業單位。處分件數不等於事故場次或傷亡人數。",
   "rosterCores": 679,
   "csvYears": [
     105,
@@ -27,5 +27,5 @@
   "accidentSourceThrough": "115/09/18",
   "penaltyPublishedThrough": "115/10/05",
   "fireCriteriaVersion": 4,
-  "methodUpdatedAt": "2026-10-07"
+  "methodUpdatedAt": "2026-10-09"
 }

@@ -22,12 +22,12 @@ def extract(name):
     return style,body,script
 
 def main():
-    payload={name:load(name) for name in ['plants','meta','penalties','accidents','gap-penalty','gap-accident','law-profiles']}
+    payload={name:load(name) for name in ['plants','meta','penalties','accidents','gap-penalty','gap-accident','law-profiles','pacs','tax-rollup']}
     styles=[];bodies=[];scripts=[]
     boots={
-      'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
+      'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty'],DEMO.pacs,DEMO['tax-rollup']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
       'gaps':"applyGapData(DEMO['gap-penalty'],DEMO['gap-accident'],DEMO['law-profiles']);window.gapsShowTab=showTab;",
-      'method':"initializeOverview(DEMO.plants,DEMO.meta,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty']);renderFireRules(DEMO['gap-penalty'].fireCriteria);",
+      'method':"initializeOverview(DEMO.plants,DEMO.meta,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty']);",
     }
     for name,file in [('query','index.html'),('gaps','gaps.html'),('method','method.html')]:
         style,body,script=extract(file)
@@ -54,7 +54,7 @@ def main():
     }
     window.addEventListener('hashchange',applyHash);applyHash();
     """
-    html='''<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>事業單位職災與違規紀錄查詢（離線版）</title><style>'''+ '\n'.join(styles)+'''\n.page[hidden]{display:none!important}#page-query .wrap{max-width:1240px}#page-gaps .wrap{max-width:1100px}</style></head><body>'''+ '\n'.join(bodies)+'<script>\nconst DEMO='+raw+';\n'+'\n'.join(scripts)+'\n'+router+'\n</script></body></html>'
+    html='''<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高風險廠場事業單位違規紀錄查詢系統（離線版）</title><style>'''+ '\n'.join(styles)+'''\n.page[hidden]{display:none!important}#page-query .wrap{max-width:1240px}#page-gaps .wrap{max-width:1100px}</style></head><body>'''+ '\n'.join(bodies)+'<script>\nconst DEMO='+raw+';\n'+'\n'.join(scripts)+'\n'+router+'\n</script></body></html>'
     (ROOT/'demo.html').write_text(html,encoding='utf-8')
     print('Packed offline pages:',len(payload['plants']),'places;',len(html.encode('utf-8')),'bytes')
 
