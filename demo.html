@@ -882,10 +882,12 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteri
     function recordPasses(row, view, dateKey) {
       return queryDateHit(row[dateKey], view.year);
     }
+    function accidentKindPasses(row, view) {
+      return (!view.kinds?.length || view.kinds.includes(row.kind)) &&
+        (!view.acc || (view.acc === "fire" ? row.kind === "火災" : view.acc === "boom" ? row.kind === "爆炸" : view.acc === "other" ? !["火災","爆炸"].includes(row.kind) : false));
+    }
     function accPasses(a, view) {
-      return recordPasses(a, view, "dispDate") &&
-        (!view.kinds?.length || view.kinds.includes(a.kind)) &&
-        (!view.acc || (view.acc === "fire" ? a.kind === "火災" : view.acc === "boom" ? a.kind === "爆炸" : view.acc === "other" ? !["火災","爆炸"].includes(a.kind) : false));
+      return recordPasses(a, view, "dispDate") && accidentKindPasses(a, view);
     }
     function accBundle(p, view) {
       const all = (accByPlant[p.id] || []).filter((a) => accPasses(a, view));
@@ -960,8 +962,8 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteri
     function bucketsFor(company, view) {
       const all = rowsFor(company);
       const penalties = all.pen.filter((row) => dated(row, view, "date") && (!view.art || hasArt(row, view.art)));
-      const accidents = all.acc.filter((row) => dated(row, view, "dispDate"));
-      const pacs = all.pacs.filter((row) => pacsInView(row, view));
+      const accidents = all.acc.filter((row) => dated(row, view, "dispDate") && accidentKindPasses(row, view));
+      const pacs = all.pacs.filter((row) => pacsInView(row, view) && accidentKindPasses(row, view));
       const fireKind = (row) => row.kind === "火災" || row.kind === "爆炸";
       const fireAccidentNos = new Set(all.acc.filter(fireKind).map(dispositionKey));
       const firePenalty = (row) => fireRelatedPenalty(row) || fireAccidentNos.has(dispositionKey(row));
@@ -991,6 +993,7 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteri
         </div>
         <div class="fire-summary-actions"><a href="#sec-fire-pen">火災爆炸裁罰</a><a href="#sec-fire-acc">火災爆炸職災</a><a href="#sec-other-acc">其他類型職災</a><a href="#sec-other-pen">其他裁罰</a></div>
         ${view.art ? '<p class="block-note">目前的條文篩選只作用在裁罰。下方件數是篩選後的結果。</p>' : ""}
+        ${view.acc || view.kinds?.length ? '<p class="block-note">職災件數已依所選職災類別與危害類型篩選；裁罰件數不受影響。</p>' : ""}
       </section>`;
     }
     function penPasses(x, view) {
@@ -1174,10 +1177,14 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteri
         <p class="block-note">${esc(placeNote)}</p>
         <div class="detail-tools">
           <label>排序<select id="q-sort">${options([["","最近日期優先"],["oldest","最早日期優先"]], view.sort)}</select></label>
+          <label>職災類別<select id="q-acc">${options([["","全部"],["fire","火災"],["boom","爆炸"],["other","其他職災"]], view.acc)}</select></label>
           <label>處分年度<select id="q-year">${yearOptions}</select></label>
           <label>近三年常見裁罰條文<select id="q-art">${articleOptions(view.art)}</select></label>
           <button type="button" class="text-btn" id="reset-filters">重設篩選</button>
         </div>
+        <p class="block-title" id="accident-quick-title">職災快速查詢</p>
+        <p class="block-note">可選擇多種職災危害類型。職災類別與危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
+        <div class="chips" id="q-kinds" role="group" aria-labelledby="accident-quick-title"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((kind) => `<button type="button" data-kind="${esc(kind)}" aria-pressed="${view.kinds.includes(kind)}">${esc(kind)}</button>`).join("")}</div>
         <p class="block-note">年度篩選作用在處分日期；未選單一年份時，重大職災公開網仍列出較早案件。條文篩選只作用在裁罰，選項是全臺公開火災爆炸相關裁罰近三年的常見條文。查無紀錄不代表未曾發生事故或違規。</p>
         ${dossierHtml(company, view)}
       </article>`;
@@ -1233,6 +1240,7 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteri
       }
       if (e.target.closest("#reset-filters") || e.target.closest("[data-reset-record-filters]")) {
         document.querySelectorAll(".detail-tools select:not(:disabled)").forEach((el) => el.value = "");
+        document.querySelectorAll('#q-kinds [data-kind]').forEach((el) => el.setAttribute("aria-pressed", "false"));
         renderDetail();
         if (e.target.closest("[data-reset-record-filters]")) document.getElementById("dossier-fire-summary")?.focus();
         return;
@@ -1251,7 +1259,7 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteri
       renderDetail();
     });
     document.getElementById("stage").addEventListener("change", (e) => {
-      if (["q-year","q-sort","q-art"].includes(e.target.id)) {
+      if (["q-year","q-sort","q-acc","q-art"].includes(e.target.id)) {
         const id = e.target.id;
         renderDetail();
         document.getElementById(id)?.focus();
