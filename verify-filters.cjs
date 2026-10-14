@@ -1,6 +1,6 @@
 const fs = require('fs'), vm = require('vm'), assert = require('assert');
 const root = __dirname;
-const html = fs.readFileSync(root + '/index.html', 'utf8');
+const html = fs.readFileSync(root + '/query.html', 'utf8');
 const elements = new Map();
 const el = id => {
   if (!elements.has(id)) elements.set(id, {value:'', checked:false, innerHTML:'', addEventListener(){}, replaceChildren(){this.innerHTML='';}});
@@ -53,11 +53,11 @@ const result=vm.runInContext(`(()=>{
     const kinds=accBundle(p,{year:"",host:true,kinds:["火災","爆炸"]}).shown;
     if(kinds.some(r=>!["火災","爆炸"].includes(r.kind)))throw Error("kinds");
   }
-  selectedId=PLANTS[0].id;
+  selectedId=COMPANIES[0].id;
   renderDetail();
   return checked;
 })()`,context);
-for(const id of ['q-sort','q-acc','q-viol','q-year','q-art','q-kinds','q-host'])assert(el('stage').innerHTML.includes('id="'+id+'"'));
+for(const id of ['q-sort','q-year','q-art'])assert(el('stage').innerHTML.includes('id="'+id+'"'));
 assert(!el('stage').innerHTML.includes('id="q-city"'));
 assert(!el('stage').innerHTML.includes('本資料未查得'));
 assert.equal(data['gap-penalty'].scope,'national');

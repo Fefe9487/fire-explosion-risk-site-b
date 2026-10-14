@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>火災爆炸相關裁罰、職災類型及相關指引</title>
+  <title>統計資訊｜火災爆炸預防資訊</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -109,13 +109,13 @@
     .stack { display: flex; height: 100%; }
     .fill { height: 100%; background: var(--blue); border-radius: 999px; width: 0; transition: width .25s ease; }
     .track > .fill { border-radius: 999px; }
-    .fill.pacs { background: #dc2626; }
+    .fill.pacs { background: #b77818; }
     .stack .fill:first-child { border-radius: 999px 0 0 999px; }
     .stack .fill:last-child { border-radius: 0 999px 999px 0; }
     .stack .fill:only-child { border-radius: 999px; }
     .bar-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 10px; font-size: 13px; color: var(--muted); }
     .swatch { display: inline-block; width: 14px; height: 14px; margin-right: 6px; border-radius: 4px; background: var(--blue); vertical-align: -2px; }
-    .swatch.pacs { background: #dc2626; }
+    .swatch.pacs { background: #b77818; }
     .bar-row .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
     table.dyn { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
     .tbl-wrap { overflow-x: auto; }
@@ -147,13 +147,15 @@
     @media(max-width:600px){.wrap{margin:12px auto;padding:0 10px}.card{padding:18px 14px}.tabs{flex-wrap:wrap}.tabs button{padding:10px}.stats{gap:8px}.bar-row{grid-template-columns:1fr 4em}.bar-row .lab{grid-column:1/-1}h1{font-size:21px}}
     @media(prefers-reduced-motion:reduce){.fill{transition:none}}
   </style>
+<meta name="description" content="查看全臺近三年火災爆炸相關裁罰條文及公開職災類型的統計資訊。">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><svg viewBox="0 0 34 34" class="ui-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3 28 8v9c0 7-12 13-12 13S4 24 4 17V8z"/><path d="m10 16 4 4 8-9"/></svg><span>火災爆炸預防資訊<small>公開資料・統計與查詢</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html"><span aria-hidden="true">01</span>資料來源與方法</a><a href="gaps.html" aria-current="page"><span aria-hidden="true">02</span>統計資訊</a><a href="query.html"><span aria-hidden="true">03</span>事業單位查詢</a></nav></div></header>
   <div class="wrap">
-    <div class="card">
-      <nav class="site-nav" aria-label="主要頁面"><a href="index.html">違規紀錄查詢</a><a href="gaps.html" aria-current="page">近三年裁罰與職災</a><a href="method.html">資料來源與查詢說明</a></nav>
-      <h1>近三年裁罰與職災</h1>
-      <p class="lead">本頁是全臺公開處分的背景統計，不列出公司，也不按個別廠址計算。要看某一家公司，請回到查詢頁，以統一編號合計該公司的紀錄。</p>
+    <main class="card" id="main-content">
+      <p class="eyebrow">02 · 統計資訊</p><h1>近三年裁罰與職災</h1>
+      <p class="lead">本頁是全臺公開處分的背景統計，不列出公司，也不按個別廠址計算。要看某一家公司，請前往<a href="query.html">事業單位查詢</a>，以統一編號合計該公司的紀錄。</p>
       <hr class="rule" />
       <div class="tabs" role="tablist" aria-label="資料分類">
         <button type="button" role="tab" id="tab-pen" aria-controls="panel-pen" aria-selected="true">裁罰統計</button>
@@ -171,10 +173,10 @@
         <div class="stat"><b id="s-total">—</b><span>近三年處分總件數</span></div>
         <div class="stat"><b id="s-y113">—</b><span>113年</span></div>
         <div class="stat"><b id="s-y114">—</b><span>114年</span></div>
-        <div class="stat"><b id="s-y115">—</b><span>115年</span></div>
+        <div class="stat"><b id="s-y115">—</b><span>115年（部分年度）</span></div>
       </div>
 
-      <p class="lead">同一處分引用兩部法規時，兩邊各算一件。<a href="method.html#penalty-method">查看數字怎麼算</a></p>
+      <p class="lead">同一處分引用兩部法規時，兩邊各算一件。<a href="index.html#penalty-method">查看數字怎麼算</a></p>
       <h3 id="rank-title">近三年常見裁罰條文</h3>
       <p class="lead" id="rank-scope"></p>
       <p class="lead">依公開裁罰資料，列出各部法規近三年最常被引用的前10條；不足10條時全列。同一處分只將符合範圍的條文分別計入，因此條文件數不能相加當作處分總件數。切換年度只會改變顯示的件數。</p>
@@ -195,7 +197,7 @@
       <div class="bars" id="acc-bars"></div>
 
       <h3>火災、爆炸及與有害物等之接觸</h3>
-      <p class="lead">以下件數含紅條。條文與常見缺失只整理處分公告。引用條文不等於事故原因。</p>
+      <p class="lead">以下件數含琥珀色區段。條文與常見缺失只整理處分公告。引用條文不等於事故原因。</p>
       <div id="acc-focus"></div>
       </section>
 
@@ -255,7 +257,8 @@
       </section>
 
       <footer><span id="stats-period">※ 資料期間載入中。</span> 資料來源：勞動部職業安全衛生署。法規摘要核對日：2026-10-05。法規與技術指引分別列示；建議用於檢查規劃，歷史處分應適用當時有效法規。職安法第26、27條現行修正自115年7月1日施行。</footer>
-    </div>
+      <div class="page-links"><a href="index.html">← 資料來源與方法</a><a class="button-primary" href="query.html">下一頁：事業單位查詢 →</a></div>
+    </main>
   </div>
   <script>
     function showTab(id) {
@@ -396,8 +399,8 @@
         const segments = `${part.base ? `<div class="fill" style="width:${basePct}%"></div>` : ""}${part.pacs ? `<div class="fill pacs" style="width:${pacsPct}%"></div>` : ""}`;
         return `<div class="bar-row"><div class="lab">${k.kind}</div><div class="track" title="既有處分 ${part.base} 件；公開網去重後 ${part.pacs} 件"><div class="stack" style="width:${width}%">${segments}</div></div><div class="num">${part.total}件</div></div>`;
       }).join("");
-      document.getElementById("acc-lead").textContent = "藍條是職場重大災害檢查訊息的處分件數。紅條是重大職災公開網去重後多出來的案件，接在藍條後面。";
-      document.getElementById("acc-scope").textContent = `範圍：全臺公開職災相關處分，按民國113至115年處分年度統計（資料至${dateLabel(ACC.sourceThrough)}）。紅條另計重大職災公開網，已用統一編號或事業單位名稱、災害類型、發生日期對過既有職災，對得到的不重複計入；公開網沒有處分日期，紅條按發生年計算。115年為部分年度。下方三種災害的件數含紅條；條文與常見缺失只含處分公告。本頁不列出個別事業單位。`;
+      document.getElementById("acc-lead").textContent = "藍條是職場重大災害檢查訊息的處分件數。琥珀色區段是重大職災公開網去重後多出來的案件，接在藍條後面。";
+      document.getElementById("acc-scope").textContent = `範圍：全臺公開職災相關處分，按民國113至115年處分年度統計（資料至${dateLabel(ACC.sourceThrough)}）。琥珀色區段另計重大職災公開網，已用統一編號或事業單位名稱、災害類型、發生日期對過既有職災，對得到的不重複計入；公開網沒有處分日期，琥珀色區段按發生年計算。115年為部分年度。下方三種災害的件數含琥珀色區段；條文與常見缺失只含處分公告。本頁不列出個別事業單位。`;
       document.getElementById("acc-focus").innerHTML = (ACC.focus || []).map((f) => {
         const arts = (f.topArts || []).map((a) => a.art + "（" + a.n + "件）").join("、");
         const total = f.n + (f.pacsN || 0);
@@ -429,7 +432,7 @@
       document.getElementById('selected-law-title').textContent=(group.law||'')+'｜公開裁罰資料';
       document.getElementById('pen-lead').textContent='依公開裁罰資料整理近三年火災爆炸相關法規引用情形。';
       const through=dateLabel(PEN_VIEWS.national.sourceThrough);
-      document.querySelector('#s-y115 + span').textContent='115年（至'+through.split('/').slice(1).join('/')+'）';
+      document.querySelector('#s-y115 + span').textContent='115年（部分年度，至'+through.split('/').slice(1).join('/')+'）';
       document.getElementById('pen-scope').textContent=`範圍：全臺公開裁罰資料，民國113至115年（資料至${through}）。只計火災爆炸相關處分，不列出個別事業單位。`;
       document.getElementById('rank-scope').textContent='這部法規在近三年火災爆炸相關裁罰中，共'+total+'件處分，引用'+(group.articleCount||0)+'條；本頁列出'+ARTS.length+'條。';
       setStat("s-total",total);
