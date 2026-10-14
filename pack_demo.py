@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Pack all three public pages and their source-backed data for offline use."""
+import base64
 import json
 import re
 from pathlib import Path
@@ -13,6 +14,10 @@ def extract(name):
     html=(ROOT/name).read_text(encoding='utf-8')
     style=re.search(r'<style>(.*?)</style>',html,re.S)[1]
     body=re.search(r'<body[^>]*>(.*?)<script>',html,re.S)[1]
+    for image_path in set(re.findall(r'src="(assets/images/[^"]+)"', body)):
+        image_file=ROOT/image_path
+        encoded=base64.b64encode(image_file.read_bytes()).decode('ascii')
+        body=body.replace(f'src="{image_path}"', f'src="data:image/webp;base64,{encoded}"')
     script=re.search(r'<script>(.*?)</script>',html,re.S)[1]
     for old,new in [('query.html','#query'),('index.html','#home'),('gaps.html','#pen'),('method.html','#home')]:
         pattern=r'href="'+re.escape(old)+r'(?:\?[^"#]*)?(?:#([^" ]*))?"'

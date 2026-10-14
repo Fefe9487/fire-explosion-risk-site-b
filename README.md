@@ -20,7 +20,7 @@ python -m http.server 8765
 2. `gaps.html`：全臺裁罰、職災統計與相關規定及指引。
 3. `query.html`：輸入事業單位名稱或統一編號，選定公司後顯示公開紀錄。
 
-`method.html` 保留為首頁說明的相容入口。三頁使用 `assets/site.css`，以簡單 SVG 圖示呈現資料與預防概念。`demo.html` 的離線預設入口也改為首頁。
+`method.html` 保留為首頁說明的相容入口。三頁使用 `assets/site.css`，以生成的圖片與圖示呈現資料與查詢入口。`demo.html` 的離線預設入口也改為首頁。
 
 頁面不會主動列出場所清冊。這仍是瀏覽器端查詢：`data/plants.json`、`data/penalties.json`、`data/accidents.json` 與打包後的 `demo.html` 都含完整場所資料，知道網址的人可以直接下載。
 
