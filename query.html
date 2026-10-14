@@ -144,10 +144,10 @@
 <link rel="stylesheet" href="assets/site.css?v=20261014-images">
 </head>
 <body>
-<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場公眾監督平台<small>公開資料・統計與查詢</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html"><span aria-hidden="true">01</span>資料來源與方法</a><a href="gaps.html"><span aria-hidden="true">02</span>統計資訊</a><a href="query.html" aria-current="page"><span aria-hidden="true">03</span>事業單位查詢</a></nav></div></header>
+<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場公眾監督平台<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">資料來源與方法</a><a href="gaps.html">統計資訊</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
   <div class="wrap">
     <main class="card" id="main-content">
-      <p class="eyebrow">03 · 事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
+      <p class="eyebrow">事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
       <p class="lede">以事業單位名稱或統一編號查詢。選定公司後，才顯示該統編的裁罰、職災與重大職災公開資料。</p>
       <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>輸入名稱或統一編號，選定公司後顯示紀錄。查詢結果按同一統一編號合計；查無紀錄不代表未曾發生事故或違規。</p></div>
       <hr class="rule" />
@@ -165,7 +165,7 @@
       <p class="query-note">請輸入事業單位名稱的一部分，或統一編號。選定一筆候選項目後，才會顯示該單位的紀錄。</p>
       <div id="stage"></div>
       <footer id="foot">資料來源：勞動部職業安全衛生署公開裁罰、職場重大災害檢查訊息，以及<a href="https://pacs.osha.gov.tw/2875/" target="_blank" rel="noopener">重大職災公開網</a>。查無紀錄不代表未曾發生事故或違規。<a href="gaps.html">近三年裁罰與職災</a></footer>
-      <div class="page-links"><a href="gaps.html">← 統計資訊</a><a href="index.html">資料來源與方法</a></div>
+      <div class="page-links"><a href="gaps.html">返回統計資訊</a><a href="index.html">資料來源與方法</a></div>
     </main>
   </div>
   <script>
@@ -306,7 +306,7 @@
       const otherPenCount = dispositionCount(buckets.otherPen);
       return `<section class="fire-summary" id="dossier-fire-summary" aria-label="同一統編紀錄件數" tabindex="-1">
         <p class="block-title">同一統編的紀錄件數</p>
-        <p class="block-note">處分以民國${start}–${end}年、這個統一編號合計，不按個別場所拆開。重大職災公開網另按發生日期計，未選單一年份時含較早案件。處分件數與公開網案件不要相加。</p>
+        <p class="block-note">處分以民國${start}年至${end}年、這個統一編號合計，不按個別場所拆開。重大職災公開網另按發生日期計，未選單一年份時含較早案件。處分件數與公開網案件不要相加。</p>
         <div class="fire-summary-grid">
           <div>火災爆炸裁罰<strong>${firePenCount} 件</strong></div>
           <div>火災爆炸職災<strong>處分 ${fireAccCount} 件；公開網 ${buckets.firePacs.length} 件</strong></div>
@@ -453,7 +453,7 @@
     }
     function companyLine(company) {
       const tax = company.tax ? "統編 " + company.tax : "未取得統一編號";
-      return tax + " · 清冊場所 " + company.placeCount + " 筆";
+      return tax + "，清冊場所 " + company.placeCount + " 筆";
     }
     function viewState() {
       const yearEl = document.getElementById("q-year");
@@ -486,7 +486,7 @@
       const view = viewState();
       const [start, end] = META.queryYears || [111, 115];
       const years = Array.from({ length: end - start + 1 }, (_, i) => end - i);
-      const yearOptions = `<option value=""${view.year ? "" : " selected"}>近五年（${start}–${end}年）</option>` +
+      const yearOptions = `<option value=""${view.year ? "" : " selected"}>近五年（${start}年至${end}年）</option>` +
         years.map((y) => `<option value="${y}"${String(view.year) === String(y) ? " selected" : ""}>${y}年</option>`).join("");
       const placeNote = company.tax
         ? `同一統編在清冊有 ${company.placeCount} 筆場所。下方只顯示件數，不標示紀錄發生在哪一個場所。`

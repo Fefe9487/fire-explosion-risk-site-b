@@ -151,10 +151,10 @@
 <link rel="stylesheet" href="assets/site.css?v=20261014-images">
 </head>
 <body>
-<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場公眾監督平台<small>公開資料・統計與查詢</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html"><span aria-hidden="true">01</span>資料來源與方法</a><a href="gaps.html" aria-current="page"><span aria-hidden="true">02</span>統計資訊</a><a href="query.html"><span aria-hidden="true">03</span>事業單位查詢</a></nav></div></header>
+<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場公眾監督平台<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">資料來源與方法</a><a href="gaps.html" aria-current="page">統計資訊</a><a href="query.html">事業單位查詢</a></nav></div></header>
   <div class="wrap">
     <main class="card" id="main-content">
-      <p class="eyebrow">02 · 統計資訊</p><h1>近三年裁罰與職災</h1>
+      <p class="eyebrow">統計資訊</p><h1>近三年裁罰與職災</h1>
       <p class="lead">本頁是全臺公開處分的背景統計，不列出公司，也不按個別廠址計算。要看某一家公司，請前往<a href="query.html">事業單位查詢</a>，以統一編號合計該公司的紀錄。</p>
       <hr class="rule" />
       <div class="tabs" role="tablist" aria-label="資料分類">
@@ -170,10 +170,10 @@
       <p class="lead" id="pen-scope">統計條件載入中。</p>
 
       <div class="stats">
-        <div class="stat"><b id="s-total">—</b><span>近三年處分總件數</span></div>
-        <div class="stat"><b id="s-y113">—</b><span>113年</span></div>
-        <div class="stat"><b id="s-y114">—</b><span>114年</span></div>
-        <div class="stat"><b id="s-y115">—</b><span>115年（部分年度）</span></div>
+        <div class="stat"><b id="s-total">載入中</b><span>近三年處分總件數</span></div>
+        <div class="stat"><b id="s-y113">載入中</b><span>113年</span></div>
+        <div class="stat"><b id="s-y114">載入中</b><span>114年</span></div>
+        <div class="stat"><b id="s-y115">載入中</b><span>115年（部分年度）</span></div>
       </div>
 
       <p class="lead">同一處分引用兩部法規時，兩邊各算一件。<a href="index.html#penalty-method">查看數字怎麼算</a></p>
@@ -256,8 +256,8 @@
       </ul>
       </section>
 
-      <footer><span id="stats-period">※ 資料期間載入中。</span> 資料來源：勞動部職業安全衛生署。法規摘要核對日：2026-10-05。法規與技術指引分別列示；建議用於檢查規劃，歷史處分應適用當時有效法規。職安法第26、27條現行修正自115年7月1日施行。</footer>
-      <div class="page-links"><a href="index.html">← 資料來源與方法</a><a class="button-primary" href="query.html">下一頁：事業單位查詢 →</a></div>
+      <footer><span id="stats-period">資料期間載入中。</span> 資料來源：勞動部職業安全衛生署。法規摘要核對日：2026-10-05。法規與技術指引分別列示；建議用於檢查規劃，歷史處分應適用當時有效法規。職安法第26、27條現行修正自115年7月1日施行。</footer>
+      <div class="page-links"><a href="index.html">返回資料來源與方法</a><a class="button-primary" href="query.html">查詢事業單位</a></div>
     </main>
   </div>
   <script>
@@ -461,7 +461,7 @@
       PEN_VIEWS={national};
       if(acc.scopeKey!=='national')throw Error('職災統計範圍不符');
       ACC=acc;selectPenaltyMode('national');renderAcc();
-      document.getElementById('stats-period').textContent=`※ 更新日：${pen.sourceUpdatedAt||'—'}。統計處分年度：113–115年。裁罰資料至${dateLabel(pen.sourceThrough)}；職災資料至${dateLabel(acc.sourceThrough)}。`;
+      document.getElementById('stats-period').textContent=`更新日：${pen.sourceUpdatedAt||'未提供'}。統計處分年度：113年至115年。裁罰資料至${dateLabel(pen.sourceThrough)}；職災資料至${dateLabel(acc.sourceThrough)}。`;
     }
     async function boot() {
       try{

@@ -32,7 +32,7 @@ assert(stats.get('bars').innerHTML.includes('件'));
 const method=page('index.html');
 vm.runInContext('initializeOverview([],data.meta)',method.context);
 assert(method.get('data-periods').innerHTML.includes('115/09/18'));
-assert(method.get('data-periods').innerHTML.includes('111–115年'));
+assert(method.get('data-periods').innerHTML.includes('111年至115年'));
 vm.runInContext("renderFireRules(data['gap-penalty'].fireCriteria)",method.context);
 for(const [short,law] of [['設規','職業安全衛生設施規則'],['高壓則','高壓氣體勞工安全規則']]){
   const count=new Set(data['gap-penalty'].fireCriteria.groups.filter(g=>g.short===short).flatMap(g=>g.articles)).size;
@@ -49,7 +49,7 @@ const focus=full.accidents.find(x=>x.link==='plant'&&['火災','爆炸'].include
 assert(focus,'expected a linked fire or explosion disposition for detail summary test');
 query.context.testPlantId=focus.plantId;
 const summaries=vm.runInContext(`(()=>{const company=COMPANIES.find(c=>c.plants.some(p=>p.id===testPlantId));return [fireSummaryHtml({},bucketsFor(company,{})),fireSummaryHtml({art:'設規|173'},bucketsFor(company,{art:'設規|173'}))];})()`,query.context);
-assert(summaries[0].includes('民國111–115年'));
+assert(summaries[0].includes('民國111年至115年'));
 assert(summaries[0].includes('火災爆炸職災'));
 assert(summaries[0].includes('不按個別場所拆開'));
 assert(summaries[1].includes('條文篩選只作用在裁罰'));
