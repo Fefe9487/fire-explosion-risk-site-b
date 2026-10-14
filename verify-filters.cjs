@@ -40,7 +40,7 @@ const result=vm.runInContext(`(()=>{
         for(const art of ["",...(RANKING.topArts||[]).map(a=>a.key)]){
           const records=penBundle(p,{year,viol,art}).plant;
           for(const r of records){
-            if(r.plantId!==p.id||!queryDateHit(r.date,year))throw Error("pen scope/year");
+            if(r.plantId!==p.id||!penaltyDateHit(r.date,year))throw Error("pen scope/year");
             if(viol==="none")throw Error("pen none");
             const fire=["direct","broad"].includes(r.tagFire);
             if(viol==="direct"&&!fire||viol==="other"&&fire)throw Error("violation");
@@ -58,6 +58,7 @@ const result=vm.runInContext(`(()=>{
   return checked;
 })()`,context);
 for(const id of ['q-sort','q-year','q-acc','q-art','q-kinds'])assert(el('stage').innerHTML.includes('id="'+id+'"'));
+assert(el('stage').innerHTML.includes('<option value="105">105年</option>'));
 assert(el('stage').innerHTML.includes('職災快速查詢'));
 assert.equal((el('stage').innerHTML.match(/data-kind=/g)||[]).length,17);
 const quickFilter=vm.runInContext(`(()=>{
@@ -82,6 +83,17 @@ const quickFilter=vm.runInContext(`(()=>{
   if(!shownPublic.length||shownPublic.some(a=>a.kind!==publicKind)||shownPublic.length>=publicRows.length)throw Error('public accident kind filter');
   return company.id;
 })()`,context);
+const olderPenalty=vm.runInContext(`(()=>{
+  const company=COMPANIES.find(c=>rowsFor(c).pen.some(p=>(p.date||'').startsWith('105/')));
+  if(!company)throw Error('no first-year company penalty');
+  const older=rowsFor(company).pen.find(p=>(p.date||'').startsWith('105/'));
+  const year=older.date.split('/')[0];
+  const all=bucketsFor(company,{year:'',acc:'',kinds:[]});
+  const selected=bucketsFor(company,{year,acc:'',kinds:[]});
+  if(!all.firePen.concat(all.otherPen).some(p=>p.id===older.id))throw Error('older penalty missing from default');
+  if(!selected.firePen.concat(selected.otherPen).some(p=>p.id===older.id))throw Error('older penalty missing from selected year');
+  return year;
+})()`,context);
 assert(!el('stage').innerHTML.includes('id="q-city"'));
 assert(!el('stage').innerHTML.includes('本資料未查得'));
 assert.equal(data['gap-penalty'].scope,'national');
@@ -98,4 +110,4 @@ const demo=fs.readFileSync(root+'/demo.html','utf8');
 new vm.Script(demo.match(/<script>([\s\S]*?)<\/script>/)[1]);
 assert(demo.includes('id="q-sort"'));
 assert(demo.includes('職災快速查詢'));
-console.log('PASS:',result,'real-data filter combinations; company quick filter',quickFilter,'selection gate, return, sorting, offline syntax.');
+console.log('PASS:',result,'real-data filter combinations; company quick filter',quickFilter,'older penalty year',olderPenalty,'selection gate, return, sorting, offline syntax.');

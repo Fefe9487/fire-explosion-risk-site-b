@@ -77,7 +77,7 @@ footer{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-si
 </ul>
 <h2>選定公司後如何篩選</h2>
 <ul>
-<li>處分年度：裁罰與職災處分依處分日期篩選。選了單一年份時，重大職災公開網改依發生日期篩選；未選年份時，公開網案件含較早年度。</li>
+<li>處分年度：裁罰可查約10年，職災處分依目前收錄的資料期間顯示。兩者依處分日期篩選；選了單一年份時，重大職災公開網改依發生日期篩選，未選年份時含較早案件。</li>
 <li>常見裁罰條文：只篩選裁罰。選項採全臺公開火災爆炸相關裁罰近三年排行。</li>
 <li>排序：日期由新到舊或由舊到新。返回候選項目或重新查詢後，篩選會恢復預設。</li>
 </ul>
@@ -106,10 +106,10 @@ footer{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-si
 function esc(value) { return String(value ?? '').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c])); }
 function initializeOverview(plants,meta) {
   const esc = value => String(value ?? '').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const [qStart,qEnd]=meta.queryYears||[111,115];
   const [sStart,sEnd]=meta.statisticsYears||[113,115];
   const rows=[
-    ['公司紀錄查詢',qStart+'年至'+qEnd+'年','處分依處分年度篩選；重大職災公開網在未選單一年份時含較早案件。'],
+    ['公司裁罰查詢',meta.penaltyPeriod||'約10年','依處分年度篩選；期間兩端為部分年度。'],
+    ['公司職災查詢',meta.accidentPeriod||'依目前收錄的資料期間','職災處分依處分年度篩選；重大職災公開網在未選單一年份時含較早案件。'],
     ['全臺裁罰及職災統計',sStart+'年至'+sEnd+'年','按處分年度計算，115年為部分年度。'],
     ['裁罰來源最新處分日期',meta.penaltySourceThrough||'未提供','公開裁罰公告實際涵蓋日期。'],
     ['職災來源最新處分日期',meta.accidentSourceThrough||'未提供','公開職災相關處分實際涵蓋日期。'],
