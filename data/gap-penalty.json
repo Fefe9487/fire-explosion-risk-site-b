@@ -303,6 +303,224 @@
   "statisticsBuiltAt": "2026-10-16",
   "scope": "roster",
   "fire_n": 61,
+  "allPenalties": {
+    "countUnit": "company-disposition-date",
+    "latestYear": 115,
+    "latestMonth": 10,
+    "yearTotals": {
+      "all": 711,
+      "113": 242,
+      "114": 298,
+      "115": 171
+    },
+    "monthly": [
+      {
+        "year": 113,
+        "month": 1,
+        "total": 19,
+        "fireRelated": 3
+      },
+      {
+        "year": 113,
+        "month": 2,
+        "total": 20,
+        "fireRelated": 2
+      },
+      {
+        "year": 113,
+        "month": 3,
+        "total": 22,
+        "fireRelated": 1
+      },
+      {
+        "year": 113,
+        "month": 4,
+        "total": 22,
+        "fireRelated": 0
+      },
+      {
+        "year": 113,
+        "month": 5,
+        "total": 26,
+        "fireRelated": 2
+      },
+      {
+        "year": 113,
+        "month": 6,
+        "total": 10,
+        "fireRelated": 0
+      },
+      {
+        "year": 113,
+        "month": 7,
+        "total": 17,
+        "fireRelated": 2
+      },
+      {
+        "year": 113,
+        "month": 8,
+        "total": 23,
+        "fireRelated": 5
+      },
+      {
+        "year": 113,
+        "month": 9,
+        "total": 18,
+        "fireRelated": 1
+      },
+      {
+        "year": 113,
+        "month": 10,
+        "total": 15,
+        "fireRelated": 4
+      },
+      {
+        "year": 113,
+        "month": 11,
+        "total": 29,
+        "fireRelated": 4
+      },
+      {
+        "year": 113,
+        "month": 12,
+        "total": 21,
+        "fireRelated": 4
+      },
+      {
+        "year": 114,
+        "month": 1,
+        "total": 20,
+        "fireRelated": 1
+      },
+      {
+        "year": 114,
+        "month": 2,
+        "total": 32,
+        "fireRelated": 5
+      },
+      {
+        "year": 114,
+        "month": 3,
+        "total": 34,
+        "fireRelated": 2
+      },
+      {
+        "year": 114,
+        "month": 4,
+        "total": 18,
+        "fireRelated": 1
+      },
+      {
+        "year": 114,
+        "month": 5,
+        "total": 17,
+        "fireRelated": 0
+      },
+      {
+        "year": 114,
+        "month": 6,
+        "total": 18,
+        "fireRelated": 1
+      },
+      {
+        "year": 114,
+        "month": 7,
+        "total": 36,
+        "fireRelated": 3
+      },
+      {
+        "year": 114,
+        "month": 8,
+        "total": 32,
+        "fireRelated": 1
+      },
+      {
+        "year": 114,
+        "month": 9,
+        "total": 24,
+        "fireRelated": 2
+      },
+      {
+        "year": 114,
+        "month": 10,
+        "total": 25,
+        "fireRelated": 7
+      },
+      {
+        "year": 114,
+        "month": 11,
+        "total": 20,
+        "fireRelated": 1
+      },
+      {
+        "year": 114,
+        "month": 12,
+        "total": 22,
+        "fireRelated": 2
+      },
+      {
+        "year": 115,
+        "month": 1,
+        "total": 12,
+        "fireRelated": 0
+      },
+      {
+        "year": 115,
+        "month": 2,
+        "total": 14,
+        "fireRelated": 2
+      },
+      {
+        "year": 115,
+        "month": 3,
+        "total": 27,
+        "fireRelated": 1
+      },
+      {
+        "year": 115,
+        "month": 4,
+        "total": 26,
+        "fireRelated": 3
+      },
+      {
+        "year": 115,
+        "month": 5,
+        "total": 22,
+        "fireRelated": 0
+      },
+      {
+        "year": 115,
+        "month": 6,
+        "total": 20,
+        "fireRelated": 1
+      },
+      {
+        "year": 115,
+        "month": 7,
+        "total": 17,
+        "fireRelated": 0
+      },
+      {
+        "year": 115,
+        "month": 8,
+        "total": 26,
+        "fireRelated": 0
+      },
+      {
+        "year": 115,
+        "month": 9,
+        "total": 6,
+        "fireRelated": 0
+      },
+      {
+        "year": 115,
+        "month": 10,
+        "total": 1,
+        "fireRelated": 0
+      }
+    ],
+    "note": "全部裁罰按事業單位、處分字號與處分日期合併計算。同一處分引用多個條文只計1筆；不同事業單位即使處分字號相同，仍分別計算。"
+  },
   "coverageNote": "115年為部分年度；來源檔近期月份紀錄較少，最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。",
   "year_total": {
     "all": 61,

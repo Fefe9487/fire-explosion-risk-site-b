@@ -147,8 +147,8 @@
     @media(max-width:600px){.wrap{margin:12px auto;padding:0 10px}.card{padding:18px 14px}.tabs{flex-wrap:wrap}.tabs button{padding:10px}.stats{gap:8px}.bar-row{grid-template-columns:1fr 4em}.bar-row .lab{grid-column:1/-1}h1{font-size:21px}}
     @media(prefers-reduced-motion:reduce){.fill{transition:none}}
   </style>
-<meta name="description" content="查看高風險廠場名單所屬事業單位近三年的火災爆炸相關裁罰及職災類型統計。">
-<link rel="stylesheet" href="assets/site.css?v=20261016-definition">
+<meta name="description" content="查看高風險廠場近三年的裁罰總覽、火災爆炸相關條文分析及職災類型統計。">
+<link rel="stylesheet" href="assets/site.css?v=20261016-all-penalties">
 </head>
 <body>
 <a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html" aria-current="page">統計資訊</a><a href="query.html">事業單位查詢</a></nav></div></header>
@@ -165,12 +165,20 @@
       </div>
 
       <section id="panel-pen" class="panel" role="tabpanel" aria-labelledby="tab-pen">
+      <section class="penalty-overview" aria-labelledby="pen-overview-title">
+        <p class="eyebrow">全部裁罰</p>
+        <h2 id="pen-overview-title">115年1–10月裁罰總覽</h2>
+        <div class="penalty-total"><p><strong id="pen-all-count">載入中</strong><span>筆裁罰紀錄</span></p><p id="pen-related-count"></p></div>
+        <p class="lead" id="pen-overview-period">逐月裁罰資料載入中。</p>
+        <table class="monthly-table" aria-label="逐月全部裁罰與火災爆炸相關條文裁罰筆數"><thead><tr><th scope="col">月份</th><th scope="col">全部裁罰</th><th scope="col">其中火災爆炸相關條文</th></tr></thead><tbody id="pen-monthly"></tbody><tfoot id="pen-monthly-total"></tfoot></table>
+      </section>
+      <h2 class="penalty-analysis-title">火災爆炸相關條文分析</h2>
       <div class="years" id="pen-laws" role="group" aria-label="裁罰法規範圍"></div>
-      <h2 id="selected-law-title">火災爆炸相關裁罰</h2>
+      <h3 id="selected-law-title">火災爆炸相關裁罰</h3>
       <p class="lead" id="pen-lead">依公開裁罰資料整理近三年火災爆炸相關法規引用情形。</p>
 
       <div class="stats">
-        <div class="stat"><b id="s-total">載入中</b><span>近三年處分總件數</span></div>
+        <div class="stat"><b id="s-total">載入中</b><span>近三年相關處分</span></div>
         <div class="stat"><b id="s-y113">載入中</b><span>113年</span></div>
         <div class="stat"><b id="s-y114">載入中</b><span>114年</span></div>
         <div class="stat"><b id="s-y115">載入中</b><span>115年（部分年度）</span></div>
@@ -184,7 +192,7 @@
 
       <h3>法規摘要與檢查建議</h3>
       <div id="laws"></div>
-      <details class="rule-details statistics-note"><summary>統計說明與計算範圍</summary><p class="lead" id="pen-scope">統計條件載入中。</p><p class="lead">同一處分引用兩部法規時，兩邊各算一件。條文件數不能相加當作處分總件數。前10條依近三年合計選出；切換年度只改變顯示件數。<a href="index.html#penalty-method">查看完整計算方式</a></p></details>
+      <details class="rule-details statistics-note"><summary>統計說明與計算範圍</summary><p class="lead" id="pen-all-method"></p><p class="lead" id="pen-scope">統計條件載入中。</p><p class="lead">同一處分引用兩部法規時，兩邊各算一件。條文件數不能相加當作處分總件數。前10條依近三年合計選出；切換年度只改變顯示件數。<a href="index.html#penalty-method">查看完整計算方式</a></p></details>
       </section>
 
       <section id="panel-acc" class="panel" role="tabpanel" aria-labelledby="tab-acc" hidden>
@@ -418,6 +426,22 @@
     function setStat(id, n) {
       document.getElementById(id).innerHTML = `${Number(n) || 0}<span class="u">件</span>`;
     }
+    function renderPenaltyOverview(pen) {
+      const overview=pen.allPenalties;
+      if(!overview)throw Error('缺少全部裁罰統計');
+      const y=overview.latestYear, month=overview.latestMonth;
+      const rows=overview.monthly.filter(r=>r.year===y&&r.month<=month);
+      const total=rows.reduce((sum,r)=>sum+r.total,0), related=rows.reduce((sum,r)=>sum+r.fireRelated,0);
+      if(total!==overview.yearTotals[String(y)])throw Error('裁罰逐月合計不符');
+      document.getElementById('pen-overview-title').textContent=y+'年1–'+month+'月裁罰總覽';
+      document.getElementById('pen-all-count').textContent=total;
+      document.getElementById('pen-related-count').textContent='其中'+related+'筆引用火災爆炸相關條文';
+      const partial=String(pen.sourceCutoff||'').startsWith(y+'/');
+      document.getElementById('pen-overview-period').textContent='依處分日期統計；資料下載：'+pen.sourceUpdatedAt+(partial?'，'+month+'月為部分月份。':'。');
+      document.getElementById('pen-monthly').innerHTML=rows.map(r=>`<tr><th scope="row">${r.month}月</th><td>${r.total}筆</td><td>${r.fireRelated}筆</td></tr>`).join('');
+      document.getElementById('pen-monthly-total').innerHTML=`<tr><th scope="row">合計</th><td>${total}筆</td><td>${related}筆</td></tr>`;
+      document.getElementById('pen-all-method').textContent=overview.note;
+    }
     function render() {
       ARTS=ALL_ARTS.filter(a=>a.lawShort===selectedLaw);
       EXTRA_LAWS=ALL_EXTRA.filter(a=>a.lawShort===selectedLaw);
@@ -428,8 +452,8 @@
       document.getElementById('rank-title').textContent=(group.law||'')+'｜近三年引用前10條'+(ARTS.length<10?'（實列'+ARTS.length+'條）':'');
       const totals=LAW_TOTALS[selectedLaw]||{};
       const total=totals.all||0;
-      document.getElementById('selected-law-title').textContent=(group.law||'')+'｜公開裁罰資料';
-      document.getElementById('pen-lead').textContent='依公開裁罰資料整理近三年火災爆炸相關法規引用情形。';
+      document.getElementById('selected-law-title').textContent=(group.law||'')+'｜火災爆炸相關條文';
+      document.getElementById('pen-lead').textContent='選擇法規，查看相關處分件數與常見引用條文。';
       const through=dateLabel(PEN_VIEWS.roster.sourceThrough);
       document.querySelector('#s-y115 + span').textContent='115年（部分年度）';
       document.getElementById('pen-scope').textContent=`範圍：本網站高風險廠場名單所屬事業單位的公開裁罰資料，民國113至115年（來源檔最新處分日期：${through}，不代表已完整收錄至該日）。只計火災爆炸相關處分，不列出個別事業單位。`;
@@ -457,6 +481,7 @@
       PEN_PROFILES=new Map(Object.entries(profiles));
       if(pen.scope!=='roster'||acc.scopeKey!=='roster'||pen.rosterPlaces!==acc.rosterPlaces||pen.rosterCompanies!==acc.rosterCompanies)throw Error('統計名單範圍不符');
       PEN_VIEWS={roster:pen};
+      renderPenaltyOverview(pen);
       if(pen.coverageNote)document.getElementById('statistics-coverage').textContent=pen.coverageNote;
       ACC=acc;selectPenaltyMode('roster');renderAcc();
       document.getElementById('stats-period').textContent=`更新日：${pen.sourceUpdatedAt||'未提供'}。統計處分年度：113年至115年。來源檔最新處分日期：裁罰${dateLabel(pen.sourceThrough)}、職災${dateLabel(acc.sourceThrough)}；日期不代表完整收錄範圍。`;

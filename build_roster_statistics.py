@@ -60,6 +60,36 @@ def main():
     penalties, accidents = selected_rows("penalties"), selected_rows("accidents")
     criteria = previous_pen["fireCriteria"]
     allowed = {(g["short"], str(ref)) for g in criteria["groups"] for ref in g["articles"]}
+
+    # A document number can be reused for different employers. Count each
+    # company/date/document once, while merging repeated source clauses.
+    all_dispositions = defaultdict(list)
+    for row in penalties:
+        y = year(row.get("date"))
+        if y not in YEARS:
+            continue
+        tax = re.sub(r"\D", "", str(row.get("tax") or plant_tax.get(row.get("plantId")) or ""))
+        company = tax if len(tax) == 8 else "id:" + row["plantId"]
+        number = re.sub(r"\s", "", row.get("no", "")) or row["id"]
+        all_dispositions[company, number, date_key(row["date"])].append(row)
+    all_year_sets, all_month_sets, fire_month_sets = defaultdict(set), defaultdict(set), defaultdict(set)
+    for key, rows in all_dispositions.items():
+        y, month, _ = map(int, rows[0]["date"].split("/"))
+        if not 1 <= month <= 12:
+            raise ValueError("Invalid penalty disposition month")
+        all_year_sets[y].add(key)
+        all_month_sets[y, month].add(key)
+        if any((a["law"], str(a["n"]) + ("-" + str(a["sub"]) if a.get("sub") is not None else "")) in allowed
+               for row in rows for a in row.get("arts", [])):
+            fire_month_sets[y, month].add(key)
+    cutoff_parts = list(map(int, meta["sourceCutoff"].split("/")))
+    latest_year = max(YEARS)
+    latest_month = cutoff_parts[1] if cutoff_parts[0] == latest_year else 12
+    all_penalties = {"countUnit": "company-disposition-date", "latestYear": latest_year, "latestMonth": latest_month,
+        "yearTotals": {"all": sum(len(v) for v in all_year_sets.values()), **{str(y): len(all_year_sets[y]) for y in YEARS}},
+        "monthly": [{"year": y, "month": month, "total": len(all_month_sets[y, month]), "fireRelated": len(fire_month_sets[y, month])}
+                    for y in YEARS for month in range(1, (latest_month if y == latest_year else 12) + 1)],
+        "note": "全部裁罰按事業單位、處分字號與處分日期合併計算。同一處分引用多個條文只計1筆；不同事業單位即使處分字號相同，仍分別計算。"}
     law_sets = defaultdict(set)
     article_sets = defaultdict(set)
     dispositions = defaultdict(set)
@@ -100,6 +130,7 @@ def main():
     penalty = {k: previous_pen[k] for k in ["sourceThrough", "sourceUpdatedAt", "sourceCutoff", "fireCriteria"]}
     penalty.update(scope)
     penalty.update({"scope": "roster", "fire_n": len(set().union(*dispositions.values())),
+        "allPenalties": all_penalties,
         "coverageNote": "115年為部分年度；來源檔近期月份紀錄較少，最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。",
         "year_total": {"all": len(set().union(*dispositions.values())), **{str(y): len(dispositions[y]) for y in YEARS}},
         "arts": arts, "topArts": top, "filterLimit": 10, "lawTotals": totals, "lawGroups": groups,

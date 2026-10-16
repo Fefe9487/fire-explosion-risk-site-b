@@ -32,6 +32,14 @@ assert(stats.get('statistics-coverage').textContent.includes('不代表已完整
 assert.equal(stats.get('#s-y115 + span').textContent,'115年（部分年度）');
 assert(!stats.get('stats-period').textContent.includes('資料至'));
 assert(!stats.html.includes('statistics-roster'));
+assert.equal(stats.get('pen-all-count').textContent,171);
+assert(stats.get('pen-monthly-total').innerHTML.includes('171筆'));
+assert(stats.get('pen-overview-title').textContent.includes('115年1–10月'));
+assert(stats.get('pen-related-count').textContent.includes('7筆'));
+vm.runInContext("selectedLaw='高壓則';render()",stats.context);
+assert(stats.get('s-y115').innerHTML.startsWith('2'));
+assert.equal(stats.get('pen-all-count').textContent,171,'Law filtering must not change all-penalty total');
+assert(stats.html.indexOf('id="pen-overview-title"')<stats.html.indexOf('id="pen-laws"'));
 assert(stats.get('bars').innerHTML.includes('件'));
 const method=page('index.html');
 vm.runInContext('initializeOverview([],data.meta)',method.context);

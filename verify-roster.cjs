@@ -10,7 +10,7 @@ const c=vm.createContext({data,document:{getElementById(){return element;},query
 vm.runInContext(script,c);
 const result=vm.runInContext(`(()=>{
  initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['gap-penalty'],data.pacs,data['tax-rollup']);
- return {companies:COMPANIES.length, rows:COMPANIES.map(company=>({tax:company.tax,...rowsFor(company)}))};
+ return {companies:COMPANIES.length, rows:COMPANIES.map(company=>({id:company.id,tax:company.tax,...rowsFor(company)}))};
 })()`,c);
 assert.equal(data.meta.rosterPlaces,data.plants.length);
 assert.equal(data.meta.rosterCompanies,result.companies);
@@ -21,6 +21,26 @@ const refs=new Set(pen.fireCriteria.groups.flatMap(g=>g.articles.map(ref=>g.shor
 const no=r=>String(r.no||r.id).trim();
 const y=r=>Number(String(r).split('/')[0]);
 const allPen=selected.flatMap(c=>c.pen),allAcc=selected.flatMap(c=>c.acc);
+const dispositionIdentity=(company,row)=>[company.id,String(row.no||row.id).replace(/\s/g,''),String(row.date).split('/').map(Number).join('/')].join('|');
+for(const period of [113,114,115]){
+ const identities=new Set();
+ for(const company of selected)for(const row of company.pen)if(y(row.date)===period)identities.add(dispositionIdentity(company,row));
+ assert.equal(pen.allPenalties.yearTotals[period],identities.size,'All penalties '+period);
+ for(const month of pen.allPenalties.monthly.filter(m=>m.year===period)){
+  const all=new Set(),fire=new Set();
+  for(const company of selected)for(const row of company.pen)if(y(row.date)===period&&Number(row.date.split('/')[1])===month.month){
+   const key=dispositionIdentity(company,row);all.add(key);
+   if(row.arts.some(a=>refs.has(a.law+'|'+a.n+(a.sub==null?'':'-'+a.sub))))fire.add(key);
+  }
+  assert.equal(month.total,all.size,'All penalties '+period+'/'+month.month);
+  assert.equal(month.fireRelated,fire.size,'Related penalties '+period+'/'+month.month);
+ }
+}
+// The official export reuses this number for different employers/dates.
+const collision=selected.filter(company=>company.pen.some(row=>row.no==='職授字第1150250396號'));
+assert.equal(collision.length,2,'Different employers sharing a document number must remain separate');
+assert.equal(pen.allPenalties.yearTotals['115'],171);
+assert.deepEqual(pen.allPenalties.monthly.filter(r=>r.year===115).map(r=>r.total),[12,14,27,26,22,20,17,26,6,1]);
 for(const short of ['設規','高壓則'])for(const period of ['all',113,114,115]){
  const matched=allPen.filter(r=>y(r.date)>=113&&y(r.date)<=115&&(period==='all'||y(r.date)===period)&&r.arts.some(a=>a.law===short&&refs.has(a.law+'|'+a.n+(a.sub==null?'':'-'+a.sub))));
  assert.equal(pen.lawTotals[short][period],new Set(matched.map(no)).size,short+'/'+period);
