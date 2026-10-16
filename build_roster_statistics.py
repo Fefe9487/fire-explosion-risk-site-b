@@ -4,6 +4,7 @@ Run: python build_roster_statistics.py
 Source snapshots are retained; changing the statistical scope does not refresh them.
 """
 import json
+import hashlib
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -72,24 +73,37 @@ def main():
         company = tax if len(tax) == 8 else "id:" + row["plantId"]
         number = re.sub(r"\s", "", row.get("no", "")) or row["id"]
         all_dispositions[company, number, date_key(row["date"])].append(row)
-    all_year_sets, all_month_sets, fire_month_sets = defaultdict(set), defaultdict(set), defaultdict(set)
+    all_year_sets, all_law_sets, all_article_sets = defaultdict(set), defaultdict(set), defaultdict(set)
     for key, rows in all_dispositions.items():
-        y, month, _ = map(int, rows[0]["date"].split("/"))
-        if not 1 <= month <= 12:
-            raise ValueError("Invalid penalty disposition month")
+        y = year(rows[0]["date"])
         all_year_sets[y].add(key)
-        all_month_sets[y, month].add(key)
-        if any((a["law"], str(a["n"]) + ("-" + str(a["sub"]) if a.get("sub") is not None else "")) in allowed
-               for row in rows for a in row.get("arts", [])):
-            fire_month_sets[y, month].add(key)
-    cutoff_parts = list(map(int, meta["sourceCutoff"].split("/")))
-    latest_year = max(YEARS)
-    latest_month = cutoff_parts[1] if cutoff_parts[0] == latest_year else 12
-    all_penalties = {"countUnit": "company-disposition-date", "latestYear": latest_year, "latestMonth": latest_month,
-        "yearTotals": {"all": sum(len(v) for v in all_year_sets.values()), **{str(y): len(all_year_sets[y]) for y in YEARS}},
-        "monthly": [{"year": y, "month": month, "total": len(all_month_sets[y, month]), "fireRelated": len(fire_month_sets[y, month])}
-                    for y in YEARS for month in range(1, (latest_month if y == latest_year else 12) + 1)],
-        "note": "全部裁罰按事業單位、處分字號與處分日期合併計算。同一處分引用多個條文只計1筆；不同事業單位即使處分字號相同，仍分別計算。"}
+        for row in rows:
+            for a in row.get("arts", []):
+                ref = str(a["n"]) + ("-" + str(a["sub"]) if a.get("sub") is not None else "")
+                all_law_sets[a["law"], y].add(key)
+                all_article_sets[a["law"], ref, y].add(key)
+    law_info = {**RANKED_LAWS, "職安法": {"law": "職業安全衛生法", "prefix": "osha-", "pcode": "N0060001"}}
+    all_arts = []
+    for short, ref in sorted({(s, r) for s, r, _ in all_article_sets}):
+        info = law_info.get(short, {"law": short, "prefix": "law-" + hashlib.sha256(short.encode()).hexdigest()[:8] + "-"})
+        main_ref, *sub = ref.split("-")
+        counts = {str(y): len(all_article_sets[short, ref, y]) for y in YEARS}
+        counts["all"] = len(set().union(*(all_article_sets[short, ref, y] for y in YEARS)))
+        all_arts.append({"art": int(main_ref), "sub": int(sub[0]) if sub else None, "lawShort": short, "y": counts,
+            "law": info["law"], "key": info["prefix"] + ref,
+            "label": short + "第" + main_ref + "條" + ("之" + sub[0] if sub else ""),
+            "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=" + info["pcode"] + "&flno=" + ref if info.get("pcode") else "https://law.moj.gov.tw/"})
+    all_arts.sort(key=lambda a: (-a["y"]["all"], a["law"], a["art"], a["sub"] or 0))
+    all_totals = {"all": {"all": len(all_dispositions), **{str(y): len(all_year_sets[y]) for y in YEARS}}}
+    all_groups = [{"law": "全部法規", "short": "all", "articleCount": len(all_arts), "topKeys": [a["key"] for a in all_arts[:10]]}]
+    for short, info in law_info.items():
+        records = [a for a in all_arts if a["lawShort"] == short]
+        all_groups.append({"law": info["law"], "short": short, "articleCount": len(records), "topKeys": [a["key"] for a in records[:10]]})
+        all_totals[short] = {str(y): len(all_law_sets[short, y]) for y in YEARS}
+        all_totals[short]["all"] = len(set().union(*(all_law_sets[short, y] for y in YEARS)))
+    all_analysis = {"countUnit": "company-disposition-date", "arts": all_arts, "topArts": all_arts[:10],
+        "lawGroups": all_groups, "lawTotals": all_totals, "year_total": all_totals["all"],
+        "note": "按事業單位、處分字號與處分日期合併計算。同一處分引用多個條文只計1件；不同事業單位即使處分字號相同，仍分別計算。"}
     law_sets = defaultdict(set)
     article_sets = defaultdict(set)
     dispositions = defaultdict(set)
@@ -130,7 +144,7 @@ def main():
     penalty = {k: previous_pen[k] for k in ["sourceThrough", "sourceUpdatedAt", "sourceCutoff", "fireCriteria"]}
     penalty.update(scope)
     penalty.update({"scope": "roster", "fire_n": len(set().union(*dispositions.values())),
-        "allPenalties": all_penalties,
+        "allAnalysis": all_analysis,
         "coverageNote": "115年為部分年度；來源檔近期月份紀錄較少，最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。",
         "year_total": {"all": len(set().union(*dispositions.values())), **{str(y): len(dispositions[y]) for y in YEARS}},
         "arts": arts, "topArts": top, "filterLimit": 10, "lawTotals": totals, "lawGroups": groups,

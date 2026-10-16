@@ -17,13 +17,13 @@ function page(name){
 const stats=page('gaps.html');
 vm.runInContext("applyGapData(data['gap-penalty'],data['gap-accident'],data['law-profiles'])",stats.context);
 assert(stats.get('acc-scope').textContent.includes('高風險廠場名單'));
-assert(stats.get('acc-scope').textContent.includes('部分年度'));
+assert(stats.get('acc-scope').textContent.includes('不是完整年度'));
 for(const kind of data['gap-accident'].kinds){
-  const total=kind.n+(kind.pacs113||0)+(kind.pacs114||0)+(kind.pacs115||0);
-  assert(stats.get('acc-bars').innerHTML.includes(`${total}件`));
+  assert(stats.get('acc-bars').innerHTML.includes(`${kind.n}件`));
 }
 const explosion=data['gap-accident'].focus.find(x=>x.kind==='爆炸');
-assert(stats.get('acc-focus').innerHTML.includes(`爆炸（${explosion.n+(explosion.pacsN||0)}件）`));
+assert(stats.get('acc-focus').innerHTML.includes(`爆炸（處分${explosion.n}件`));
+assert(stats.get('acc-bars').innerHTML.includes('件'));
 assert(stats.get('acc-focus').innerHTML.includes('處分公告常見缺失'));
 assert(stats.get('acc-focus').innerHTML.includes('容器或管線動火前未清除殘留危險物'));
 assert(!stats.get('acc-focus').innerHTML.includes('不足以單獨證明'));
@@ -32,14 +32,23 @@ assert(stats.get('statistics-coverage').textContent.includes('不代表已完整
 assert.equal(stats.get('#s-y115 + span').textContent,'115年（部分年度）');
 assert(!stats.get('stats-period').textContent.includes('資料至'));
 assert(!stats.html.includes('statistics-roster'));
-assert.equal(stats.get('pen-all-count').textContent,171);
-assert(stats.get('pen-monthly-total').innerHTML.includes('171筆'));
-assert(stats.get('pen-overview-title').textContent.includes('115年1–10月'));
-assert(stats.get('pen-related-count').textContent.includes('7筆'));
+assert(stats.get('s-total').innerHTML.startsWith('711'));
+assert(stats.get('s-y113').innerHTML.startsWith('242'));
+assert(stats.get('s-y114').innerHTML.startsWith('298'));
+assert(stats.get('s-y115').innerHTML.startsWith('171'));
+assert(stats.get('bars').innerHTML.includes('職安法第6條'));
+assert(!stats.html.includes('penalty-overview'));
+assert(!stats.html.includes('pen-monthly'));
+vm.runInContext("selectedLaw='設規';render()",stats.context);
+assert(stats.get('s-y115').innerHTML.startsWith('81'));
+assert(stats.get('bars').innerHTML.includes('設規第57條'));
+vm.runInContext("selectPenaltyMode('fire')",stats.context);
+assert(stats.get('s-y115').innerHTML.startsWith('5'));
+assert(stats.get('bars').innerHTML.includes('設規第177條'));
 vm.runInContext("selectedLaw='高壓則';render()",stats.context);
 assert(stats.get('s-y115').innerHTML.startsWith('2'));
-assert.equal(stats.get('pen-all-count').textContent,171,'Law filtering must not change all-penalty total');
-assert(stats.html.indexOf('id="pen-overview-title"')<stats.html.indexOf('id="pen-laws"'));
+vm.runInContext("selectPenaltyMode('all')",stats.context);
+assert(stats.get('s-y115').innerHTML.startsWith('171'));
 assert(stats.get('bars').innerHTML.includes('件'));
 const method=page('index.html');
 vm.runInContext('initializeOverview([],data.meta)',method.context);

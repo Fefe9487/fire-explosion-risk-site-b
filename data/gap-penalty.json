@@ -303,223 +303,2646 @@
   "statisticsBuiltAt": "2026-10-16",
   "scope": "roster",
   "fire_n": 61,
-  "allPenalties": {
+  "allAnalysis": {
     "countUnit": "company-disposition-date",
-    "latestYear": 115,
-    "latestMonth": 10,
-    "yearTotals": {
+    "arts": [
+      {
+        "art": 6,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 185,
+          "114": 188,
+          "115": 113,
+          "all": 486
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-6",
+        "label": "職安法第6條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=6"
+      },
+      {
+        "art": 27,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 30,
+          "114": 60,
+          "115": 37,
+          "all": 127
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-27",
+        "label": "職安法第27條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=27"
+      },
+      {
+        "art": 57,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 23,
+          "114": 29,
+          "115": 15,
+          "all": 67
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "57",
+        "label": "設規第57條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=57"
+      },
+      {
+        "art": 116,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 17,
+          "114": 14,
+          "115": 5,
+          "all": 36
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "116",
+        "label": "設規第116條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=116"
+      },
+      {
+        "art": 43,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 12,
+          "114": 14,
+          "115": 5,
+          "all": 31
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "43",
+        "label": "設規第43條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=43"
+      },
+      {
+        "art": 58,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 9,
+          "114": 10,
+          "115": 12,
+          "all": 31
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "58",
+        "label": "設規第58條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=58"
+      },
+      {
+        "art": 177,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 17,
+          "114": 12,
+          "115": 1,
+          "all": 30
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177",
+        "label": "設規第177條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177"
+      },
+      {
+        "art": 37,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 11,
+          "114": 6,
+          "115": 11,
+          "all": 28
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-37",
+        "label": "職安法第37條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=37"
+      },
+      {
+        "art": 21,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 6,
+          "114": 12,
+          "115": 10,
+          "all": 28
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "21",
+        "label": "設規第21條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=21"
+      },
+      {
+        "art": 224,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 12,
+          "114": 6,
+          "115": 9,
+          "all": 27
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "224",
+        "label": "設規第224條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=224"
+      },
+      {
+        "art": 287,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 10,
+          "114": 8,
+          "115": 8,
+          "all": 26
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "287",
+        "label": "設規第287條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=287"
+      },
+      {
+        "art": 26,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 2,
+          "114": 15,
+          "115": 7,
+          "all": 24
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-26",
+        "label": "職安法第26條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=26"
+      },
+      {
+        "art": 153,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 5,
+          "114": 8,
+          "115": 3,
+          "all": 16
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "153",
+        "label": "設規第153條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=153"
+      },
+      {
+        "art": 281,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 3,
+          "114": 9,
+          "115": 2,
+          "all": 14
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "281",
+        "label": "設規第281條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=281"
+      },
+      {
+        "art": 63,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 4,
+          "114": 5,
+          "115": 3,
+          "all": 12
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-63",
+        "label": "起重升降機具安全規則第63條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 14,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 3,
+          "114": 4,
+          "115": 2,
+          "all": 9
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-14",
+        "label": "職安法第14條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=14"
+      },
+      {
+        "art": 126,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 3,
+          "114": 2,
+          "115": 4,
+          "all": 9
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "126",
+        "label": "設規第126條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=126"
+      },
+      {
+        "art": 278,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 4,
+          "114": 4,
+          "115": 1,
+          "all": 9
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "278",
+        "label": "設規第278條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=278"
+      },
+      {
+        "art": 24,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 3,
+          "114": 3,
+          "115": 2,
+          "all": 8
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-24",
+        "label": "職安法第24條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=24"
+      },
+      {
+        "art": 188,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 4,
+          "115": 3,
+          "all": 8
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "188",
+        "label": "設規第188條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=188"
+      },
+      {
+        "art": 50,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 5,
+          "114": 1,
+          "115": 1,
+          "all": 7
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-50",
+        "label": "特定化學物質危害預防標準第50條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 16,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 2,
+          "114": 4,
+          "115": 1,
+          "all": 7
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-16",
+        "label": "職安法第16條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=16"
+      },
+      {
+        "art": 228,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 2,
+          "115": 3,
+          "all": 7
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "228",
+        "label": "設規第228條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=228"
+      },
+      {
+        "art": 6,
+        "sub": null,
+        "lawShort": "優先管理化學品之指定及運作管理辦法",
+        "y": {
+          "113": 1,
+          "114": 5,
+          "115": 0,
+          "all": 6
+        },
+        "law": "優先管理化學品之指定及運作管理辦法",
+        "key": "law-308ca29f-6",
+        "label": "優先管理化學品之指定及運作管理辦法第6條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 19,
+        "sub": null,
+        "lawShort": "營造安全衛生設施標準",
+        "y": {
+          "113": 2,
+          "114": 4,
+          "115": 0,
+          "all": 6
+        },
+        "law": "營造安全衛生設施標準",
+        "key": "law-fc6222d4-19",
+        "label": "營造安全衛生設施標準第19條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 155,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 3,
+          "114": 2,
+          "115": 1,
+          "all": 6
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "155",
+        "label": "設規第155條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=155"
+      },
+      {
+        "art": 258,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 4,
+          "114": 1,
+          "115": 1,
+          "all": 6
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "258",
+        "label": "設規第258條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=258"
+      },
+      {
+        "art": 90,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 3,
+          "115": 0,
+          "all": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "90",
+        "label": "設規第90條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=90"
+      },
+      {
+        "art": 128,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 3,
+          "115": 1,
+          "all": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "128-1",
+        "label": "設規第128條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=128-1"
+      },
+      {
+        "art": 232,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 3,
+          "115": 2,
+          "all": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "232",
+        "label": "設規第232條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=232"
+      },
+      {
+        "art": 241,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 3,
+          "115": 1,
+          "all": 5
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "241",
+        "label": "設規第241條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=241"
+      },
+      {
+        "art": 11,
+        "sub": 1,
+        "lawShort": "營造安全衛生設施標準",
+        "y": {
+          "113": 2,
+          "114": 1,
+          "115": 1,
+          "all": 4
+        },
+        "law": "營造安全衛生設施標準",
+        "key": "law-fc6222d4-11-1",
+        "label": "營造安全衛生設施標準第11條之1",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 45,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 1,
+          "115": 1,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "45",
+        "label": "設規第45條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=45"
+      },
+      {
+        "art": 54,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 3,
+          "114": 1,
+          "115": 0,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "54",
+        "label": "設規第54條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=54"
+      },
+      {
+        "art": 95,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 3,
+          "115": 0,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "95",
+        "label": "設規第95條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=95"
+      },
+      {
+        "art": 183,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 1,
+          "115": 1,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "183",
+        "label": "設規第183條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=183"
+      },
+      {
+        "art": 184,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 2,
+          "115": 0,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "184",
+        "label": "設規第184條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184"
+      },
+      {
+        "art": 198,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 2,
+          "115": 0,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "198",
+        "label": "設規第198條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=198"
+      },
+      {
+        "art": 243,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 3,
+          "114": 1,
+          "115": 0,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "243",
+        "label": "設規第243條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=243"
+      },
+      {
+        "art": 280,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 2,
+          "115": 0,
+          "all": 4
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "280",
+        "label": "設規第280條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=280"
+      },
+      {
+        "art": 30,
+        "sub": null,
+        "lawShort": "鍋爐及壓力容器安全規則",
+        "y": {
+          "113": 1,
+          "114": 2,
+          "115": 1,
+          "all": 4
+        },
+        "law": "鍋爐及壓力容器安全規則",
+        "key": "law-3c1130a3-30",
+        "label": "鍋爐及壓力容器安全規則第30條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 21,
+        "sub": null,
+        "lawShort": "工業用機器人危害預防標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 2,
+          "all": 3
+        },
+        "law": "工業用機器人危害預防標準",
+        "key": "law-3f6e372c-21",
+        "label": "工業用機器人危害預防標準第21條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 10,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 1,
+          "114": 2,
+          "115": 0,
+          "all": 3
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-10",
+        "label": "職安法第10條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=10"
+      },
+      {
+        "art": 29,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 1,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "29",
+        "label": "設規第29條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=29"
+      },
+      {
+        "art": 82,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 2,
+          "115": 0,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "82",
+        "label": "設規第82條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=82"
+      },
+      {
+        "art": 108,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 1,
+          "115": 0,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "108",
+        "label": "設規第108條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=108"
+      },
+      {
+        "art": 196,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 1,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "196",
+        "label": "設規第196條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=196"
+      },
+      {
+        "art": 227,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 1,
+          "115": 0,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "227",
+        "label": "設規第227條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=227"
+      },
+      {
+        "art": 238,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 0,
+          "115": 1,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "238",
+        "label": "設規第238條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=238"
+      },
+      {
+        "art": 246,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 1,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "246",
+        "label": "設規第246條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=246"
+      },
+      {
+        "art": 290,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 1,
+          "115": 0,
+          "all": 3
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "290",
+        "label": "設規第290條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=290"
+      },
+      {
+        "art": 60,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 1,
+          "all": 3
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-60",
+        "label": "高壓則第60條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=60"
+      },
+      {
+        "art": 7,
+        "sub": null,
+        "lawShort": "優先管理化學品之指定及運作管理辦法",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 1,
+          "all": 2
+        },
+        "law": "優先管理化學品之指定及運作管理辦法",
+        "key": "law-308ca29f-7",
+        "label": "優先管理化學品之指定及運作管理辦法第7條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 5,
+        "sub": null,
+        "lawShort": "危害性化學品標示及通識規則",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "危害性化學品標示及通識規則",
+        "key": "law-c0b50646-5",
+        "label": "危害性化學品標示及通識規則第5條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 20,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-20",
+        "label": "特定化學物質危害預防標準第20條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 37,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 0,
+          "all": 2
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-37",
+        "label": "特定化學物質危害預防標準第37條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 39,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 1,
+          "all": 2
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-39",
+        "label": "特定化學物質危害預防標準第39條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 1,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-1",
+        "label": "職安法第1條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=1"
+      },
+      {
+        "art": 15,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-15",
+        "label": "職安法第15條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=15"
+      },
+      {
+        "art": 20,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-20",
+        "label": "職安法第20條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=20"
+      },
+      {
+        "art": 23,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-23",
+        "label": "職安法第23條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=23"
+      },
+      {
+        "art": 49,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-49",
+        "label": "職安法第49條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=49"
+      },
+      {
+        "art": 29,
+        "sub": 3,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "29-3",
+        "label": "設規第29條之3",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=29-3"
+      },
+      {
+        "art": 73,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "73",
+        "label": "設規第73條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=73"
+      },
+      {
+        "art": 92,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "92",
+        "label": "設規第92條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=92"
+      },
+      {
+        "art": 93,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "93",
+        "label": "設規第93條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=93"
+      },
+      {
+        "art": 125,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "125",
+        "label": "設規第125條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=125"
+      },
+      {
+        "art": 159,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "159",
+        "label": "設規第159條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=159"
+      },
+      {
+        "art": 167,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "167",
+        "label": "設規第167條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=167"
+      },
+      {
+        "art": 175,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 0,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "175",
+        "label": "設規第175條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=175"
+      },
+      {
+        "art": 177,
+        "sub": 2,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177-2",
+        "label": "設規第177條之2",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177-2"
+      },
+      {
+        "art": 184,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "184-1",
+        "label": "設規第184條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=184-1"
+      },
+      {
+        "art": 230,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "230",
+        "label": "設規第230條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=230"
+      },
+      {
+        "art": 239,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 2,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "239-1",
+        "label": "設規第239條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=239-1"
+      },
+      {
+        "art": 250,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 1,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "250",
+        "label": "設規第250條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=250"
+      },
+      {
+        "art": 254,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "254",
+        "label": "設規第254條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=254"
+      },
+      {
+        "art": 285,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "285",
+        "label": "設規第285條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=285"
+      },
+      {
+        "art": 289,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 2,
+          "114": 0,
+          "115": 0,
+          "all": 2
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "289",
+        "label": "設規第289條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=289"
+      },
+      {
+        "art": 8,
+        "sub": null,
+        "lawShort": "製程安全評估定期實施辦法",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "製程安全評估定期實施辦法",
+        "key": "law-b583e66b-8",
+        "label": "製程安全評估定期實施辦法第8條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 21,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 1,
+          "114": 1,
+          "115": 0,
+          "all": 2
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-21",
+        "label": "起重升降機具安全規則第21條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 32,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 0,
+          "114": 2,
+          "115": 0,
+          "all": 2
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-32",
+        "label": "起重升降機具安全規則第32條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 31,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "113": 2,
+          "114": 0,
+          "115": 0,
+          "all": 2
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-31",
+        "label": "高壓則第31條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=31"
+      },
+      {
+        "art": 37,
+        "sub": 1,
+        "lawShort": "高壓則",
+        "y": {
+          "113": 2,
+          "114": 0,
+          "115": 0,
+          "all": 2
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-37-1",
+        "label": "高壓則第37條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=37-1"
+      },
+      {
+        "art": 8,
+        "sub": null,
+        "lawShort": "優先管理化學品之指定及運作管理辦法",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "優先管理化學品之指定及運作管理辦法",
+        "key": "law-308ca29f-8",
+        "label": "優先管理化學品之指定及運作管理辦法第8條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 8,
+        "sub": null,
+        "lawShort": "勞工作業環境監測實施辦法",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "勞工作業環境監測實施辦法",
+        "key": "law-2046c624-8",
+        "label": "勞工作業環境監測實施辦法第8條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 17,
+        "sub": null,
+        "lawShort": "勞工健康保護規則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "勞工健康保護規則",
+        "key": "law-34033fb7-17",
+        "label": "勞工健康保護規則第17條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 26,
+        "sub": null,
+        "lawShort": "勞工健康保護規則",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "勞工健康保護規則",
+        "key": "law-34033fb7-26",
+        "label": "勞工健康保護規則第26條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 18,
+        "sub": null,
+        "lawShort": "危害性化學品標示及通識規則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "危害性化學品標示及通識規則",
+        "key": "law-c0b50646-18",
+        "label": "危害性化學品標示及通識規則第18條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 40,
+        "sub": null,
+        "lawShort": "固定式起重機安全檢查構造標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "固定式起重機安全檢查構造標準",
+        "key": "law-0162fa23-40",
+        "label": "固定式起重機安全檢查構造標準第40條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 45,
+        "sub": null,
+        "lawShort": "固定式起重機安全檢查構造標準",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "固定式起重機安全檢查構造標準",
+        "key": "law-0162fa23-45",
+        "label": "固定式起重機安全檢查構造標準第45條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 66,
+        "sub": null,
+        "lawShort": "固定式起重機安全檢查構造標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "固定式起重機安全檢查構造標準",
+        "key": "law-0162fa23-66",
+        "label": "固定式起重機安全檢查構造標準第66條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 20,
+        "sub": null,
+        "lawShort": "有機溶劑中毒預防規則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "有機溶劑中毒預防規則",
+        "key": "law-34f54342-20",
+        "label": "有機溶劑中毒預防規則第20條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 23,
+        "sub": null,
+        "lawShort": "有機溶劑中毒預防規則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "有機溶劑中毒預防規則",
+        "key": "law-34f54342-23",
+        "label": "有機溶劑中毒預防規則第23條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 26,
+        "sub": null,
+        "lawShort": "有機溶劑中毒預防規則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "有機溶劑中毒預防規則",
+        "key": "law-34f54342-26",
+        "label": "有機溶劑中毒預防規則第26條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 27,
+        "sub": null,
+        "lawShort": "有機溶劑中毒預防規則",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "有機溶劑中毒預防規則",
+        "key": "law-34f54342-27",
+        "label": "有機溶劑中毒預防規則第27條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 4,
+        "sub": null,
+        "lawShort": "機械設備器具安全標準",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "機械設備器具安全標準",
+        "key": "law-b80e9fa9-4",
+        "label": "機械設備器具安全標準第4條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 76,
+        "sub": null,
+        "lawShort": "機械設備器具安全標準",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "機械設備器具安全標準",
+        "key": "law-b80e9fa9-76",
+        "label": "機械設備器具安全標準第76條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 97,
+        "sub": null,
+        "lawShort": "機械設備器具安全標準",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "機械設備器具安全標準",
+        "key": "law-b80e9fa9-97",
+        "label": "機械設備器具安全標準第97條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 104,
+        "sub": null,
+        "lawShort": "機械設備器具安全標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "機械設備器具安全標準",
+        "key": "law-b80e9fa9-104",
+        "label": "機械設備器具安全標準第104條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 118,
+        "sub": null,
+        "lawShort": "機械設備器具安全標準",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "機械設備器具安全標準",
+        "key": "law-b80e9fa9-118",
+        "label": "機械設備器具安全標準第118條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 45,
+        "sub": null,
+        "lawShort": "營造安全衛生設施標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "營造安全衛生設施標準",
+        "key": "law-fc6222d4-45",
+        "label": "營造安全衛生設施標準第45條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 153,
+        "sub": null,
+        "lawShort": "營造安全衛生設施標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "營造安全衛生設施標準",
+        "key": "law-fc6222d4-153",
+        "label": "營造安全衛生設施標準第153條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 16,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-16",
+        "label": "特定化學物質危害預防標準第16條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 25,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-25",
+        "label": "特定化學物質危害預防標準第25條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 27,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-27",
+        "label": "特定化學物質危害預防標準第27條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 30,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-30",
+        "label": "特定化學物質危害預防標準第30條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 36,
+        "sub": null,
+        "lawShort": "特定化學物質危害預防標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "特定化學物質危害預防標準",
+        "key": "law-30d74847-36",
+        "label": "特定化學物質危害預防標準第36條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 4,
+        "sub": null,
+        "lawShort": "缺氧症預防規則",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "缺氧症預防規則",
+        "key": "law-419937c7-4",
+        "label": "缺氧症預防規則第4條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 12,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-12",
+        "label": "職安法第12條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=12"
+      },
+      {
+        "art": 3,
+        "sub": null,
+        "lawShort": "職業安全衛生管理辦法",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生管理辦法",
+        "key": "law-4369bab2-3",
+        "label": "職業安全衛生管理辦法第3條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 12,
+        "sub": 1,
+        "lawShort": "職業安全衛生管理辦法",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生管理辦法",
+        "key": "law-4369bab2-12-1",
+        "label": "職業安全衛生管理辦法第12條之1",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 1,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "1",
+        "label": "設規第1條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=1"
+      },
+      {
+        "art": 22,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "22",
+        "label": "設規第22條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=22"
+      },
+      {
+        "art": 29,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "29-1",
+        "label": "設規第29條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=29-1"
+      },
+      {
+        "art": 29,
+        "sub": 4,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "29-4",
+        "label": "設規第29條之4",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=29-4"
+      },
+      {
+        "art": 31,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "31",
+        "label": "設規第31條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=31"
+      },
+      {
+        "art": 32,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "32",
+        "label": "設規第32條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=32"
+      },
+      {
+        "art": 33,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "33",
+        "label": "設規第33條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=33"
+      },
+      {
+        "art": 34,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "34",
+        "label": "設規第34條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=34"
+      },
+      {
+        "art": 35,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "35",
+        "label": "設規第35條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=35"
+      },
+      {
+        "art": 36,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "36",
+        "label": "設規第36條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=36"
+      },
+      {
+        "art": 47,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "47",
+        "label": "設規第47條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=47"
+      },
+      {
+        "art": 48,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "48",
+        "label": "設規第48條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=48"
+      },
+      {
+        "art": 55,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "55",
+        "label": "設規第55條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=55"
+      },
+      {
+        "art": 56,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "56",
+        "label": "設規第56條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=56"
+      },
+      {
+        "art": 94,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "94",
+        "label": "設規第94條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=94"
+      },
+      {
+        "art": 106,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "106",
+        "label": "設規第106條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=106"
+      },
+      {
+        "art": 107,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "107",
+        "label": "設規第107條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=107"
+      },
+      {
+        "art": 118,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "118",
+        "label": "設規第118條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=118"
+      },
+      {
+        "art": 143,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "143",
+        "label": "設規第143條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=143"
+      },
+      {
+        "art": 144,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "144",
+        "label": "設規第144條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=144"
+      },
+      {
+        "art": 155,
+        "sub": 1,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "155-1",
+        "label": "設規第155條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=155-1"
+      },
+      {
+        "art": 171,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "171",
+        "label": "設規第171條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=171"
+      },
+      {
+        "art": 178,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "178",
+        "label": "設規第178條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=178"
+      },
+      {
+        "art": 195,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "195",
+        "label": "設規第195條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=195"
+      },
+      {
+        "art": 197,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "197",
+        "label": "設規第197條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=197"
+      },
+      {
+        "art": 209,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "209",
+        "label": "設規第209條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=209"
+      },
+      {
+        "art": 225,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "225",
+        "label": "設規第225條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=225"
+      },
+      {
+        "art": 229,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "229",
+        "label": "設規第229條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=229"
+      },
+      {
+        "art": 245,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "245",
+        "label": "設規第245條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=245"
+      },
+      {
+        "art": 256,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "256",
+        "label": "設規第256條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=256"
+      },
+      {
+        "art": 261,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "261",
+        "label": "設規第261條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=261"
+      },
+      {
+        "art": 268,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "268",
+        "label": "設規第268條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=268"
+      },
+      {
+        "art": 288,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "288",
+        "label": "設規第288條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=288"
+      },
+      {
+        "art": 299,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "299",
+        "label": "設規第299條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=299"
+      },
+      {
+        "art": 313,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "313",
+        "label": "設規第313條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=313"
+      },
+      {
+        "art": 319,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "319",
+        "label": "設規第319條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=319"
+      },
+      {
+        "art": 324,
+        "sub": 3,
+        "lawShort": "設規",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "324-3",
+        "label": "設規第324條之3",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=324-3"
+      },
+      {
+        "art": 326,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "326",
+        "label": "設規第326條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=326"
+      },
+      {
+        "art": 18,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-18",
+        "label": "起重升降機具安全規則第18條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 62,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-62",
+        "label": "起重升降機具安全規則第62條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 64,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-64",
+        "label": "起重升降機具安全規則第64條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 68,
+        "sub": null,
+        "lawShort": "起重升降機具安全規則",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "起重升降機具安全規則",
+        "key": "law-4c70657d-68",
+        "label": "起重升降機具安全規則第68條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 16,
+        "sub": null,
+        "lawShort": "鍋爐及壓力容器安全規則",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "鍋爐及壓力容器安全規則",
+        "key": "law-3c1130a3-16",
+        "label": "鍋爐及壓力容器安全規則第16條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 18,
+        "sub": null,
+        "lawShort": "鍋爐及壓力容器安全規則",
+        "y": {
+          "113": 1,
+          "114": 0,
+          "115": 0,
+          "all": 1
+        },
+        "law": "鍋爐及壓力容器安全規則",
+        "key": "law-3c1130a3-18",
+        "label": "鍋爐及壓力容器安全規則第18條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 19,
+        "sub": null,
+        "lawShort": "項營造安全衛生設施標準",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "項營造安全衛生設施標準",
+        "key": "law-636852d1-19",
+        "label": "項營造安全衛生設施標準第19條",
+        "href": "https://law.moj.gov.tw/"
+      },
+      {
+        "art": 54,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "113": 0,
+          "114": 0,
+          "115": 1,
+          "all": 1
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-54",
+        "label": "高壓則第54條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=54"
+      },
+      {
+        "art": 71,
+        "sub": null,
+        "lawShort": "高壓則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-71",
+        "label": "高壓則第71條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=71"
+      },
+      {
+        "art": 191,
+        "sub": 1,
+        "lawShort": "高壓則",
+        "y": {
+          "113": 0,
+          "114": 1,
+          "115": 0,
+          "all": 1
+        },
+        "law": "高壓氣體勞工安全規則",
+        "key": "hp-191-1",
+        "label": "高壓則第191條之1",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060030&flno=191-1"
+      }
+    ],
+    "topArts": [
+      {
+        "art": 6,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 185,
+          "114": 188,
+          "115": 113,
+          "all": 486
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-6",
+        "label": "職安法第6條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=6"
+      },
+      {
+        "art": 27,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 30,
+          "114": 60,
+          "115": 37,
+          "all": 127
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-27",
+        "label": "職安法第27條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=27"
+      },
+      {
+        "art": 57,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 23,
+          "114": 29,
+          "115": 15,
+          "all": 67
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "57",
+        "label": "設規第57條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=57"
+      },
+      {
+        "art": 116,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 17,
+          "114": 14,
+          "115": 5,
+          "all": 36
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "116",
+        "label": "設規第116條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=116"
+      },
+      {
+        "art": 43,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 12,
+          "114": 14,
+          "115": 5,
+          "all": 31
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "43",
+        "label": "設規第43條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=43"
+      },
+      {
+        "art": 58,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 9,
+          "114": 10,
+          "115": 12,
+          "all": 31
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "58",
+        "label": "設規第58條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=58"
+      },
+      {
+        "art": 177,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 17,
+          "114": 12,
+          "115": 1,
+          "all": 30
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "177",
+        "label": "設規第177條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=177"
+      },
+      {
+        "art": 37,
+        "sub": null,
+        "lawShort": "職安法",
+        "y": {
+          "113": 11,
+          "114": 6,
+          "115": 11,
+          "all": 28
+        },
+        "law": "職業安全衛生法",
+        "key": "osha-37",
+        "label": "職安法第37條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060001&flno=37"
+      },
+      {
+        "art": 21,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 6,
+          "114": 12,
+          "115": 10,
+          "all": 28
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "21",
+        "label": "設規第21條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=21"
+      },
+      {
+        "art": 224,
+        "sub": null,
+        "lawShort": "設規",
+        "y": {
+          "113": 12,
+          "114": 6,
+          "115": 9,
+          "all": 27
+        },
+        "law": "職業安全衛生設施規則",
+        "key": "224",
+        "label": "設規第224條",
+        "href": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=N0060009&flno=224"
+      }
+    ],
+    "lawGroups": [
+      {
+        "law": "全部法規",
+        "short": "all",
+        "articleCount": 159,
+        "topKeys": [
+          "osha-6",
+          "osha-27",
+          "57",
+          "116",
+          "43",
+          "58",
+          "177",
+          "osha-37",
+          "21",
+          "224"
+        ]
+      },
+      {
+        "law": "職業安全衛生設施規則",
+        "short": "設規",
+        "articleCount": 90,
+        "topKeys": [
+          "57",
+          "116",
+          "43",
+          "58",
+          "177",
+          "21",
+          "224",
+          "287",
+          "153",
+          "281"
+        ]
+      },
+      {
+        "law": "高壓氣體勞工安全規則",
+        "short": "高壓則",
+        "articleCount": 6,
+        "topKeys": [
+          "hp-60",
+          "hp-31",
+          "hp-37-1",
+          "hp-54",
+          "hp-71",
+          "hp-191-1"
+        ]
+      },
+      {
+        "law": "職業安全衛生法",
+        "short": "職安法",
+        "articleCount": 14,
+        "topKeys": [
+          "osha-6",
+          "osha-27",
+          "osha-37",
+          "osha-26",
+          "osha-14",
+          "osha-24",
+          "osha-16",
+          "osha-10",
+          "osha-1",
+          "osha-15"
+        ]
+      }
+    ],
+    "lawTotals": {
+      "all": {
+        "all": 711,
+        "113": 242,
+        "114": 298,
+        "115": 171
+      },
+      "設規": {
+        "113": 145,
+        "114": 155,
+        "115": 81,
+        "all": 381
+      },
+      "高壓則": {
+        "113": 5,
+        "114": 3,
+        "115": 2,
+        "all": 10
+      },
+      "職安法": {
+        "113": 237,
+        "114": 288,
+        "115": 170,
+        "all": 695
+      }
+    },
+    "year_total": {
       "all": 711,
       "113": 242,
       "114": 298,
       "115": 171
     },
-    "monthly": [
-      {
-        "year": 113,
-        "month": 1,
-        "total": 19,
-        "fireRelated": 3
-      },
-      {
-        "year": 113,
-        "month": 2,
-        "total": 20,
-        "fireRelated": 2
-      },
-      {
-        "year": 113,
-        "month": 3,
-        "total": 22,
-        "fireRelated": 1
-      },
-      {
-        "year": 113,
-        "month": 4,
-        "total": 22,
-        "fireRelated": 0
-      },
-      {
-        "year": 113,
-        "month": 5,
-        "total": 26,
-        "fireRelated": 2
-      },
-      {
-        "year": 113,
-        "month": 6,
-        "total": 10,
-        "fireRelated": 0
-      },
-      {
-        "year": 113,
-        "month": 7,
-        "total": 17,
-        "fireRelated": 2
-      },
-      {
-        "year": 113,
-        "month": 8,
-        "total": 23,
-        "fireRelated": 5
-      },
-      {
-        "year": 113,
-        "month": 9,
-        "total": 18,
-        "fireRelated": 1
-      },
-      {
-        "year": 113,
-        "month": 10,
-        "total": 15,
-        "fireRelated": 4
-      },
-      {
-        "year": 113,
-        "month": 11,
-        "total": 29,
-        "fireRelated": 4
-      },
-      {
-        "year": 113,
-        "month": 12,
-        "total": 21,
-        "fireRelated": 4
-      },
-      {
-        "year": 114,
-        "month": 1,
-        "total": 20,
-        "fireRelated": 1
-      },
-      {
-        "year": 114,
-        "month": 2,
-        "total": 32,
-        "fireRelated": 5
-      },
-      {
-        "year": 114,
-        "month": 3,
-        "total": 34,
-        "fireRelated": 2
-      },
-      {
-        "year": 114,
-        "month": 4,
-        "total": 18,
-        "fireRelated": 1
-      },
-      {
-        "year": 114,
-        "month": 5,
-        "total": 17,
-        "fireRelated": 0
-      },
-      {
-        "year": 114,
-        "month": 6,
-        "total": 18,
-        "fireRelated": 1
-      },
-      {
-        "year": 114,
-        "month": 7,
-        "total": 36,
-        "fireRelated": 3
-      },
-      {
-        "year": 114,
-        "month": 8,
-        "total": 32,
-        "fireRelated": 1
-      },
-      {
-        "year": 114,
-        "month": 9,
-        "total": 24,
-        "fireRelated": 2
-      },
-      {
-        "year": 114,
-        "month": 10,
-        "total": 25,
-        "fireRelated": 7
-      },
-      {
-        "year": 114,
-        "month": 11,
-        "total": 20,
-        "fireRelated": 1
-      },
-      {
-        "year": 114,
-        "month": 12,
-        "total": 22,
-        "fireRelated": 2
-      },
-      {
-        "year": 115,
-        "month": 1,
-        "total": 12,
-        "fireRelated": 0
-      },
-      {
-        "year": 115,
-        "month": 2,
-        "total": 14,
-        "fireRelated": 2
-      },
-      {
-        "year": 115,
-        "month": 3,
-        "total": 27,
-        "fireRelated": 1
-      },
-      {
-        "year": 115,
-        "month": 4,
-        "total": 26,
-        "fireRelated": 3
-      },
-      {
-        "year": 115,
-        "month": 5,
-        "total": 22,
-        "fireRelated": 0
-      },
-      {
-        "year": 115,
-        "month": 6,
-        "total": 20,
-        "fireRelated": 1
-      },
-      {
-        "year": 115,
-        "month": 7,
-        "total": 17,
-        "fireRelated": 0
-      },
-      {
-        "year": 115,
-        "month": 8,
-        "total": 26,
-        "fireRelated": 0
-      },
-      {
-        "year": 115,
-        "month": 9,
-        "total": 6,
-        "fireRelated": 0
-      },
-      {
-        "year": 115,
-        "month": 10,
-        "total": 1,
-        "fireRelated": 0
-      }
-    ],
-    "note": "全部裁罰按事業單位、處分字號與處分日期合併計算。同一處分引用多個條文只計1筆；不同事業單位即使處分字號相同，仍分別計算。"
+    "note": "按事業單位、處分字號與處分日期合併計算。同一處分引用多個條文只計1件；不同事業單位即使處分字號相同，仍分別計算。"
   },
   "coverageNote": "115年為部分年度；來源檔近期月份紀錄較少，最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。",
   "year_total": {

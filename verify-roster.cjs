@@ -25,22 +25,23 @@ const dispositionIdentity=(company,row)=>[company.id,String(row.no||row.id).repl
 for(const period of [113,114,115]){
  const identities=new Set();
  for(const company of selected)for(const row of company.pen)if(y(row.date)===period)identities.add(dispositionIdentity(company,row));
- assert.equal(pen.allPenalties.yearTotals[period],identities.size,'All penalties '+period);
- for(const month of pen.allPenalties.monthly.filter(m=>m.year===period)){
-  const all=new Set(),fire=new Set();
-  for(const company of selected)for(const row of company.pen)if(y(row.date)===period&&Number(row.date.split('/')[1])===month.month){
-   const key=dispositionIdentity(company,row);all.add(key);
-   if(row.arts.some(a=>refs.has(a.law+'|'+a.n+(a.sub==null?'':'-'+a.sub))))fire.add(key);
-  }
-  assert.equal(month.total,all.size,'All penalties '+period+'/'+month.month);
-  assert.equal(month.fireRelated,fire.size,'Related penalties '+period+'/'+month.month);
- }
+ assert.equal(pen.allAnalysis.year_total[period],identities.size,'All penalties '+period);
 }
 // The official export reuses this number for different employers/dates.
 const collision=selected.filter(company=>company.pen.some(row=>row.no==='職授字第1150250396號'));
 assert.equal(collision.length,2,'Different employers sharing a document number must remain separate');
-assert.equal(pen.allPenalties.yearTotals['115'],171);
-assert.deepEqual(pen.allPenalties.monthly.filter(r=>r.year===115).map(r=>r.total),[12,14,27,26,22,20,17,26,6,1]);
+assert.equal(pen.allAnalysis.year_total['115'],171);
+assert.equal(pen.allAnalysis.lawTotals['設規']['115'],81);
+for(const group of pen.allAnalysis.lawGroups.filter(g=>g.short!=='all'))for(const period of ['all',113,114,115]){
+ const identities=new Set();
+ for(const company of selected)for(const row of company.pen)if(y(row.date)>=113&&y(row.date)<=115&&(period==='all'||y(row.date)===period)&&row.arts.some(a=>a.law===group.short))identities.add(dispositionIdentity(company,row));
+ assert.equal(pen.allAnalysis.lawTotals[group.short][period],identities.size,'All law '+group.short+'/'+period);
+}
+for(const a of pen.allAnalysis.arts)for(const period of ['all',113,114,115]){
+ const identities=new Set();
+ for(const company of selected)for(const row of company.pen)if(y(row.date)>=113&&y(row.date)<=115&&(period==='all'||y(row.date)===period)&&row.arts.some(ref=>ref.law===a.lawShort&&ref.n===a.art&&(ref.sub??null)===a.sub))identities.add(dispositionIdentity(company,row));
+ assert.equal(a.y[period],identities.size,'All article '+a.key+'/'+period);
+}
 for(const short of ['設規','高壓則'])for(const period of ['all',113,114,115]){
  const matched=allPen.filter(r=>y(r.date)>=113&&y(r.date)<=115&&(period==='all'||y(r.date)===period)&&r.arts.some(a=>a.law===short&&refs.has(a.law+'|'+a.n+(a.sub==null?'':'-'+a.sub))));
  assert.equal(pen.lawTotals[short][period],new Set(matched.map(no)).size,short+'/'+period);
