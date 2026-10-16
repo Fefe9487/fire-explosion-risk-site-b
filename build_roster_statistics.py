@@ -100,6 +100,7 @@ def main():
     penalty = {k: previous_pen[k] for k in ["sourceThrough", "sourceUpdatedAt", "sourceCutoff", "fireCriteria"]}
     penalty.update(scope)
     penalty.update({"scope": "roster", "fire_n": len(set().union(*dispositions.values())),
+        "coverageNote": "115年為部分年度；來源檔近期月份紀錄較少，最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。",
         "year_total": {"all": len(set().union(*dispositions.values())), **{str(y): len(dispositions[y]) for y in YEARS}},
         "arts": arts, "topArts": top, "filterLimit": 10, "lawTotals": totals, "lawGroups": groups,
         "note": "僅統計本網站高風險廠場名單所屬事業單位，依同一統一編號合計。只計民國113至115年火災爆炸相關條文；同一處分在同一部法規只算一件，跨法規可分別計入。"})

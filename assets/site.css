@@ -121,3 +121,5 @@ h2{color:var(--navy)}
 .guide-note{margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.85}
 @media(max-width:900px){.public-guide-figure{grid-template-columns:1fr}.guide-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
 @media(max-width:750px){.guide-heading{align-items:flex-start;flex-direction:column;gap:12px}.public-guide-figure{gap:20px}.guide-steps{grid-template-columns:1fr;gap:18px}.guide-steps>div{grid-template-columns:28px 1fr}.guide-steps h3{font-size:16px;margin-bottom:4px}.guide-steps p{font-size:14px}.statistics-details>summary{padding:18px;font-size:16px}.details-content{padding:0 10px 10px}.details-content>.section-card{padding:20px 16px}.scope-note{font-size:13px;padding:12px 14px}}
+
+.definition-section{margin-top:24px;scroll-margin-top:20px}.definition-section .sources{margin-top:22px;padding-top:18px}.definition-section h3{font-size:18px;color:var(--navy);margin:0 0 10px}.coverage-note{font-size:13px;color:var(--muted);line-height:1.8;margin:12px 0 18px}
