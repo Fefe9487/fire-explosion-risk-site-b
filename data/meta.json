@@ -1,11 +1,11 @@
 {
-  "builtAt": "2026-10-09 08:40",
+  "builtAt": "2026-10-16 22:28",
   "plants": 973,
-  "penalties": 1207,
-  "accidents": 213,
+  "penalties": 1217,
+  "accidents": 214,
   "hostInferred": 4,
-  "penaltyPeriod": "裁罰處分日期 105/09/12–115/10/01（約10年）",
-  "accidentPeriod": "職災處分日期 113/01/02–115/09/18",
+  "penaltyPeriod": "裁罰處分日期 105/09/12–115/10/02（約10年）",
+  "accidentPeriod": "職災處分日期 113/01/02–115/09/30",
   "scope": "查詢與統計均限本網站高風險廠場名單所屬事業單位，以統一編號合計紀錄，不標示個別廠址。統計處分年度為113至115年。處分件數不等於事故場次或傷亡人數。",
   "rosterCores": 679,
   "csvYears": [
@@ -25,14 +25,40 @@
     115
   ],
   "statisticsScope": "roster",
-  "sourceUpdatedAt": "2026-10-06",
-  "sourceCutoff": "115/10/06",
-  "penaltySourceThrough": "115/10/01",
-  "accidentSourceThrough": "115/09/18",
-  "penaltyPublishedThrough": "115/10/05",
+  "sourceUpdatedAt": "2026-10-16",
+  "sourceCutoff": "115/10/16",
+  "penaltySourceThrough": "115/10/02",
+  "accidentSourceThrough": "115/09/30",
+  "penaltyPublishedThrough": "115/10/15",
   "fireCriteriaVersion": 4,
   "methodUpdatedAt": "2026-10-16",
   "rosterPlaces": 973,
   "rosterCompanies": 682,
-  "statisticsBuiltAt": "2026-10-16"
+  "statisticsBuiltAt": "2026-10-16",
+  "sourceSnapshots": {
+    "penalty": {
+      "filename": "announcement-1151016-osha.csv",
+      "downloadedAt": "2026-10-16",
+      "url": "https://announcement.mol.gov.tw/Download/",
+      "method": "POST: REGNUMBER=3; DOCstartDate=1130101; DOCEndDate=1151016; downloadType=3",
+      "sha256": "e563cc2538df85692c77c963fe232ff7556b1a3a19d6703075bc868fe221287a",
+      "rows": 24658,
+      "dispositionRange": [
+        "113/01/02",
+        "115/10/02"
+      ]
+    },
+    "accident": {
+      "filename": "official-disaster-1151016.ods",
+      "downloadedAt": "2026-10-16",
+      "url": "https://toshms.osha.gov.tw/Disaster/Content/DisasterList?handler=ExportODS",
+      "method": "Official ODS export: disposition dates 113/01/01–115/10/16",
+      "sha256": "3871bac09484f768e874b7cbf45b24979e7f70e73ea4faea8f0a966339209566",
+      "rows": 7609,
+      "dispositionRange": [
+        "113/01/02",
+        "115/09/30"
+      ]
+    }
+  }
 }

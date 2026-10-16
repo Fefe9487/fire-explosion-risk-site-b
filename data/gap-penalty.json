@@ -1,7 +1,7 @@
 {
-  "sourceThrough": "115/10/01",
-  "sourceUpdatedAt": "2026-10-06",
-  "sourceCutoff": "115/10/06",
+  "sourceThrough": "115/10/02",
+  "sourceUpdatedAt": "2026-10-16",
+  "sourceCutoff": "115/10/16",
   "fireCriteria": {
     "version": 3,
     "method": "cited-law-and-article",

@@ -49,6 +49,14 @@ for(const focus of acc.focus){assert.equal(focus.n,acc.kinds.find(k=>k.kind===fo
 // A record without a roster plant ID or a roster tax must never appear in search.
 c.outside={id:'outside-test',no:'outside-disposition',tax:'99999999',date:'114/01/01',plantId:'outside-plant',arts:[{law:'設規',n:173}]};
 assert.equal(vm.runInContext("PEN.push(outside);COMPANIES.flatMap(company=>rowsFor(company).pen).filter(r=>r.id==='outside-test').length",c),0);
-assert.equal(pen.sourceUpdatedAt,'2026-10-06');
-assert.equal(acc.sourceThrough,'115/09/18');
-console.log(`PASS: ${result.companies} company searches reconcile every law/year, article/year, disaster/year and public event total; outside-roster exclusion; original source dates retained.`);
+assert.equal(pen.sourceUpdatedAt,data.meta.sourceUpdatedAt);
+assert.equal(acc.sourceThrough,data.meta.accidentSourceThrough);
+assert.equal(acc.sourceUpdatedAt,data.meta.sourceUpdatedAt);
+for(const month of ['01','02','03','04','05','06','07','08']){
+ assert(allPen.some(r=>String(r.date).startsWith('115/'+month+'/')),'Missing 115/'+month+' penalty records');
+}
+for(const snapshot of Object.values(data.meta.sourceSnapshots)){
+ assert.match(snapshot.sha256,/^[a-f0-9]{64}$/);
+ assert.equal(snapshot.downloadedAt,data.meta.sourceUpdatedAt);
+}
+console.log(`PASS: ${result.companies} company searches reconcile every law/year, article/year, disaster/year and public event total; outside-roster exclusion; 115 January–August penalties and fresh source provenance.`);

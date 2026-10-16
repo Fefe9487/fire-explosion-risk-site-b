@@ -156,7 +156,6 @@
     <main class="card" id="main-content">
       <p class="eyebrow">統計資訊</p><h1>高風險廠場近三年裁罰與職災</h1>
       <p class="lead">本頁僅統計高風險廠場名單所屬事業單位，與公司查詢使用同一份名單。同一統編合併計算。要看某一家公司，請前往<a href="query.html">事業單位查詢</a>，以統一編號合計該公司的紀錄。</p>
-      <p class="scope-note" id="statistics-roster">高風險廠場名單範圍載入中。</p>
       <p class="coverage-note" id="statistics-coverage">115年為部分年度；來源檔最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。</p>
       <hr class="rule" />
       <div class="tabs" role="tablist" aria-label="資料分類">
@@ -458,7 +457,6 @@
       PEN_PROFILES=new Map(Object.entries(profiles));
       if(pen.scope!=='roster'||acc.scopeKey!=='roster'||pen.rosterPlaces!==acc.rosterPlaces||pen.rosterCompanies!==acc.rosterCompanies)throw Error('統計名單範圍不符');
       PEN_VIEWS={roster:pen};
-      document.getElementById('statistics-roster').textContent='統計範圍與事業單位查詢相同，僅計入本網站高風險廠場名單所屬單位的紀錄。';
       if(pen.coverageNote)document.getElementById('statistics-coverage').textContent=pen.coverageNote;
       ACC=acc;selectPenaltyMode('roster');renderAcc();
       document.getElementById('stats-period').textContent=`更新日：${pen.sourceUpdatedAt||'未提供'}。統計處分年度：113年至115年。來源檔最新處分日期：裁罰${dateLabel(pen.sourceThrough)}、職災${dateLabel(acc.sourceThrough)}；日期不代表完整收錄範圍。`;
@@ -467,7 +465,7 @@
       try{
         const [pen,acc,profiles]=await Promise.all(['gap-penalty','gap-accident','law-profiles'].map(name=>fetch('data/'+name+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(name);return r.json();})));
         applyGapData(pen,acc,profiles);
-      }catch(e){document.getElementById('pen-lead').textContent='統計資料載入失敗，請重新整理或使用離線展示檔。';document.getElementById('statistics-roster').textContent='目前無法載入名單統計，請稍後重試。';document.getElementById('acc-scope').textContent='職災統計暫時無法載入。';}
+      }catch(e){document.getElementById('pen-lead').textContent='統計資料載入失敗，請重新整理或使用離線展示檔。';document.getElementById('statistics-coverage').textContent='目前無法載入統計資料，請稍後重試。';document.getElementById('acc-scope').textContent='職災統計暫時無法載入。';}
     }
     boot();
   </script>

@@ -1,11 +1,11 @@
 {
-  "sourceThrough": "115/09/18",
-  "sourceUpdatedAt": "2026-10-06",
-  "sourceCutoff": "115/09/18",
+  "sourceThrough": "115/09/30",
+  "sourceUpdatedAt": "2026-10-16",
+  "sourceCutoff": "115/10/16",
   "dateBasis": "disposition",
   "countUnit": "disposition-and-kind",
   "sourceUrl": "https://toshms.osha.gov.tw/Disaster/Content/DisasterList",
-  "sourceSnapshot": "2026-10-06 official ODS export; dispositions through 115/09/18",
+  "sourceSnapshot": "2026-10-16 official ODS export; dispositions through 115/09/30",
   "excluded": [
     "不能歸類",
     "公路交通事故",
@@ -22,9 +22,9 @@
   "statisticsBuiltAt": "2026-10-16",
   "scopeKey": "roster",
   "scope": "僅統計本網站高風險廠場名單所屬事業單位，依同一統一編號合計，處分依113至115年處分年度計算；重大職災公開網去重後另按發生年度計算。",
-  "sourceRows": 340,
-  "distinctDispositions": 318,
-  "kindDispositionTotal": 319,
+  "sourceRows": 341,
+  "distinctDispositions": 319,
+  "kindDispositionTotal": 320,
   "kinds": [
     {
       "kind": "墜落、滾落",
@@ -48,10 +48,10 @@
     },
     {
       "kind": "物體飛落",
-      "n": 18,
+      "n": 19,
       "y113": 3,
       "y114": 12,
-      "y115": 3,
+      "y115": 4,
       "pacs113": 1,
       "pacs114": 2,
       "pacs115": 0
