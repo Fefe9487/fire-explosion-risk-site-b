@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+<title id="title">哪些廠場納入高風險廠場名單？</title><desc id="desc">整合化學雲的消防關注廠商、優先管理化學品超過報備門檻事業單位，以及危險性工作場所等名單。</desc>
+<rect width="640" height="440" rx="22" fill="#edf4fa"/>
+<g font-family="Microsoft JhengHei,Noto Sans TC,sans-serif" fill="#244563">
+<text x="32" y="49" font-size="24" font-weight="700">01　哪些廠場納入？</text>
+<g fill="#fff" stroke="#6e96b6" stroke-width="3" stroke-linejoin="round">
+<path d="M90 122c-25 0-35 32-17 45h109c22-13 8-47-15-45-7-40-69-43-77 0z"/>
+<rect x="270" y="104" width="82" height="80" rx="9"/>
+<path d="m284 125 7 7 12-15m8 10h25m-52 26 7 7 12-15m8 10h25" fill="none"/>
+<path d="M461 184v-47l30 17v-27l30 18v-38h22v77z"/>
+</g>
+<text x="124" y="225" text-anchor="middle" font-size="24">消防關注廠商</text>
+<text x="312" y="225" text-anchor="middle" font-size="24">化學品報備名單</text>
+<text x="501" y="225" text-anchor="middle" font-size="24">危險性工作場所</text>
+<g stroke="#88a8c1" stroke-width="3" fill="none"><path d="M124 245v26h377v-26m-189 26v26"/><path d="m302 287 10 10 10-10"/></g>
+<rect x="99" y="316" width="442" height="77" rx="15" fill="#244563"/>
+<text x="320" y="364" text-anchor="middle" fill="#fff" font-size="29" font-weight="700">整合為優先關注的廠場名單</text>
+</g></svg>

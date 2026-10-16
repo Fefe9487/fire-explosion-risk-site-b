@@ -1,0 +1,54 @@
+// Reconcile generated aggregates against the actual company-search API, independently
+// of the Python builder. Also verifies roster-only membership and event de-duplication.
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const read=n=>JSON.parse(fs.readFileSync(__dirname+'/data/'+n+'.json','utf8'));
+const names=['meta','plants','penalties','accidents','pacs','tax-rollup','gap-penalty','gap-accident'];
+const data=Object.fromEntries(names.map(n=>[n,read(n)]));
+const script=fs.readFileSync(__dirname+'/query.html','utf8').match(/<script>([\s\S]*?)<\/script>/)[1].replace(/\n\s*boot\(\);/,'');
+const element={addEventListener(){},replaceChildren(){},value:'',innerHTML:'',textContent:'',setAttribute(){}};
+const c=vm.createContext({data,document:{getElementById(){return element;},querySelectorAll(){return [];}}});
+vm.runInContext(script,c);
+const result=vm.runInContext(`(()=>{
+ initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['gap-penalty'],data.pacs,data['tax-rollup']);
+ return {companies:COMPANIES.length, rows:COMPANIES.map(company=>({tax:company.tax,...rowsFor(company)}))};
+})()`,c);
+assert.equal(data.meta.rosterPlaces,data.plants.length);
+assert.equal(data.meta.rosterCompanies,result.companies);
+const selected=result.rows;
+const pen=data['gap-penalty'],acc=data['gap-accident'];
+assert.equal(pen.rosterCompanies,result.companies);assert.equal(acc.rosterPlaces,data.plants.length);
+const refs=new Set(pen.fireCriteria.groups.flatMap(g=>g.articles.map(ref=>g.short+'|'+ref)));
+const no=r=>String(r.no||r.id).trim();
+const y=r=>Number(String(r).split('/')[0]);
+const allPen=selected.flatMap(c=>c.pen),allAcc=selected.flatMap(c=>c.acc);
+for(const short of ['設規','高壓則'])for(const period of ['all',113,114,115]){
+ const matched=allPen.filter(r=>y(r.date)>=113&&y(r.date)<=115&&(period==='all'||y(r.date)===period)&&r.arts.some(a=>a.law===short&&refs.has(a.law+'|'+a.n+(a.sub==null?'':'-'+a.sub))));
+ assert.equal(pen.lawTotals[short][period],new Set(matched.map(no)).size,short+'/'+period);
+}
+for(const a of pen.arts)for(const period of ['all',113,114,115]){
+ const matched=allPen.filter(r=>y(r.date)>=113&&y(r.date)<=115&&(period==='all'||y(r.date)===period)&&r.arts.some(ref=>ref.law===a.lawShort&&ref.n===a.art&&(ref.sub??null)===a.sub));
+ assert.equal(a.y[period],new Set(matched.map(no)).size,a.key+'/'+period);
+}
+const normalizeDate=d=>String(d||'').split('/').map(Number).join('/');
+const event=(tax,r)=>[tax,r.kind,normalizeDate(r.eventDate)].join('|');
+let totalPacs=0;
+for(const kind of acc.kinds)for(const period of [113,114,115]){
+ const matched=allAcc.filter(r=>r.kind===kind.kind&&y(r.dispDate)===period);
+ assert.equal(kind['y'+period],new Set(matched.map(no)).size,kind.kind+'/'+period);
+ const events=new Set();
+ for(const company of selected){
+  const known=new Set(company.acc.map(r=>event(company.tax,r)));
+  for(const r of company.pacs)if(r.kind===kind.kind&&y(r.eventDate)===period&&!known.has(event(company.tax,r)))events.add(event(company.tax,r));
+ }
+ assert.equal(kind['pacs'+period],events.size,'public events '+kind.kind+'/'+period);
+ totalPacs+=events.size;
+}
+assert.equal(totalPacs,acc.pacsAdded);
+assert.equal(acc.distinctDispositions,new Set(allAcc.filter(r=>y(r.dispDate)>=113&&y(r.dispDate)<=115&&acc.kinds.some(k=>k.kind===r.kind)).map(no)).size);
+for(const focus of acc.focus){assert.equal(focus.n,acc.kinds.find(k=>k.kind===focus.kind).n);for(const ref of focus.topArts)assert(ref.n<=focus.n);}
+// A record without a roster plant ID or a roster tax must never appear in search.
+c.outside={id:'outside-test',no:'outside-disposition',tax:'99999999',date:'114/01/01',plantId:'outside-plant',arts:[{law:'設規',n:173}]};
+assert.equal(vm.runInContext("PEN.push(outside);COMPANIES.flatMap(company=>rowsFor(company).pen).filter(r=>r.id==='outside-test').length",c),0);
+assert.equal(pen.sourceUpdatedAt,'2026-10-06');
+assert.equal(acc.sourceThrough,'115/09/18');
+console.log(`PASS: ${result.companies} company searches reconcile every law/year, article/year, disaster/year and public event total; outside-roster exclusion; original source dates retained.`);

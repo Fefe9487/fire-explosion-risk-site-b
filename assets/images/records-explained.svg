@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+<title id="title">這個網站可以查什麼？</title><desc id="desc">輸入事業單位名稱或統一編號，選定公司後查看職災與違規公開紀錄；同一統編合併計算。</desc>
+<rect width="640" height="440" rx="22" fill="#edf6f3"/>
+<g font-family="Microsoft JhengHei,Noto Sans TC,sans-serif" fill="#244563">
+<text x="32" y="49" font-size="24" font-weight="700">02　這裡可以查什麼？</text>
+<rect x="83" y="91" width="474" height="70" rx="15" fill="#fff" stroke="#6b9e95" stroke-width="3"/>
+<circle cx="119" cy="122" r="12" fill="none" stroke="#467b73" stroke-width="4"/><path d="m128 132 11 11" stroke="#467b73" stroke-width="4"/>
+<text x="161" y="135" font-size="27">輸入公司名稱或統一編號</text>
+<g stroke="#91b5ad" stroke-width="3" fill="none"><path d="M320 177v32m-10-10 10 10 10-10"/></g>
+<g fill="#fff" stroke="#6b9e95" stroke-width="3"><rect x="115" y="228" width="170" height="97" rx="12"/><rect x="355" y="228" width="170" height="97" rx="12"/></g>
+<text x="200" y="269" text-anchor="middle" font-size="23">職災紀錄</text><text x="200" y="304" text-anchor="middle" font-size="21" fill="#5e7285">災害類型與日期</text>
+<text x="440" y="269" text-anchor="middle" font-size="23">違規紀錄</text><text x="440" y="304" text-anchor="middle" font-size="21" fill="#5e7285">處分內容與條文</text>
+<text x="320" y="386" text-anchor="middle" font-size="28" font-weight="700">同一統編的紀錄合併查看</text>
+</g></svg>

@@ -17,7 +17,8 @@ def extract(name):
     for image_path in set(re.findall(r'src="(assets/images/[^"]+)"', body)):
         image_file=ROOT/image_path
         encoded=base64.b64encode(image_file.read_bytes()).decode('ascii')
-        body=body.replace(f'src="{image_path}"', f'src="data:image/webp;base64,{encoded}"')
+        mime='image/svg+xml' if image_file.suffix=='.svg' else 'image/webp'
+        body=body.replace(f'src="{image_path}"', f'src="data:{mime};base64,{encoded}"')
     script=re.search(r'<script>(.*?)</script>',html,re.S)[1]
     for old,new in [('query.html','#query'),('index.html','#home'),('gaps.html','#pen'),('method.html','#home')]:
         pattern=r'href="'+re.escape(old)+r'(?:\?[^"#]*)?(?:#([^" ]*))?"'
@@ -50,7 +51,7 @@ def main():
     router="""
     function applyHash(){
       const h=(location.hash||'#home').slice(1);
-      const homeAnchors=['home','method','penalty-method','category-laws','fire-relevant-laws','data-sources','data-period','counting-basics','friendly-sites','main-home'];
+      const homeAnchors=['home','method','high-risk-definition','quick-guide','statistics-details','penalty-method','category-laws','fire-relevant-laws','data-sources','data-period','counting-basics','friendly-sites','main-home'];
       const page=['query','main-query'].includes(h)||h.startsWith('sec-')||h==='dossier-fire-summary'?'query':homeAnchors.includes(h)?'home':'gaps';
       for(const name of ['query','gaps','home'])document.getElementById('page-'+name).hidden=page!==name;
       if(page==='gaps'){
