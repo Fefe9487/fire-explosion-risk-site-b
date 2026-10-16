@@ -24,11 +24,12 @@ for(const kind of data['gap-accident'].kinds){
 }
 const explosion=data['gap-accident'].focus.find(x=>x.kind==='爆炸');
 assert(stats.get('acc-focus').innerHTML.includes(`爆炸（${explosion.n+(explosion.pacsN||0)}件）`));
-assert(stats.get('acc-focus').innerHTML.includes('本名單處分資料重點'));
-assert(stats.get('acc-focus').innerHTML.includes('依本名單重新統計'));
+assert(stats.get('acc-focus').innerHTML.includes('處分公告常見缺失'));
+assert(stats.get('acc-focus').innerHTML.includes('容器或管線動火前未清除殘留危險物'));
 assert(!stats.get('acc-focus').innerHTML.includes('不足以單獨證明'));
 assert(stats.get('pen-scope').textContent.includes('高風險廠場名單'));
-assert(stats.get('statistics-roster').textContent.includes(`${data.meta.rosterCompanies}家事業單位`));
+assert(stats.get('statistics-roster').textContent.includes('與事業單位查詢相同'));
+assert(!/[0-9]+\s*(家|筆廠場)/.test(stats.get('statistics-roster').textContent));
 assert(stats.get('bars').innerHTML.includes('件'));
 const method=page('index.html');
 vm.runInContext('initializeOverview([],data.meta)',method.context);
@@ -61,9 +62,20 @@ for(const name of ['index.html','gaps.html','query.html','method.html','demo.htm
   const html=fs.readFileSync(root+'/'+name,'utf8');
   new vm.Script(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
 }
-assert(method.html.indexOf('id="high-risk-definition"')<method.html.indexOf('id="statistics-details"'));
+assert(method.html.indexOf('id="high-risk-definition"')>method.html.indexOf('id="statistics-details"'));
 assert(method.html.includes('<details class="statistics-details" id="statistics-details">'));
-for(const name of ['roster','records','reading'])assert(method.html.includes(`assets/images/${name}-explained.svg`));
+assert(method.html.includes('assets/images/public-records-guide.webp'));
+assert(!method.html.includes('.svg'));
+assert(!method.html.includes('explainer-grid'));
+assert(!method.html.includes('roster-summary'));
+assert(method.html.includes('作為公共監督與安全管理之參考'));
+const reviewed=JSON.parse(fs.readFileSync(root+'/reviewed_accident_interpretation.json','utf8'));
+for(const focus of data['gap-accident'].focus){
+  assert.equal(focus.summary,reviewed.summaries[focus.kind].summary);
+  assert.deepEqual(focus.bullets,reviewed.summaries[focus.kind].bullets);
+  for(const bullet of focus.bullets)assert(stats.get('acc-focus').innerHTML.includes(bullet));
+}
+assert(!query.html.includes('清冊場所 " + company.placeCount'));
 const invalid=page('gaps.html');
 invalid.context.badPenalty={...data['gap-penalty'],scope:'national'};
 assert.throws(()=>vm.runInContext("applyGapData(badPenalty,data['gap-accident'],data['law-profiles'])",invalid.context),/範圍不符/);

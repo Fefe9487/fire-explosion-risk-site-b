@@ -141,7 +141,7 @@
     }
   </style>
 <meta name="description" content="依事業單位名稱或統一編號，查詢所選公司的公開裁罰與職災紀錄。">
-<link rel="stylesheet" href="assets/site.css?v=20261016-roster">
+<link rel="stylesheet" href="assets/site.css?v=20261016-public-guide">
 </head>
 <body>
 <a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html">統計資訊</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
@@ -456,7 +456,7 @@
     }
     function companyLine(company) {
       const tax = company.tax ? "統編 " + company.tax : "未取得統一編號";
-      return tax + "，清冊場所 " + company.placeCount + " 筆";
+      return tax;
     }
     function viewState() {
       const yearEl = document.getElementById("q-year");
@@ -492,7 +492,7 @@
       const yearOptions = `<option value=""${view.year ? "" : " selected"}>全部可查年度</option>` +
         years.map((y) => `<option value="${y}"${String(view.year) === String(y) ? " selected" : ""}>${y}年</option>`).join("");
       const placeNote = company.tax
-        ? `同一統編在清冊有 ${company.placeCount} 筆場所。下方只顯示件數，不標示紀錄發生在哪一個場所。`
+        ? `同一統編的紀錄合併呈現，不標示紀錄發生在哪一個場所。`
         : "這筆沒有統一編號，查詢只對到這個名稱，不另列地址。";
       document.getElementById("stage").innerHTML = `<article class="detail">
         <button class="text-btn" id="back-candidates" type="button">返回候選項目</button>

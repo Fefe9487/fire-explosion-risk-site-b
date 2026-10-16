@@ -36,6 +36,7 @@ def date_key(date):
 def main():
     plants, meta = load("plants"), load("meta")
     previous_pen, previous_acc = load("gap-penalty"), load("gap-accident")
+    reviewed = json.loads((ROOT / "reviewed_accident_interpretation.json").read_text(encoding="utf-8"))["summaries"]
     rollup = load("tax-rollup")
     ids = {p["id"] for p in plants}
     taxes = {re.sub(r"\D", "", str(p.get("tax", ""))) for p in plants}
@@ -140,14 +141,15 @@ def main():
         n, extra = counts[kind]["all"], sum(pacs_counts[kind].values())
         focuses.append({"kind": kind, "n": n, "pacsN": extra,
             "topArts": [{"art": a, "n": count} for a, count in sorted(references.items(), key=lambda p: (-p[1], p[0]))[:10]],
-            "summary": f"高風險廠場名單所屬事業單位，近三年收錄{n}件「{kind}」相關處分，另有{extra}件去重後重大職災案件。常見引用條文依本名單重新統計；個案內容可至事業單位查詢核對。",
-            "bullets": [], "fix": old["fix"]})
+            "summary": reviewed[kind]["summary"],
+            "bullets": reviewed[kind]["bullets"], "fix": old["fix"]})
     accident = {k: previous_acc[k] for k in ["sourceThrough", "sourceUpdatedAt", "sourceCutoff", "dateBasis", "countUnit", "sourceUrl", "sourceSnapshot", "excluded"]}
     accident.update(scope)
     accident.update({"scopeKey": "roster", "scope": "僅統計本網站高風險廠場名單所屬事業單位，依同一統一編號合計，處分依113至115年處分年度計算；重大職災公開網去重後另按發生年度計算。",
         "sourceRows": len(accidents), "distinctDispositions": len({no for no, _ in acc_groups}), "kindDispositionTotal": len(acc_groups),
         "kinds": [{"kind": k, "n": counts[k]["all"], **{"y" + str(y): counts[k][y] for y in YEARS}, **{"pacs" + str(y): pacs_counts[k][y] for y in YEARS}} for k in kinds],
         "focus": focuses, "note": "同一處分在同一災害類型只計一次；跨類型可分別計入。處分件數不等於事故場次或傷亡人數。115年為部分年度。",
+        "analysisNote": "常見缺失與檢查建議沿用原有職災公告重點彙整，供預防改善參考；件數與引用條文另依本網站查詢範圍統計。",
         "pacsAdded": sum(sum(c.values()) for c in pacs_counts.values()), "pacsMatched": matched, "pacsSource": "https://pacs.osha.gov.tw/2875/",
         "pacsNote": "限同一高風險廠場名單所屬統編，以統一編號、災害類型、發生日期核對既有職災，重複案件不另計入；其餘按發生年計。"})
     meta.update(scope)
