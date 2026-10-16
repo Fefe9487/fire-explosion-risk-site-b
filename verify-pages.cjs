@@ -7,7 +7,7 @@ function page(name){
     if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',hidden:false,addEventListener(){},setAttribute(){},querySelectorAll(){return []},replaceChildren(){},insertAdjacentHTML(_,html){this.innerHTML+=html;}});
     return elements.get(id);
   };
-  const context=vm.createContext({data,console,location:{hash:''},history:{replaceState(){}},
+  const context=vm.createContext({data,console,location:{hash:''},history:{replaceState(){}},window:{addEventListener(){}},
     document:{getElementById:get,querySelector:get,querySelectorAll:()=>[]}});
   const html=fs.readFileSync(root+'/'+name,'utf8');
   const script=html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/    boot\(\);|\nboot\(\);/,'');
@@ -16,7 +16,7 @@ function page(name){
 }
 const stats=page('gaps.html');
 vm.runInContext("applyGapData(data['gap-penalty'],data['gap-accident'],data['law-profiles'])",stats.context);
-assert(stats.get('acc-scope').textContent.includes('全臺'));
+assert(stats.get('acc-scope').textContent.includes('高風險廠場名單'));
 assert(stats.get('acc-scope').textContent.includes('部分年度'));
 for(const kind of data['gap-accident'].kinds){
   const total=kind.n+(kind.pacs113||0)+(kind.pacs114||0)+(kind.pacs115||0);
@@ -24,10 +24,11 @@ for(const kind of data['gap-accident'].kinds){
 }
 const explosion=data['gap-accident'].focus.find(x=>x.kind==='爆炸');
 assert(stats.get('acc-focus').innerHTML.includes(`爆炸（${explosion.n+(explosion.pacsN||0)}件）`));
-assert(stats.get('acc-focus').innerHTML.includes('處分公告常見缺失'));
-assert(stats.get('acc-focus').innerHTML.includes('容器或管線動火前未清除殘留危險物'));
+assert(stats.get('acc-focus').innerHTML.includes('本名單處分資料重點'));
+assert(stats.get('acc-focus').innerHTML.includes('依本名單重新統計'));
 assert(!stats.get('acc-focus').innerHTML.includes('不足以單獨證明'));
-assert(stats.get('pen-scope').textContent.includes('全臺'));
+assert(stats.get('pen-scope').textContent.includes('高風險廠場名單'));
+assert(stats.get('statistics-roster').textContent.includes(`${data.meta.rosterCompanies}家事業單位`));
 assert(stats.get('bars').innerHTML.includes('件'));
 const method=page('index.html');
 vm.runInContext('initializeOverview([],data.meta)',method.context);
@@ -60,4 +61,10 @@ for(const name of ['index.html','gaps.html','query.html','method.html','demo.htm
   const html=fs.readFileSync(root+'/'+name,'utf8');
   new vm.Script(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
 }
-console.log('PASS: statistics output, methodology dates, nationwide scope, all page script syntax.');
+assert(method.html.indexOf('id="high-risk-definition"')<method.html.indexOf('id="statistics-details"'));
+assert(method.html.includes('<details class="statistics-details" id="statistics-details">'));
+for(const name of ['roster','records','reading'])assert(method.html.includes(`assets/images/${name}-explained.svg`));
+const invalid=page('gaps.html');
+invalid.context.badPenalty={...data['gap-penalty'],scope:'national'};
+assert.throws(()=>vm.runInContext("applyGapData(badPenalty,data['gap-accident'],data['law-profiles'])",invalid.context),/範圍不符/);
+console.log('PASS: roster statistics output, methodology dates, collapsed explanations, infographics, scope validation, all page script syntax.');

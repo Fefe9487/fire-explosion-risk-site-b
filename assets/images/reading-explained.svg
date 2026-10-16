@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+<title id="title">查到紀錄怎麼看？</title><desc id="desc">名單用於優先關注，不是目前安全評等。處分件數不等於事故場次；查無紀錄也不代表沒有風險。</desc>
+<rect width="640" height="440" rx="22" fill="#fbf4e7"/>
+<g font-family="Microsoft JhengHei,Noto Sans TC,sans-serif" fill="#244563">
+<text x="32" y="49" font-size="24" font-weight="700">03　查到紀錄怎麼看？</text>
+<g fill="#fff" stroke="#b39862" stroke-width="3"><path d="M274 91h69l28 28v89h-97z"/><path d="M343 91v28h28" fill="none"/><path d="M291 143h61m-61 19h48m-48 19h40" fill="none"/><circle cx="377" cy="196" r="30" fill="#fbf4e7"/><path d="m399 219 24 24" stroke-width="9" stroke-linecap="round"/></g>
+<text x="320" y="288" text-anchor="middle" font-size="29" font-weight="700">用來認識紀錄，作為預防參考</text>
+<text x="320" y="339" text-anchor="middle" font-size="25">處分件數 ≠ 事故場次</text>
+<text x="320" y="385" text-anchor="middle" font-size="25">查無紀錄 ≠ 沒有風險</text>
+</g></svg>

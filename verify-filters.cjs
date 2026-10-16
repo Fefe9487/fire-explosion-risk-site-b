@@ -96,8 +96,8 @@ const olderPenalty=vm.runInContext(`(()=>{
 })()`,context);
 assert(!el('stage').innerHTML.includes('id="q-city"'));
 assert(!el('stage').innerHTML.includes('本資料未查得'));
-assert.equal(data['gap-penalty'].scope,'national');
-assert.equal(data['gap-accident'].scopeKey,'national');
+assert.equal(data['gap-penalty'].scope,'roster');
+assert.equal(data['gap-accident'].scopeKey,'roster');
 assert(!html.includes('高風險清冊'));
 assert(html.includes('非屬具火災爆炸高風險事業單位'));
 vm.runInContext('renderCandidates()',context);

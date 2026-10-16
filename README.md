@@ -16,13 +16,27 @@ python -m http.server 8765
 
 網站依閱讀順序分成三頁：
 
-1. `index.html`：首頁，說明資料來源、收錄期間與統計方法，並提供官方友站連結。
-2. `gaps.html`：全臺裁罰、職災統計與相關規定及指引。
+1. `index.html`：首頁，先介紹高風險廠場定義，搭配三張懶人包圖解。資料來源、收錄期間及統計方法預設收合，需要時再展開；連往細節的網址會自動展開對應說明。
+2. `gaps.html`：限同一高風險廠場名單所屬事業單位的裁罰、職災統計，以及相關規定及指引。統計範圍摘要常駐顯示，詳細計算說明預設收合。
 3. `query.html`：輸入事業單位名稱或統一編號，選定公司後顯示公開紀錄。
 
-公司查詢的裁罰處分收錄 105/09/12 至 115/10/01，約 10 年；職災處分依目前公開資料的收錄期間顯示。全臺統計頁另採近三年資料。
+公司查詢的裁罰處分收錄 105/09/12 至 115/10/01，約 10 年；職災處分依目前公開資料的收錄期間顯示。統計頁採民國 113 至 115 年，115 年為部分年度。
 
-`method.html` 保留為首頁說明的相容入口。三頁使用 `assets/site.css`，以生成的圖片與圖示呈現資料與查詢入口。`demo.html` 的離線預設入口也改為首頁。
+目前名單為 973 筆廠場，按查詢頁相同的統編合併規則計為 682 家事業單位。裁罰、職災與查詢頁的常見條文選項均使用這份名單；不再使用全臺統計。重新計算方式：
+
+```bash
+python build_roster_statistics.py
+python pack_demo.py
+node verify-roster.cjs
+node verify-pages.cjs
+node verify-filters.cjs
+```
+
+統計來源為 `plants.json`、`penalties.json`、`accidents.json`、`tax-rollup.json`、`pacs.json`；條文範圍沿用 `gap-penalty.json` 的 `fireCriteria`。同一統編底下的紀錄合併後，裁罰按處分字號與法規、職災按處分字號與災害類型去重。重大職災公開網依統編、災害類型、發生日期核對既有職災，重複者不另計入。重算只更新統計範圍與整理日期，保留原始來源的更新日、截止日。
+
+`verify-roster.cjs` 直接呼叫查詢頁的公司紀錄整理函式，獨立核對每個法規／年度、條文／年度及災害類型／年度件數，並確認未列入名單的紀錄不會混入。`build_national_accident.py`、`verify-national.py` 與 `reviewed_accident_interpretation.json` 保留作為歷史全臺資料處理參考，非現行統計產製流程；請勿用舊流程覆寫現行統計。
+
+`method.html` 保留為首頁說明的相容入口。三頁使用 `assets/site.css`；三張懶人包為可縮放 SVG 圖片，並提供替代文字和文字圖說。`demo.html` 內嵌所有圖片與資料，離線預設入口也是首頁。
 
 頁面不會主動列出場所清冊。這仍是瀏覽器端查詢：`data/plants.json`、`data/penalties.json`、`data/accidents.json` 與打包後的 `demo.html` 都含完整場所資料，知道網址的人可以直接下載。
 

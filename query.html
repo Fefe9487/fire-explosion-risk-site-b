@@ -141,10 +141,10 @@
     }
   </style>
 <meta name="description" content="依事業單位名稱或統一編號，查詢所選公司的公開裁罰與職災紀錄。">
-<link rel="stylesheet" href="assets/site.css?v=20261014-images">
+<link rel="stylesheet" href="assets/site.css?v=20261016-roster">
 </head>
 <body>
-<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">資料來源與方法</a><a href="gaps.html">統計資訊</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
+<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html">統計資訊</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
   <div class="wrap">
     <main class="card" id="main-content">
       <p class="eyebrow">事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
@@ -165,7 +165,7 @@
       <p class="query-note">請輸入事業單位名稱的一部分，或統一編號。選定一筆候選項目後，才會顯示該單位的紀錄。</p>
       <div id="stage"></div>
       <footer id="foot">資料來源：勞動部職業安全衛生署公開裁罰、職場重大災害檢查訊息，以及<a href="https://pacs.osha.gov.tw/2875/" target="_blank" rel="noopener">重大職災公開網</a>。查無紀錄不代表未曾發生事故或違規。<a href="gaps.html">近三年裁罰與職災</a></footer>
-      <div class="page-links"><a href="gaps.html">返回統計資訊</a><a href="index.html">資料來源與方法</a></div>
+      <div class="page-links"><a href="gaps.html">返回統計資訊</a><a href="index.html">認識高風險廠場</a></div>
     </main>
   </div>
   <script>
@@ -509,7 +509,7 @@
         <p class="block-title" id="accident-quick-title">職災快速查詢</p>
         <p class="block-note">可選擇多種職災危害類型。職災類別與危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
         <div class="chips" id="q-kinds" role="group" aria-labelledby="accident-quick-title"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((kind) => `<button type="button" data-kind="${esc(kind)}" aria-pressed="${view.kinds.includes(kind)}">${esc(kind)}</button>`).join("")}</div>
-        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。條文篩選只作用在裁罰，選項是全臺公開火災爆炸相關裁罰近三年的常見條文。查無紀錄不代表未曾發生事故或違規。</p>
+        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。條文篩選只作用在裁罰，選項是高風險廠場名單所屬事業單位近三年的常見火災爆炸相關裁罰條文。查無紀錄不代表未曾發生事故或違規。</p>
         ${dossierHtml(company, view)}
       </article>`;
     }
@@ -605,7 +605,7 @@
       }
     }
     function initializeQuery(meta, plants, penalties, accidents, ranking, pacs, rollup) {
-      RANKING = ranking.nationalPenalty || ranking;
+      RANKING = ranking;
       FIRE_ARTICLE_KEYS = new Set((ranking.fireCriteria?.groups || []).flatMap((g) => g.articles.map((ref) => g.short + "|" + ref)));
       META = meta;
       PLANTS = plants;
