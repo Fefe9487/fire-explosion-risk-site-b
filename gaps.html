@@ -103,8 +103,8 @@
       color: #fff;
     }
     .bars { display: flex; flex-direction: column; gap: 8px; }
-    .bar-row { display: grid; grid-template-columns: minmax(140px, 220px) 1fr 4.8em; gap: 10px; align-items: center; font-size: 13px; }
-    .bar-row .lab { color: var(--navy); font-weight: 600; }
+    .bar-row { display: grid; grid-template-columns: minmax(11em, 16em) minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: 14px; }
+    .bar-row .lab { color: var(--navy); font-weight: 600; line-height: 1.45; }
     .track { height: 14px; background: #e8eef4; border-radius: 999px; overflow: hidden; }
     .stack { display: flex; height: 100%; }
     .fill { height: 100%; background: var(--blue); border-radius: 999px; width: 0; transition: width .25s ease; }
@@ -116,13 +116,15 @@
     .bar-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 10px; font-size: 13px; color: var(--muted); }
     .swatch { display: inline-block; width: 14px; height: 14px; margin-right: 6px; border-radius: 4px; background: var(--blue); vertical-align: -2px; }
     .swatch.pacs { background: #b77818; }
-    .bar-row .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
-    table.dyn { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+    .bar-row .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--navy); font-weight: 600; white-space: nowrap; }
+    .bar-row .num small { margin-left: 8px; font-size: 12px; font-weight: 500; color: var(--muted); }
+    table.dyn { width: 100%; min-width: 0; table-layout: fixed; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
     .tbl-wrap { overflow-x: auto; }
-    table.dyn th, table.dyn td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    table.dyn th, table.dyn td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.7; }
     table.dyn th { color: var(--muted); font-weight: 500; }
-    table.dyn th.num, table.dyn td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 4.2em; }
-    table.dyn th:first-child { min-width: 11em; }
+    table.dyn th.num, table.dyn td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; width: 4.2em; padding-left: 12px; vertical-align: middle; }
+    table.dyn th:first-child, table.dyn td:first-child { white-space: nowrap; width: 9.5em; vertical-align: middle; }
+    table.dyn th.advice, table.dyn td.advice { padding-left: 28px; white-space: normal; overflow-wrap: anywhere; }
     table.dyn th.on, table.dyn td.on { background: #eff6ff; }
     table.dyn button.sort {
       font: inherit; font-weight: 600; color: var(--navy); background: none; border: 0; padding: 0; cursor: pointer;
@@ -131,32 +133,35 @@
       border-top: 1px solid var(--line);
       padding: 16px 0 4px;
     }
-    .law h3 { margin: 0 0 6px; font-size: 16px; color: var(--navy); }
-    .law .meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
-    .law p { margin: 0 0 8px; font-size: 14px; }
-    .law .fix { background: #f8fafc; border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+    .law h3 { margin: 0 0 6px; font-size: 16px; color: var(--navy); line-height: 1.5; }
+    .law .meta { font-size: 14px; color: var(--muted); margin: 0 0 8px; line-height: 1.8; }
+    .law .kicker { display: block; margin: 12px 0 4px; font-size: 13px; font-weight: 700; color: var(--navy); }
+    .law p { margin: 0 0 8px; font-size: 15px; line-height: 1.85; }
+    .law ul { margin: 4px 0 12px; padding-left: 1.25em; }
+    .law li { margin: 0 0 6px; font-size: 15px; line-height: 1.75; }
+    .law .fix { background: #f8fafc; border-radius: 8px; padding: 12px 14px; font-size: 15px; line-height: 1.85; }
     .guides { list-style: none; padding: 0; margin: 0; }
     .guides li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
     .guides small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
     footer { margin-top: 20px; font-size: 12px; color: var(--muted); }
     @media (max-width: 800px) {
       .stats { grid-template-columns: 1fr 1fr; }
-      .bar-row { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 1fr auto; }
+      .bar-row .lab { grid-column: 1 / -1; }
     }
-      .site-nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 18px;font-size:14px}.site-nav a{color:var(--navy);text-decoration:none;padding:6px 0}.site-nav a[aria-current]{font-weight:700;border-bottom:2px solid var(--blue)}
-    @media(max-width:600px){.wrap{margin:12px auto;padding:0 10px}.card{padding:18px 14px}.tabs{flex-wrap:wrap}.tabs button{padding:10px}.stats{gap:8px}.bar-row{grid-template-columns:1fr 4em}.bar-row .lab{grid-column:1/-1}h1{font-size:21px}}
+    @media(max-width:600px){.wrap{margin:12px auto;padding:0 10px}.card{padding:18px 14px}.tabs{flex-wrap:wrap}.tabs button{padding:10px}.stats{gap:8px}.bar-row{grid-template-columns:1fr auto}.bar-row .lab{grid-column:1/-1}h1{font-size:21px}}
     @media(prefers-reduced-motion:reduce){.fill{transition:none}}
   </style>
-<meta name="description" content="查看高風險廠場113至115年的裁罰、火災爆炸相關條文及職災類型。115年只收到部分月份。">
+<meta name="description" content="查看高風險廠場裁罰、火災爆炸相關條文及職災類型，並從 AI 整理的常見缺失與原因線索掌握監督重點。">
 <link rel="stylesheet" href="assets/site.css?v=20261016-statistics-cards">
 </head>
 <body>
 <a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html" aria-current="page">統計資訊</a><a href="query.html">事業單位查詢</a></nav></div></header>
   <div class="wrap">
     <main class="card" id="main-content">
-      <p class="eyebrow">統計資訊</p><h1>高風險廠場113至115年裁罰與職災</h1>
-      <p class="lead">本頁僅統計高風險廠場名單所屬事業單位，與公司查詢使用同一份名單。同一統編合併計算。要看某一家公司，請前往<a href="query.html">事業單位查詢</a>，以統一編號合計該公司的紀錄。</p>
-      <p class="coverage-note" id="statistics-coverage">115年為部分年度；來源檔最新處分日期不代表已完整收錄至該日，不宜直接與完整年度比較。</p>
+      <p class="eyebrow">統計資訊</p><h1>高風險廠場裁罰與職災</h1>
+      <p class="lead">這裡看的是高風險廠場名單上的公司，和<a href="query.html">事業單位查詢</a>用的是同一份名單。想看某一家，直接去查那一頁。</p>
+      <p class="coverage-note" id="statistics-coverage">當年度資料尚未收齊，請勿與完整年度直接比較。</p>
       <hr class="rule" />
       <div class="tabs" role="tablist" aria-label="資料分類">
         <button type="button" role="tab" id="tab-pen" aria-controls="panel-pen" aria-selected="true">裁罰統計</button>
@@ -165,45 +170,49 @@
       </div>
 
       <section id="panel-pen" class="panel" role="tabpanel" aria-labelledby="tab-pen">
-      <div class="years" id="pen-modes" role="group" aria-label="裁罰統計類型"></div>
       <div class="years" id="pen-laws" role="group" aria-label="裁罰法規範圍"></div>
-      <h2 id="selected-law-title">公開裁罰統計</h2>
-      <p class="lead" id="pen-lead">依目前收錄的公開裁罰資料，按處分年度統計。115年不是完整年度。</p>
+      <h2 id="selected-law-title">火災爆炸相關裁罰</h2>
+      <p class="lead" id="pen-lead">只看跟火災、爆炸有關的裁罰。當年度資料尚未收齊。</p>
+      <section aria-labelledby="pen-law-reason-title">
+        <h3 id="pen-law-reason-title">為什麼聚焦這兩部規則？</h3>
+        <p id="pen-law-reason">這兩部規則是臺灣工作場所火災爆炸預防的核心規範。本頁聚焦其中與火災、爆炸相關條文的裁罰。</p>
+        <p id="pen-law-facilities"><strong>職業安全衛生設施規則：</strong>涵蓋通風、防爆設備、動火及靜電等預防措施。</p>
+        <p id="pen-law-gas"><strong>高壓氣體勞工安全規則：</strong>規範高壓氣體製造、儲存與使用的安全。</p>
+      </section>
 
       <div class="stats">
-        <div class="stat"><b id="s-total">載入中</b><span id="s-total-label">113至115年處分件數</span></div>
-        <div class="stat"><b id="s-y113">載入中</b><span>113年</span></div>
-        <div class="stat"><b id="s-y114">載入中</b><span>114年</span></div>
-        <div class="stat"><b id="s-y115">載入中</b><span>115年（部分年度）</span></div>
+        <div class="stat"><b id="s-total">載入中</b><span id="s-total-label">這部法規的件數</span></div>
+        <div id="stat-years" style="display:contents"></div>
       </div>
 
-      <h3 id="rank-title">113至115年常見裁罰條文</h3>
+      <h3 id="rank-title">較常被開罰的條文</h3>
       <p class="lead" id="rank-scope"></p>
       <div class="years" id="years"></div>
       <div class="bars" id="bars"></div>
       <div class="tbl-wrap"><table class="dyn" id="tbl"></table></div>
 
-      <h3>法規摘要與檢查建議</h3>
+      <h3 id="pen-analysis-title">AI 整理：常見缺失與檢查建議</h3>
+      <p class="lead" id="pen-analysis-note">AI 協助整理公開紀錄與法規中的常見缺失及原因線索，可作為公眾監督的關注點。先找出要問的問題，再核對原始公告、個案情況與改善資料。</p>
       <div id="laws"></div>
-      <details class="rule-details statistics-note"><summary>統計說明與計算範圍</summary><p class="lead" id="pen-scope">統計條件載入中。</p><p class="lead">看總件數時，同一事業單位、同一處分字號、同一處分日期只計1件。切到個別法規時，同一處分在該部法規只算一件；兩部法規都有引用，才兩邊各算一件。條文列點的件數不能加總成處分件數。前10條依113至115年合計選出，切換年度只改畫面上的件數。<a href="index.html#penalty-method">查看完整計算方式</a></p></details>
+      <details class="rule-details statistics-note"><summary>這些數字怎麼算</summary><p class="lead" id="pen-scope">統計條件載入中。</p><p class="lead"><a href="index.html#penalty-method">計算方式說明</a></p></details>
       </section>
 
       <section id="panel-acc" class="panel" role="tabpanel" aria-labelledby="tab-acc" hidden>
       <h2>高風險廠場職災類型統計</h2>
-      <p class="lead" id="acc-lead">整理名單內事業單位近三年的公開職災資料；處分件數不等於事故場次或傷亡人數。</p>
+      <p class="lead" id="acc-lead">藍長條是勞動檢查開出的處分，不是事故發生幾次，也不是有幾個人受傷。</p>
       <div class="years" id="acc-years"></div>
-      <p class="bar-legend"><span><span class="swatch"></span>既有職災處分</span><span><span class="swatch pacs"></span>重大職災公開網（去重後）</span></p>
+      <p class="bar-legend"><span><span class="swatch"></span>勞動檢查的處分</span><span><span class="swatch pacs"></span>重大職災公開網多出來的</span></p>
       <div class="bars" id="acc-bars"></div>
 
-      <h3>火災、爆炸及與有害物等之接觸</h3>
-      <p class="lead">以下三類的件數與引用條文，只算本網站查詢範圍。缺失沿用既有職災公告，不是從這幾件推得的。引用條文也不等於事故原因。標題把處分件數和公開網另計的件數分開寫，不要加成事故場次。</p>
+      <h3 id="acc-analysis-title">AI 整理：常見原因與缺失線索</h3>
+      <p class="lead" id="acc-analysis-note">依火災、爆炸及接觸有害物，整理常見問題與預防重點。可據此關注通風、防爆設備、動火前處理等是否改善；個案原因仍須核對原始公告。</p>
       <div id="acc-focus"></div>
-      <details class="rule-details statistics-note"><summary>統計說明與去重方式</summary><p class="lead" id="acc-scope">統計條件載入中。</p></details>
+      <details class="rule-details statistics-note"><summary>這些數字怎麼算</summary><p class="lead" id="acc-scope">統計條件載入中。</p></details>
       </section>
 
       <section id="panel-guide" class="panel" role="tabpanel" aria-labelledby="tab-guide" hidden>
       <h2>相關規定及指引</h2>
-      <p class="lead">下列包含法規、技術指引與宣導資料。法規義務依適用條文及生效日期認定，技術指引作為實務參考。</p>
+      <p class="lead">下面有法規和實務上可以參考的指引。法規要照條文和生效日期；指引是幫忙理解，不是另一套規定。</p>
       <ul class="guides">
         <li>
           <a href="https://www.osha.gov.tw/media/eahjly4l/1130126%E4%BA%8B%E6%A5%AD%E5%96%AE%E4%BD%8D%E7%88%86%E7%82%B8%E6%80%A7%E5%8D%B1%E9%9A%AA%E5%8D%80%E5%9F%9F%E4%B9%8B%E9%98%B2%E7%88%86%E9%9B%BB%E6%B0%A3%E8%A8%AD%E5%82%99%E8%A8%AD%E7%BD%AE%E4%BD%9C%E6%A5%AD%E6%8C%87%E5%BC%95-%E7%99%BC%E6%96%87%E7%89%88.pdf?mediaDL=true">事業單位爆炸性危險區域之防爆電氣設備設置作業指引</a>（勞動部職業安全衛生署，PDF）
@@ -256,7 +265,7 @@
       </ul>
       </section>
 
-      <footer><span id="stats-period">資料期間載入中。</span> 原始資料出自勞動部職業安全衛生署，本頁不是該署發布的統計。法規摘要核對日：115年10月5日。法規與技術指引分開列。歷史處分適用當時有效的法規。職安法第26條、第27條的現行文字自115年7月1日施行。</footer>
+      <footer><span id="stats-period">資料期間載入中。</span> 資料來自勞動部職業安全衛生署的公開資料，本頁不是署裡發布的統計。AI 整理用於協助理解及提問。法規內容、生效狀態與歷史裁罰的適用版本，請核對官方法規與原始公告。</footer>
       <div class="page-links"><a href="index.html">返回高風險廠場說明</a><a class="button-primary" href="query.html">查詢事業單位</a></div>
     </main>
   </div>
@@ -289,23 +298,33 @@
     let sortKey = "all";
     let sortDir = -1;
     let accYear = "all";
+    let STAT_YEARS = [];
+    function statisticsYears(pen, acc) {
+      const bounds = pen.statisticsYears || acc.statisticsYears || [];
+      const found = [...bounds, ...Object.keys(pen.lawTotals || {}).flatMap(k => Object.keys(pen.lawTotals[k] || {})), ...(pen.arts || []).flatMap(a => Object.keys(a.y || {})), ...(acc.kinds || []).flatMap(k => Object.keys(k).map(key => key.match(/^(?:y|pacs)(\d+)$/)?.[1]))].map(Number).filter(y => Number.isInteger(y) && y > 0);
+      if (!found.length) return [];
+      const first = bounds.length ? Math.min(...bounds) : Math.min(...found);
+      const last = bounds.length ? Math.max(...bounds) : Math.max(...found);
+      return Array.from({length: last - first + 1}, (_, i) => first + i);
+    }
+    function yearChoices() { return [["all", "全部收錄期間"], ...STAT_YEARS.map(y => [String(y), y + "年"])]; }
 
     function escapeText(value) { return String(value ?? "").replace(/[&<>\"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c])); }
     function dateLabel(date) { return date ? date.split('/').map(Number).join('/') : '來源最新日期'; }
 
     function countOf(a) { return a.y[year] || 0; }
     function yearLabel() {
-      return year === "all" ? "113至115年" : year + "年";
+      return year === "all" ? "目前收錄期間" : year + "年";
     }
     function accParts(k) {
       const base = accYear === "all" ? (k.n || 0) : (k["y" + accYear] || 0);
-      const pacs = accYear === "all" ? (k.pacs113 || 0) + (k.pacs114 || 0) + (k.pacs115 || 0) : (k["pacs" + accYear] || 0);
+      const pacs = accYear === "all" ? STAT_YEARS.reduce((sum, y) => sum + (k["pacs" + y] || 0), 0) : (k["pacs" + accYear] || 0);
       return { base, pacs, total: base + pacs };
     }
 
     function renderYears() {
       const box = document.getElementById("years");
-      box.innerHTML = [["all", "113至115年合計"], ["113", "113年"], ["114", "114年"], ["115", "115年（部分年度）"]].map(([id, lab]) =>
+      box.innerHTML = yearChoices().map(([id, lab]) =>
         `<button type="button" aria-pressed="${year === id}" data-y="${id}">${lab}</button>`
       ).join("");
       box.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
@@ -318,7 +337,7 @@
 
     function yearVal(a, key) {
       if (key === "name") return a.fullName;
-      if (key === "all" || key === "113" || key === "114" || key === "115") return a.y[key] || 0;
+      if (key === "all" || STAT_YEARS.map(String).includes(key)) return a.y[key] || 0;
       return countOf(a);
     }
 
@@ -344,21 +363,17 @@
       const on = (k) => (year === k || (year === "all" && k === "all") ? " on" : "");
       document.getElementById("tbl").innerHTML = `
         <thead><tr>
-          <th><button class="sort" data-k="name" type="button">法規名稱</button></th>
-          <th class="num${on("all")}"><button class="sort" data-k="all" type="button">113至115年（件）</button></th>
-          <th class="num${on("113")}"><button class="sort" data-k="113" type="button">113年（件）</button></th>
-          <th class="num${on("114")}"><button class="sort" data-k="114" type="button">114年（件）</button></th>
-          <th class="num${on("115")}"><button class="sort" data-k="115" type="button">115年（件）</button></th>
-          <th>檢查建議</th>
+          <th><button class="sort" data-k="name" type="button">條文</button></th>
+          <th class="num${on("all")}"><button class="sort" data-k="all" type="button">合計</button></th>
+          ${STAT_YEARS.map(y => `<th class="num${on(String(y))}"><button class="sort" data-k="${y}" type="button">${y}年</button></th>`).join("")}
+          <th class="advice">檢查建議</th>
         </tr></thead>
         <tbody>${rows.map((a) =>
           `<tr>
-            <td><a href="#${a.id}">${a.law}第${a.art}條${a.sub==null?"":"之"+a.sub}</a></td>
+            <td><a href="#${a.id}">${a.label || a.short}</a></td>
             <td class="num${on("all")}">${a.y.all}</td>
-            <td class="num${on("113")}">${a.y["113"]}</td>
-            <td class="num${on("114")}">${a.y["114"]}</td>
-            <td class="num${on("115")}">${a.y["115"]}</td>
-            <td>${a.fix}</td>
+            ${STAT_YEARS.map(y => `<td class="num${on(String(y))}">${a.y[y] || 0}</td>`).join("")}
+            <td class="advice">${a.fix || ""}</td>
           </tr>`
         ).join("")}</tbody>`;
       document.querySelectorAll("#tbl .sort").forEach((b) => b.addEventListener("click", () => {
@@ -373,16 +388,17 @@
       document.getElementById("laws").innerHTML = ARTS.concat(EXTRA_LAWS).map((a) => `
         <article class="law" id="${a.id}">
           <h3>${a.law}第${a.art}條${a.sub==null?"":"之"+a.sub}</h3>
-          <p class="meta">${a.extra?"其他相關條文；113至115年引用":"113至115年計"}${a.y.all}件　<a href="${a.href}">全國法規資料庫條文</a></p>
-          <p><strong>規定摘要　</strong>${a.summary}</p>
-          <p class="fix"><strong>檢查建議　</strong>${a.fix}</p>
+          <p class="meta">${a.extra?"其他相關條文 · ":""}目前收錄期間 ${a.y.all} 件 · <a href="${a.href}">看條文原文</a></p>
+          <span class="kicker">這條在管什麼</span>
+          <p>${a.summary}</p>
+          <p class="fix"><span class="kicker">可以這樣檢查</span>${a.fix}</p>
         </article>
       `).join("");
     }
 
     function renderAcc() {
       const box = document.getElementById("acc-years");
-      box.innerHTML = [["all", "113至115年合計"], ["113", "113年"], ["114", "114年"], ["115", "115年（部分年度）"]].map(([id, lab]) =>
+      box.innerHTML = yearChoices().map(([id, lab]) =>
         `<button type="button" aria-pressed="${accYear === id}" data-y="${id}">${lab}</button>`
       ).join("");
       box.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
@@ -397,22 +413,21 @@
         const basePct = part.total ? (part.base / part.total) * 100 : 0;
         const pacsPct = part.total ? (part.pacs / part.total) * 100 : 0;
         const segments = `${part.base ? `<div class="fill" style="width:${basePct}%"></div>` : ""}${part.pacs ? `<div class="fill pacs" style="width:${pacsPct}%"></div>` : ""}`;
-        const countLabel = part.pacs ? `${part.base}件＋公開網${part.pacs}` : `${part.base}件`;
-        return `<div class="bar-row"><div class="lab">${k.kind}</div><div class="track" title="既有處分 ${part.base} 件；公開網去重後 ${part.pacs} 件"><div class="stack" style="width:${width}%">${segments}</div></div><div class="num">${countLabel}</div></div>`;
+        const extra = part.pacs ? `<small>另 ${part.pacs}</small>` : "";
+        return `<div class="bar-row"><div class="lab">${k.kind}</div><div class="track" title="勞動檢查 ${part.base} 件；公開網另外 ${part.pacs} 件"><div class="stack" style="width:${width}%">${segments}</div></div><div class="num">${part.base}件${extra}</div></div>`;
       }).join("");
-      document.getElementById("acc-lead").textContent = "藍條是職場重大災害檢查訊息的處分件數，不等於事故場次或傷亡人數。琥珀色是重大職災公開網裡還沒算進藍條的案件，按發生年接在後面。";
-      document.getElementById("acc-scope").textContent = `範圍是本網站高風險廠場名單上的事業單位。職災處分按113至115年的處分日期計算，來源檔最新處分日期是${dateLabel(ACC.sourceThrough)}，不代表收到這一天為止的全部案件。115年不是完整年度。琥珀色另計重大職災公開網：用統一編號、災害類型、發生日期對過既有職災，重複的不另計。公開網沒有處分日期，所以按發生年計算。下方三類的標題把處分件數和公開網件數分開寫。引用條文只統計本網站查到的處分。本頁不列出個別事業單位。`;
+      document.getElementById("acc-lead").textContent = "藍長條是勞動檢查開出的處分，不是事故發生幾次，也不是有幾個人受傷。琥珀色是重大職災公開網上、還沒算進藍長條的案件。";
+      document.getElementById("acc-scope").textContent = `只算高風險廠場名單上的公司。當年度資料尚未收齊，請勿與完整年度直接比較。職災資料收到${dateLabel(ACC.sourceThrough)}，後面的月份可能還沒公告。藍色是勞動檢查的處分，琥珀色是公開網多出來的案件，同一件不會算兩次。這頁不列出個別公司。`;
       document.getElementById("acc-focus").innerHTML = (ACC.focus || []).map((f) => {
-        const arts = (f.topArts || []).map((a) => a.art + "（" + a.n + "件）").join("、");
-        const heading = f.pacsN ? `${f.kind}（處分${f.n}件，公開網另${f.pacsN}件）` : `${f.kind}（處分${f.n}件）`;
+        const arts = (f.topArts || []).slice(0, 5).map((a) => a.art + " " + a.n + "件").join("、");
+        const extra = f.pacsN ? `，公開網另外還有 ${f.pacsN} 件` : "";
         return `<article class="law">
-          <h3>${heading}</h3>
-          <p class="meta">職場重大災害檢查訊息 ${f.n} 件；重大職災公開網去重後另 ${f.pacsN || 0} 件。</p>
-          <p class="meta">${arts ? "常見引用條文只統計處分公告（前10項）：" + arts : ""}</p>
-          <p class="meta"><strong>處分公告常見缺失</strong></p>
+          <h3>${escapeText(f.kind)}</h3>
+          <p class="meta">勞動檢查 ${f.n} 件${extra}。</p>
           <p>${escapeText(f.summary)}</p>
           <ul>${(f.bullets || []).map((item) => `<li>${escapeText(item)}</li>`).join("")}</ul>
-          <p class="fix"><strong>檢查建議　</strong>${f.fix}</p>
+          ${arts ? `<p class="meta">這些處分裡較常看到：${escapeText(arts)}。</p>` : ""}
+          <p class="fix"><span class="kicker">建議先看這些</span>${f.fix}</p>
         </article>`;
       }).join("");
     }
@@ -425,24 +440,21 @@
       const keys=new Set(group.topKeys||[]);
       ARTS=ALL_ARTS.filter(a=>keys.has(a.key));
       EXTRA_LAWS=ALL_EXTRA.filter(a=>a.lawShort===selectedLaw);
-      document.getElementById('pen-modes').innerHTML=[['all','全部裁罰'],['fire','火災爆炸相關條文']].map(([mode,label])=>
-        `<button type="button" data-mode="${mode}" aria-pressed="${selectedMode===mode}">${label}</button>`).join('');
-      document.querySelectorAll('#pen-modes button').forEach(b=>b.addEventListener('click',()=>selectPenaltyMode(b.dataset.mode)));
       document.getElementById('pen-laws').innerHTML=LAW_GROUPS.map(g=>
         `<button type="button" data-law="${g.short}" aria-pressed="${selectedLaw===g.short}">${g.law}</button>`).join('');
       document.querySelectorAll('#pen-laws button').forEach(b=>b.addEventListener('click',()=>{selectedLaw=b.dataset.law;render();}));
-      document.getElementById('rank-title').textContent=(group.law||'')+'｜113至115年引用前10條'+(ARTS.length<10?'（實列'+ARTS.length+'條）':'');
+      document.getElementById('rank-title').textContent=(group.law||'')+'裡較常被開罰的條文'+(ARTS.length<10?'（共'+ARTS.length+'條）':'');
       const totals=LAW_TOTALS[selectedLaw]||{};
       const total=totals.all||0;
-      document.getElementById('selected-law-title').textContent=(group.law||'')+'｜'+(selectedMode==='all'?'公開裁罰統計':'火災爆炸相關條文');
-      document.getElementById('s-total-label').textContent=selectedMode==='all'?'113至115年處分件數':'113至115年相關處分';
-      document.getElementById('pen-lead').textContent=selectedMode==='all'?'依目前收錄的公開裁罰，按處分年度統計。115年不是完整年度。':'只計火災爆炸相關條文。115年不是完整年度。';
-      const through=dateLabel(PEN_VIEWS[selectedMode].sourceThrough);
-      document.querySelector('#s-y115 + span').textContent='115年（部分年度）';
-      document.getElementById('pen-scope').textContent=`範圍：本網站高風險廠場名單所屬事業單位的公開裁罰資料，民國113至115年（來源檔最新處分日期：${through}，不代表已完整收錄至該日）。${PEN_NOTE}`;
-      document.getElementById('rank-scope').textContent=(selectedLaw==='all'?'全部法規':'這部法規')+'在113至115年共'+total+'件處分，引用'+(group.articleCount||0)+'項條文；本頁列出'+ARTS.length+'項。115年不是完整年度。';
+      document.getElementById('selected-law-title').textContent=group.law||'火災爆炸相關裁罰';
+      document.getElementById('s-total-label').textContent='這部法規的件數';
+      document.getElementById('pen-lead').textContent='只看跟火災、爆炸有關的裁罰。先選法規，再看各年有幾件。當年度資料尚未收齊。';
+      const through=dateLabel(PEN_VIEWS.fire.sourceThrough);
+      document.getElementById('stat-years').innerHTML=STAT_YEARS.map(y=>`<div class="stat"><b id="s-y${y}">載入中</b><span>${y}年</span></div>`).join('');
+      document.getElementById('pen-scope').textContent=`只算高風險廠場名單上的公司，而且只算跟火災、爆炸有關的條文。裁罰資料收到${through}，當年度資料尚未收齊。同一張裁罰在同一部法規只算1件。如果設規和高壓氣體都有寫到，兩邊都會各算1件，兩個數字不能加在一起。`;
+      document.getElementById('rank-scope').textContent=(group.law||'這部法規')+'在目前收錄期間有'+total+'件。下面是較常出現的條文。';
       setStat("s-total",total);
-      for(const y of ['113','114','115'])setStat('s-y'+y,totals[y]);
+      for(const y of STAT_YEARS)setStat('s-y'+y,totals[y]);
       renderYears();
       renderBars();
       renderTable();
@@ -450,13 +462,13 @@
     }
 
     function selectPenaltyMode(mode) {
-      const pen=PEN_VIEWS[mode];if(!pen)return;
-      selectedMode=mode;
-      selectedLaw=mode==='all'?'all':'設規';
-      const make=rec=>{const p=PEN_PROFILES.get(rec.key)||{};return {...p,...rec,id:'r'+rec.key,law:rec.law||'職業安全衛生設施規則',lawShort:rec.lawShort||'設規',short:rec.label,summary:p.summary||'請參閱全國法規資料庫之完整條文。',fix:p.fix||'依適用情況核對官方條文。'};};
+      const pen=PEN_VIEWS.fire;if(!pen||mode!=='fire')return;
+      selectedMode='fire';
+      if(!LAW_GROUPS.some(g=>g.short===selectedLaw))selectedLaw='設規';
+      const make=rec=>{const p=PEN_PROFILES.get(rec.key)||{};return {...p,...rec,id:'r'+rec.key,law:rec.law||'職業安全衛生設施規則',lawShort:rec.lawShort||'設規',short:rec.label,summary:p.summary||'請看全國法規資料庫的完整條文。',fix:p.fix||'請對照官方條文。'};};
       ALL_ARTS=(pen.arts||[]).map(make);
       const topKeys=new Set((pen.topArts||[]).map(a=>a.key));
-      ALL_EXTRA=mode==='fire'?(pen.arts||[]).filter(a=>['196','184','173'].includes(a.key)&&!topKeys.has(a.key)).map(a=>({...make(a),extra:true})):[];
+      ALL_EXTRA=(pen.arts||[]).filter(a=>['196','184','173'].includes(a.key)&&!topKeys.has(a.key)).map(a=>({...make(a),extra:true}));
       LAW_GROUPS=pen.lawGroups||[{law:'職業安全衛生設施規則',short:'設規',articleCount:pen.arts?.length||0}];
       LAW_TOTALS=pen.lawTotals||{};
       PEN_NOTE=pen.note||'';render();
@@ -464,13 +476,13 @@
     function applyGapData(pen,acc,profiles) {
       PEN_PROFILES=new Map(Object.entries(profiles));
       if(pen.scope!=='roster'||acc.scopeKey!=='roster'||pen.rosterPlaces!==acc.rosterPlaces||pen.rosterCompanies!==acc.rosterCompanies)throw Error('統計名單範圍不符');
-      if(!pen.allAnalysis)throw Error('缺少全部裁罰統計');
-      PEN_VIEWS={all:{...pen,...pen.allAnalysis},fire:pen};
-      if(pen.coverageNote)document.getElementById('statistics-coverage').textContent=pen.coverageNote;
-      ACC=acc;selectPenaltyMode('all');renderAcc();
+      PEN_VIEWS={fire:pen};
+      STAT_YEARS=statisticsYears(pen,acc);
+      document.getElementById('statistics-coverage').textContent='當年度資料尚未收齊，請勿與完整年度直接比較。';
+      ACC=acc;selectPenaltyMode('fire');renderAcc();
       const updated = String(pen.sourceUpdatedAt || "");
       const updatedLabel = /^(\d{4})-(\d{2})-(\d{2})$/.test(updated) ? `${Number(updated.slice(0, 4)) - 1911}年${Number(updated.slice(5, 7))}月${Number(updated.slice(8))}日` : (updated || "未提供");
-      document.getElementById('stats-period').textContent=`更新日：${updatedLabel}。統計處分年度：113年至115年，115年不是完整年度。來源檔最新處分日期：裁罰${dateLabel(pen.sourceThrough)}、職災${dateLabel(acc.sourceThrough)}。這些日期不代表已經收齊。`;
+      document.getElementById('stats-period').textContent=`更新日期：${updatedLabel}。當年度資料尚未收齊。裁罰收到${dateLabel(pen.sourceThrough)}，職災收到${dateLabel(acc.sourceThrough)}。`;
     }
     async function boot() {
       try{

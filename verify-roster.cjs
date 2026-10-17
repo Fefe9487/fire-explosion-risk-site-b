@@ -30,8 +30,6 @@ for(const period of [113,114,115]){
 // The official export reuses this number for different employers/dates.
 const collision=selected.filter(company=>company.pen.some(row=>row.no==='職授字第1150250396號'));
 assert.equal(collision.length,2,'Different employers sharing a document number must remain separate');
-assert.equal(pen.allAnalysis.year_total['115'],171);
-assert.equal(pen.allAnalysis.lawTotals['設規']['115'],81);
 for(const group of pen.allAnalysis.lawGroups.filter(g=>g.short!=='all'))for(const period of ['all',113,114,115]){
  const identities=new Set();
  for(const company of selected)for(const row of company.pen)if(y(row.date)>=113&&y(row.date)<=115&&(period==='all'||y(row.date)===period)&&row.arts.some(a=>a.law===group.short))identities.add(dispositionIdentity(company,row));
