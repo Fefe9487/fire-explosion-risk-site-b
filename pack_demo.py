@@ -13,14 +13,15 @@ def load(name):
 def extract(name):
     html=(ROOT/name).read_text(encoding='utf-8')
     style=re.search(r'<style>(.*?)</style>',html,re.S)[1]
-    body=re.search(r'<body[^>]*>(.*?)<script>',html,re.S)[1]
+    body=re.search(r'<body[^>]*>(.*?)</body>',html,re.S)[1].split('<script>')[0]
     for image_path in set(re.findall(r'src="(assets/images/[^"]+)"', body)):
         image_file=ROOT/image_path
         encoded=base64.b64encode(image_file.read_bytes()).decode('ascii')
         mime='image/svg+xml' if image_file.suffix=='.svg' else 'image/webp'
         body=body.replace(f'src="{image_path}"', f'src="data:{mime};base64,{encoded}"')
-    script=re.search(r'<script>(.*?)</script>',html,re.S)[1]
-    for old,new in [('query.html','#query'),('index.html','#home'),('gaps.html','#pen'),('method.html','#home')]:
+    match=re.search(r'<script>(.*?)</script>',html,re.S)
+    script=match[1] if match else ''
+    for old,new in [('query.html','#query'),('index.html','#home'),('gaps.html','#guide'),('method.html','#home')]:
         pattern=r'href="'+re.escape(old)+r'(?:\?[^"#]*)?(?:#([^" ]*))?"'
         replace=lambda m: 'href="'+('#'+m[1] if m[1] else new)+'"'
         body=re.sub(pattern,replace,body)
@@ -28,19 +29,17 @@ def extract(name):
     return style,body,script
 
 def main():
-    payload={name:load(name) for name in ['plants','meta','penalties','accidents','gap-penalty','gap-accident','law-profiles','pacs','tax-rollup']}
+    payload={name:load(name) for name in ['plants','meta','penalties','accidents','query-rules','pacs','tax-rollup']}
     styles=[];bodies=[];scripts=[]
     boots={
-      'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['gap-penalty'],DEMO.pacs,DEMO['tax-rollup']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
-      'gaps':"applyGapData(DEMO['gap-penalty'],DEMO['gap-accident'],DEMO['law-profiles']);window.gapsShowTab=showTab;",
-      'home':"initializeOverview([],DEMO.meta);renderFireRules(DEMO['gap-penalty'].fireCriteria);",
+      'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['query-rules'],DEMO.pacs,DEMO['tax-rollup']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
+      'home':"initializeOverview([],DEMO.meta);renderFireRules(DEMO['query-rules'].fireCriteria);",
     }
     for name,file in [('home','index.html'),('gaps','gaps.html'),('query','query.html')]:
         style,body,script=extract(file)
-        if name=='gaps':
-            script=re.sub(r'    const startTab = .*?\n    showTab\(.*?\);\n','',script,count=1)
-        script,n=re.subn(r'async function boot\(\)\s*\{.*?\n\s*boot\(\);',lambda m:boots[name],script,count=1,flags=re.S)
-        if n!=1:raise RuntimeError('boot replacement '+name)
+        if script:
+            script,n=re.subn(r'async function boot\(\)\s*\{.*?\n\s*boot\(\);',lambda m:boots[name],script,count=1,flags=re.S)
+            if n!=1:raise RuntimeError('boot replacement '+name)
         styles.append(style)
         body=body.replace('id="main-content"',f'id="main-{name}"').replace('href="#main-content"',f'href="#main-{name}"')
         cls='page overview' if name=='home' else 'page'
@@ -50,16 +49,17 @@ def main():
     raw=json.dumps(payload,ensure_ascii=False,separators=(',',':')).replace('<','\\u003c')
     router="""
     function applyHash(){
-      const h=(location.hash||'#home').slice(1);
-      const homeAnchors=['home','method','high-risk-definition','quick-guide','statistics-details','penalty-method','category-laws','fire-relevant-laws','data-sources','data-period','counting-basics','friendly-sites','main-home'];
+      let h=(location.hash||'#home').slice(1);
+      const aliases={'statistics-details':'source-details','penalty-method':'fire-relevant-laws','counting-basics':'reading-records'};
+      h=aliases[h]||h;
+      const homeAnchors=['home','method','high-risk-definition','quick-guide','source-details','category-laws','fire-relevant-laws','data-sources','data-period','reading-records','friendly-sites','main-home'];
       const page=['query','main-query'].includes(h)||h.startsWith('sec-')||h==='dossier-fire-summary'?'query':homeAnchors.includes(h)?'home':'gaps';
       for(const name of ['query','gaps','home'])document.getElementById('page-'+name).hidden=page!==name;
-      if(page==='gaps'){
-        window.gapsShowTab(['acc','guide'].includes(h)?h:'pen');
-        if(/^r(?:hp-)?\\d/.test(h))requestAnimationFrame(()=>document.getElementById(h)?.scrollIntoView({block:'start'}));
+      const target=document.getElementById(h);
+      if(target){
+        for(let detail=target.closest('details');detail;detail=detail.parentElement?.closest('details'))detail.open=true;
+        requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));
       }
-      if(page==='home'&&!['home','method'].includes(h))requestAnimationFrame(()=>document.getElementById(h)?.scrollIntoView({block:'start'}));
-      if(page==='query'&&h!=='query')requestAnimationFrame(()=>document.getElementById(h)?.scrollIntoView({block:'start'}));
       if(['home','method','query','pen','acc','guide'].includes(h))requestAnimationFrame(()=>document.getElementById('page-'+page)?.scrollIntoView({block:'start'}));
     }
     window.addEventListener('hashchange',applyHash);applyHash();

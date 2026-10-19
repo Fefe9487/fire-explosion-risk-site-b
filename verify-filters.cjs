@@ -10,9 +10,9 @@ const document = {getElementById:el, querySelectorAll:()=>[]};
 const context = vm.createContext({document, console});
 const script = html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/    boot\(\);/, '');
 vm.runInContext(script, context);
-const data = Object.fromEntries(['meta','plants','penalties','accidents','gap-penalty','gap-accident','pacs','tax-rollup'].map(n=>[n,JSON.parse(fs.readFileSync(root+'/data/'+n+'.json','utf8'))]));
+const data = Object.fromEntries(['meta','plants','penalties','accidents','query-rules','pacs','tax-rollup'].map(n=>[n,JSON.parse(fs.readFileSync(root+'/data/'+n+'.json','utf8'))]));
 context.data = data;
-vm.runInContext("initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['gap-penalty'],data.pacs,data['tax-rollup'])",context);
+vm.runInContext("initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['query-rules'],data.pacs,data['tax-rollup'])",context);
 assert.equal(el('stage').innerHTML,'');
 vm.runInContext("runQuery()",context);
 assert(!el('stage').innerHTML.includes('q-sort'));
@@ -37,7 +37,7 @@ const result=vm.runInContext(`(()=>{
         checked++;
       }
       for(const viol of ["","direct","other","none"]){
-        for(const art of ["",...(RANKING.topArts||[]).map(a=>a.key)]){
+        for(const art of ["",...(QUERY_RULES.articles||[]).map(a=>a.key)]){
           const records=penBundle(p,{year,viol,art}).plant;
           for(const r of records){
             if(r.plantId!==p.id||!penaltyDateHit(r.date,year))throw Error("pen scope/year");
@@ -96,8 +96,8 @@ const olderPenalty=vm.runInContext(`(()=>{
 })()`,context);
 assert(!el('stage').innerHTML.includes('id="q-city"'));
 assert(!el('stage').innerHTML.includes('本資料未查得'));
-assert.equal(data['gap-penalty'].scope,'roster');
-assert.equal(data['gap-accident'].scopeKey,'roster');
+assert(data['query-rules'].fireCriteria.groups.length);
+assert(data['query-rules'].articles.every(a => !('y' in a) && !('n' in a)));
 assert(!html.includes('高風險清冊'));
 assert(html.includes('非屬具火災爆炸高風險事業單位'));
 vm.runInContext('renderCandidates()',context);

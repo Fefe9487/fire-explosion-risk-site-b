@@ -141,10 +141,10 @@
     }
   </style>
 <meta name="description" content="依事業單位名稱或統一編號，查詢所選公司的公開裁罰與職災紀錄。">
-<link rel="stylesheet" href="assets/site.css?v=20261016-statistics-cards">
+<link rel="stylesheet" href="assets/site.css?v=20261019-guides">
 </head>
 <body>
-<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開資料查詢與統計</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html">統計資訊</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
+<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場事業單位職災及違規紀錄查詢系統<small>公開紀錄查詢與安全指引</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html">相關規定及指引</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
   <div class="wrap">
     <main class="card" id="main-content">
       <p class="eyebrow">事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
@@ -164,14 +164,14 @@
       </form>
       <p class="query-note">請輸入事業單位名稱的一部分，或統一編號。選定一筆候選項目後，才會顯示該單位的紀錄。</p>
       <div id="stage"></div>
-      <footer id="foot">資料來源：勞動部職業安全衛生署公開裁罰、職場重大災害檢查訊息，以及<a href="https://pacs.osha.gov.tw/2875/" target="_blank" rel="noopener">重大職災公開網</a>。查無紀錄不代表未曾發生事故或違規。<a href="gaps.html">裁罰與職災統計</a></footer>
-      <div class="page-links"><a href="gaps.html">返回統計資訊</a><a href="index.html">認識高風險廠場</a></div>
+      <footer id="foot">資料來源：勞動部職業安全衛生署公開裁罰、職場重大災害檢查訊息，以及<a href="https://pacs.osha.gov.tw/2875/" target="_blank" rel="noopener">重大職災公開網</a>。查無紀錄不代表未曾發生事故或違規。<a href="gaps.html">相關規定及指引</a></footer>
+      <div class="page-links"><a href="gaps.html">返回相關規定及指引</a><a href="index.html">認識高風險廠場</a></div>
     </main>
   </div>
   <script>
     const CANDIDATE_LIMIT = 40;
     const KINDS_17 = ["墜落、滾落","被夾、被捲","物體飛落","物體倒塌、崩塌","跌倒","被刺、割、擦傷","被撞","感電","與高溫、低溫之接觸","與有害物等之接觸","不當動作","衝撞","火災","爆炸","溺斃","踩踏(踏穿)","物體破裂"];
-    let RANKING = null;
+    let QUERY_RULES = null;
     let META = null, PLANTS = [], PEN = [], ACC = [];
     let FIRE_ARTICLE_KEYS = new Set();
     let accByPlant = {}, penByPlant = {}, accByTax = {}, penByTax = {};
@@ -475,8 +475,8 @@
       return items.map(([value, label]) => `<option value="${esc(value)}"${value === selected ? " selected" : ""}>${esc(label)}</option>`).join("");
     }
     function articleOptions(selected) {
-      const groups = RANKING.lawGroups || [{law:"職業安全衛生設施規則",short:"設規"}];
-      return '<option value="">全部條文</option>' + groups.map((g) => `<optgroup label="${esc(g.law)}">${options((RANKING.topArts || []).filter((a) => (a.lawShort || "設規") === g.short).map((a) => [a.key, a.label]), selected)}</optgroup>`).join("");
+      const groups = QUERY_RULES.lawGroups || [{law:"職業安全衛生設施規則",short:"設規"}];
+      return '<option value="">全部條文</option>' + groups.map((g) => `<optgroup label="${esc(g.law)}">${options((QUERY_RULES.articles || []).filter((a) => (a.lawShort || "設規") === g.short).map((a) => [a.key, a.label]), selected)}</optgroup>`).join("");
     }
     function renderCandidates() {
       selectedId = "";
@@ -503,13 +503,13 @@
           <label>排序<select id="q-sort">${options([["","最近日期優先"],["oldest","最早日期優先"]], view.sort)}</select></label>
           <label>職災類別<select id="q-acc">${options([["","全部"],["fire","火災"],["boom","爆炸"],["other","其他職災"]], view.acc)}</select></label>
           <label>處分年度<select id="q-year">${yearOptions}</select></label>
-          <label>近三年常見裁罰條文<select id="q-art">${articleOptions(view.art)}</select></label>
+          <label>火災爆炸相關裁罰條文<select id="q-art">${articleOptions(view.art)}</select></label>
           <button type="button" class="text-btn" id="reset-filters">重設篩選</button>
         </div>
         <p class="block-title" id="accident-quick-title">職災快速查詢</p>
         <p class="block-note">可選擇多種職災危害類型。職災類別與危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
         <div class="chips" id="q-kinds" role="group" aria-labelledby="accident-quick-title"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((kind) => `<button type="button" data-kind="${esc(kind)}" aria-pressed="${view.kinds.includes(kind)}">${esc(kind)}</button>`).join("")}</div>
-        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。條文篩選只作用在裁罰，選項是高風險廠場名單所屬事業單位近三年的常見火災爆炸相關裁罰條文。查無紀錄不代表未曾發生事故或違規。</p>
+        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。條文篩選只作用在裁罰，選項列出火災爆炸預防相關條文。查無紀錄不代表未曾發生事故或違規。</p>
         ${dossierHtml(company, view)}
       </article>`;
     }
@@ -604,9 +604,9 @@
         else if (x.plantId && x.link === "plant") (penByPlant[x.plantId] ||= []).push(x);
       }
     }
-    function initializeQuery(meta, plants, penalties, accidents, ranking, pacs, rollup) {
-      RANKING = ranking;
-      FIRE_ARTICLE_KEYS = new Set((ranking.fireCriteria?.groups || []).flatMap((g) => g.articles.map((ref) => g.short + "|" + ref)));
+    function initializeQuery(meta, plants, penalties, accidents, rules, pacs, rollup) {
+      QUERY_RULES = rules;
+      FIRE_ARTICLE_KEYS = new Set((rules.fireCriteria?.groups || []).flatMap((g) => g.articles.map((ref) => g.short + "|" + ref)));
       META = meta;
       PLANTS = plants;
       PEN = penalties;
@@ -619,7 +619,7 @@
     }
     async function boot() {
       try {
-        const values = await Promise.all(["meta", "plants", "penalties", "accidents", "gap-penalty", "pacs", "tax-rollup"].map((name) => fetch("data/" + name + ".json", { cache: "no-store" }).then((r) => { if (!r.ok) throw Error(name); return r.json(); })));
+        const values = await Promise.all(["meta", "plants", "penalties", "accidents", "query-rules", "pacs", "tax-rollup"].map((name) => fetch("data/" + name + ".json", { cache: "no-store" }).then((r) => { if (!r.ok) throw Error(name); return r.json(); })));
         initializeQuery(...values);
       } catch (err) {
         document.getElementById("stage").innerHTML = "<p class=\"load-err\">資料載入失敗，請經由本機網頁伺服器開啟，或使用 demo.html 離線展示檔。</p>";
