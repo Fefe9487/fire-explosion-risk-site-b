@@ -57,7 +57,9 @@ const result=vm.runInContext(`(()=>{
   renderDetail();
   return checked;
 })()`,context);
-for(const id of ['q-sort','q-year','q-acc','q-art','q-kinds'])assert(el('stage').innerHTML.includes('id="'+id+'"'));
+for(const id of ['q-sort','q-year','q-kinds'])assert(el('stage').innerHTML.includes('id="'+id+'"'));
+assert(!el('stage').innerHTML.includes('id="q-acc"'));
+assert(!el('stage').innerHTML.includes('id="q-art"'));
 assert(el('stage').innerHTML.includes('<option value="105">105年</option>'));
 assert(el('stage').innerHTML.includes('職災快速查詢'));
 assert.equal((el('stage').innerHTML.match(/data-kind=/g)||[]).length,17);

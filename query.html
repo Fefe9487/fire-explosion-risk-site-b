@@ -317,7 +317,7 @@
         </div>
         <div class="fire-summary-actions"><a href="#sec-fire-pen">火災爆炸裁罰</a><a href="#sec-fire-acc">火災爆炸職災</a><a href="#sec-other-acc">其他類型職災</a><a href="#sec-other-pen">其他裁罰</a></div>
         ${view.art ? '<p class="block-note">目前的條文篩選只作用在裁罰。下方件數是篩選後的結果。</p>' : ""}
-        ${view.acc || view.kinds?.length ? '<p class="block-note">職災件數已依所選職災類別與危害類型篩選；裁罰件數不受影響。</p>' : ""}
+        ${view.kinds?.length ? '<p class="block-note">職災件數已依所選危害類型篩選；裁罰件數不受影響。</p>' : ""}
       </section>`;
     }
     function penPasses(x, view) {
@@ -463,7 +463,7 @@
       const hostEl = document.getElementById("q-host");
       const value = (id) => document.getElementById(id)?.value || "";
       return { year: yearEl ? yearEl.value : "", host: !!(hostEl && hostEl.checked),
-        sort: value("q-sort"), acc: value("q-acc"), viol: value("q-viol"), art: value("q-art"),
+        sort: value("q-sort"), acc: "", viol: value("q-viol"), art: "",
         kinds: [...document.querySelectorAll('#q-kinds [data-kind][aria-pressed="true"]')].map((b) => b.dataset.kind) };
     }
     function hasArt(row, key) {
@@ -473,10 +473,6 @@
     }
     function options(items, selected) {
       return items.map(([value, label]) => `<option value="${esc(value)}"${value === selected ? " selected" : ""}>${esc(label)}</option>`).join("");
-    }
-    function articleOptions(selected) {
-      const groups = QUERY_RULES.lawGroups || [{law:"職業安全衛生設施規則",short:"設規"}];
-      return '<option value="">全部條文</option>' + groups.map((g) => `<optgroup label="${esc(g.law)}">${options((QUERY_RULES.articles || []).filter((a) => (a.lawShort || "設規") === g.short).map((a) => [a.key, a.label]), selected)}</optgroup>`).join("");
     }
     function renderCandidates() {
       selectedId = "";
@@ -501,15 +497,13 @@
         <p class="block-note">${esc(placeNote)}</p>
         <div class="detail-tools">
           <label>排序<select id="q-sort">${options([["","最近日期優先"],["oldest","最早日期優先"]], view.sort)}</select></label>
-          <label>職災類別<select id="q-acc">${options([["","全部"],["fire","火災"],["boom","爆炸"],["other","其他職災"]], view.acc)}</select></label>
           <label>處分年度<select id="q-year">${yearOptions}</select></label>
-          <label>火災爆炸相關裁罰條文<select id="q-art">${articleOptions(view.art)}</select></label>
           <button type="button" class="text-btn" id="reset-filters">重設篩選</button>
         </div>
         <p class="block-title" id="accident-quick-title">職災快速查詢</p>
-        <p class="block-note">可選擇多種職災危害類型。職災類別與危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
+        <p class="block-note">可選擇多種職災危害類型。危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
         <div class="chips" id="q-kinds" role="group" aria-labelledby="accident-quick-title"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((kind) => `<button type="button" data-kind="${esc(kind)}" aria-pressed="${view.kinds.includes(kind)}">${esc(kind)}</button>`).join("")}</div>
-        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。條文篩選只作用在裁罰，選項列出火災爆炸預防相關條文。查無紀錄不代表未曾發生事故或違規。</p>
+        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。查無紀錄不代表未曾發生事故或違規。</p>
         ${dossierHtml(company, view)}
       </article>`;
     }
@@ -583,7 +577,7 @@
       renderDetail();
     });
     document.getElementById("stage").addEventListener("change", (e) => {
-      if (["q-year","q-sort","q-acc","q-art"].includes(e.target.id)) {
+      if (["q-year","q-sort"].includes(e.target.id)) {
         const id = e.target.id;
         renderDetail();
         document.getElementById(id)?.focus();
