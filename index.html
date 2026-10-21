@@ -71,6 +71,7 @@ footer{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-si
 <section class="section-card" id="data-sources" aria-labelledby="source-title"><div class="section-heading"><span class="icon-box"><img class="illustrated-icon" src="assets/images/public-records-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"></span><div><p class="eyebrow">資料來源</p><h2 id="source-title">公開資料來源</h2></div></div><p class="section-intro">以政府公開公告為基礎，分別整理裁罰處分與職災案件。每種資料的日期與計算單位不同，閱讀時請先確認範圍。</p><div class="source-grid"><a class="source-card" href="https://announcement.mol.gov.tw/" target="_blank" rel="noopener"><span class="source-label">裁罰公告</span><h3>違反勞動法令事業單位查詢</h3><p>核對處分日期、處分字號與公告引用條文。</p></a><a class="source-card" href="https://toshms.osha.gov.tw/Disaster/Content/DisasterList" target="_blank" rel="noopener"><span class="source-label">職災相關處分</span><h3>職場重大災害檢查訊息</h3><p>整理公開職災相關處分與公告中的災害類型。</p></a><a class="source-card" href="https://pacs.osha.gov.tw/2875/" target="_blank" rel="noopener"><span class="source-label">重大職災案件</span><h3>重大職災公開網</h3><p>補充公開案件；與既有紀錄比對後避免重複計入。</p></a></div><p class="caption">公司查詢限本網站高風險廠場名單所屬事業單位。完整案件內容請核對原始公告。</p></section>
 <section class="section-card" id="data-period" aria-labelledby="period-title"><div class="section-heading"><span class="icon-box"><img class="illustrated-icon" src="assets/images/public-records-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"></span><div><p class="eyebrow">收錄範圍</p><h2 id="period-title">資料期間與更新</h2></div></div>
 <div class="sources"><table><thead><tr><th>項目</th><th>期間與日期</th><th>如何解讀</th></tr></thead><tbody id="data-periods"></tbody></table></div>
+<p class="caption" id="query-counting-note"></p>
 <p class="caption">更新日是我們整理資料的日期。來源裡最後一筆的日期，不代表那天以前都收齊了。當年度資料尚未收齊，請勿與完整年度直接比較。</p>
 </section>
 <section class="section-card" id="reading-records" aria-labelledby="count-title"><div class="section-heading"><span class="icon-box"><img class="illustrated-icon" src="assets/images/public-records-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"></span><div><p class="eyebrow">紀錄怎麼讀</p><h2 id="count-title">公開紀錄使用注意事項</h2></div></div><div class="reading-grid"><article><span class="reading-no">01</span><h3>處分件數不等於事故場次</h3><p>同一場事故可能涉及多個處分；裁罰條文的引用次數，也不是事故原因的發生次數。</p></article><article><span class="reading-no">02</span><h3>部分年度資料不宜直接比較</h3><p>當年度資料尚未收齊，不能只看件數就判斷比完整年度增加或減少。</p></article><article><span class="reading-no">03</span><h3>公開紀錄受收錄範圍限制</h3><p>查無紀錄不代表未曾發生事故或違規；歷史紀錄也不代表目前的安全程度。</p></article></div></section>
@@ -116,6 +117,7 @@ function initializeOverview(plants,meta) {
     ['系統資料更新日',meta.sourceUpdatedAt||'未提供','來源資料整理與更新日期。']
   ];
   document.getElementById('data-periods').innerHTML=rows.map(row=>'<tr>'+row.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('');
+  document.getElementById('query-counting-note').textContent='本頁資料期間：'+(meta.penaltyPeriod||'裁罰處分日期約10年')+'；'+(meta.accidentPeriod||'職災處分日期近五年')+'。按同一統編合計，不按個別場所拆開。重大職災公開網另按發生日期計，未選單一年份時含較早案件。處分件數與公開網案件不要相加。';
 }
 function renderFireRules(criteria) {
   const host=document.getElementById('m-fire-rules'), groups=criteria?.groups||[];

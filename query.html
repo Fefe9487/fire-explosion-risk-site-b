@@ -308,7 +308,6 @@
       const otherPenCount = dispositionCount(buckets.otherPen);
       return `<section class="fire-summary" id="dossier-fire-summary" aria-label="同一統編紀錄件數" tabindex="-1">
         <p class="block-title">同一統編的紀錄件數</p>
-        <p class="block-note">本頁資料期間：${esc(META.penaltyPeriod || "裁罰處分日期約10年")}；${esc(META.accidentPeriod || "職災處分日期近五年")}。按同一統編合計，不按個別場所拆開。重大職災公開網另按發生日期計，未選單一年份時含較早案件。處分件數與公開網案件不要相加。</p>
         <div class="fire-summary-grid">
           <div>火災爆炸裁罰<strong>${firePenCount} 件</strong></div>
           <div>火災爆炸職災<strong>處分 ${fireAccCount} 件；公開網 ${buckets.firePacs.length} 件</strong></div>
@@ -525,7 +524,7 @@
       }
       matches = findMatches(name, tax);
       if (!matches.length) {
-        document.getElementById("stage").innerHTML = statusHtml("非屬具火災爆炸高風險事業單位");
+        document.getElementById("stage").innerHTML = statusHtml("非屬本網站所稱之高風險廠場");
         return;
       }
       if (matches.length > CANDIDATE_LIMIT && name.length <= 2 && tax.length < 4) {

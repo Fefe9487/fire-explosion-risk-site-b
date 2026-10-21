@@ -101,7 +101,7 @@ assert(!el('stage').innerHTML.includes('本資料未查得'));
 assert(data['query-rules'].fireCriteria.groups.length);
 assert(data['query-rules'].articles.every(a => !('y' in a) && !('n' in a)));
 assert(!html.includes('高風險清冊'));
-assert(html.includes('非屬具火災爆炸高風險事業單位'));
+assert(html.includes('非屬本網站所稱之高風險廠場'));
 vm.runInContext('renderCandidates()',context);
 assert(!el('stage').innerHTML.includes('q-sort'));
 el('q-sort').value='oldest';

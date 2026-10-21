@@ -54,7 +54,8 @@ const summaries=vm.runInContext(`(()=>{
  const company=COMPANIES.find(c=>rowsFor(c).acc.some(a=>['火災','爆炸'].includes(a.kind)));
  return [fireSummaryHtml({},bucketsFor(company,{})),fireSummaryHtml({art:'設規|173'},bucketsFor(company,{art:'設規|173'}))];
 })()`,query.context);
-assert(summaries[0].includes('105/09/12')&&summaries[0].includes('113/01/02'));
+assert(!summaries[0].includes('本頁資料期間'));
+assert(home.get('query-counting-note').textContent.includes('105/09/12')&&home.get('query-counting-note').textContent.includes('113/01/02'));
 assert(summaries[0].includes('火災爆炸職災')&&summaries[1].includes('條文篩選只作用在裁罰'));
 const demo=read('demo.html');
 new vm.Script(demo.match(/<script>([\s\S]*?)<\/script>/)[1]);
