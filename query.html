@@ -149,7 +149,7 @@
     <main class="card" id="main-content">
       <p class="eyebrow">事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
       <p class="lede">以事業單位名稱或統一編號查詢。選定公司後，才顯示該統編的裁罰、職災與重大職災公開資料。</p>
-      <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>輸入名稱或統一編號，選定公司後顯示紀錄。查詢結果按同一統一編號合計；查無紀錄不代表未曾發生事故或違規。</p></div>
+      <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>輸入名稱或統一編號，選定公司後顯示紀錄。查詢結果按同一統一編號合計。統編不同的同名公司分成不同筆，名稱後標出場所。查無紀錄不代表未曾發生事故或違規。</p></div>
       <hr class="rule" />
       <form id="form">
         <div class="fields">
@@ -246,6 +246,60 @@
       const ranked = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].length - b[0].length);
       return ranked.length ? ranked[0][0] : (plants[0].name || "");
     }
+    function compactName(value) {
+      return String(value || "").replace(/\s/g, "");
+    }
+    function nameKey(name) {
+      return compactName(name).replace(/台/g, "臺");
+    }
+    function placeTail(text, company) {
+      const key = compactName(text);
+      const base = compactName(company);
+      if (!key || !base || key === base || !key.startsWith(base)) return "";
+      let rest = key.slice(base.length).replace(/^[（(][^）)]*[）)]/, "");
+      while (rest) {
+        const matched = rest.match(/^[\u4e00-\u9fffA-Za-z0-9]{1,12}(?:事業部|營業處|分公司)(.+)$/);
+        if (!matched || !/[廠站所場]/.test(matched[1])) break;
+        rest = matched[1];
+      }
+      return rest;
+    }
+    function districtPlace(plant) {
+      const addr = compactName(plant.addr);
+      const matched = addr.match(/(?:市|縣)([^市縣]{1,4}?(?:區|鄉|鎮|市))/);
+      return matched ? matched[1] : compactName(plant.city);
+    }
+    function plantPlace(plant, company) {
+      return placeTail(plant.name, company) || placeTail(plant.factoryName, company) || districtPlace(plant);
+    }
+    function entityPlace(plants, company) {
+      const labels = [];
+      const ordered = [...plants].sort((a, b) => compactName(a.name).localeCompare(compactName(b.name), "zh-Hant") || String(a.id).localeCompare(String(b.id)));
+      for (const plant of ordered) {
+        const label = plantPlace(plant, company);
+        if (label && !labels.includes(label)) labels.push(label);
+      }
+      return labels.join("、");
+    }
+    function disambiguateCompanies(companies) {
+      const groups = new Map();
+      for (const company of companies) {
+        const key = nameKey(company.name);
+        const list = groups.get(key) || [];
+        list.push(company);
+        groups.set(key, list);
+      }
+      for (const list of groups.values()) {
+        if (list.length < 2) continue;
+        const maxCount = Math.max(...list.map((company) => company.placeCount));
+        const leaders = list.filter((company) => company.placeCount === maxCount);
+        const targets = leaders.length === 1 ? list.filter((company) => company.placeCount < maxCount) : list;
+        for (const company of targets) {
+          const place = entityPlace(company.plants, company.name);
+          if (place) company.name += place;
+        }
+      }
+    }
     function buildCompanies() {
       const groups = new Map();
       for (const plant of PLANTS) {
@@ -258,6 +312,7 @@
         const tax = key.startsWith("id:") ? "" : key;
         return { id: tax || plants[0].id, tax, name: parentName(plants), plants, placeCount: plants.length };
       });
+      disambiguateCompanies(COMPANIES);
     }
     function usable(row) {
       return !EXCLUDED_NO.has(String(row.no || "").replace(/\s/g, ""));
@@ -415,7 +470,7 @@
     }
     function nameHit(p, q) {
       if (!q) return true;
-      const hay = (p.name || "") + (p.core || "");
+      const hay = (p.name || "") + (p.core || "") + (p.factoryName || "");
       if (hay.includes(q)) return true;
       let tail = "";
       const tails = ["加油加氣站", "供油中心", "儲運所", "煉油廠", "石化廠", "處理廠", "廠區"];

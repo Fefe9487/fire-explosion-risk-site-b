@@ -31,7 +31,10 @@ python -m http.server 8765
 python pack_demo.py
 node verify-pages.cjs
 node verify-filters.cjs
+node verify-company-names.cjs
 ```
+
+發布前一定要先跑 `verify-company-names.cjs`。同一統編仍是一家；統編不同不合併。公司名稱相同時，頁面會在名稱後加上場所。檢查若仍看到同名，就不要更新。
 
 `demo.html` 內嵌查詢資料、圖片、樣式及指引，預設顯示首頁，可在離線狀態切換頁面與查詢公司；外部法規、YouTube 影片和官方公告連結需連線。舊離線統計頁籤的網址會開啟指引頁。
 
