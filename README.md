@@ -40,4 +40,4 @@ node verify-company-names.cjs
 
 本系統是瀏覽器端查詢。公開 JSON 及離線版含完整場所與紀錄資料；頁面不主動列出場所清冊。公開紀錄按同一統編合併，查無紀錄不代表未曾發生事故或違規，歷史紀錄不代表目前的安全程度。實際內容與法規適用請核對官方原文。
 
-首頁影片採使用者於 2026-10-19 指定的 YouTube 影片：https://youtu.be/DxZQSsWkJ9Q 。首頁、說明頁及離線展示檔均使用相同影片；本機剪輯版與同步字幕仍保留於 `assets/videos/`。
+首頁、說明頁及離線展示檔使用使用者指定的 YouTube 影片：https://youtu.be/iDgvWMrM8gA 。本機剪輯版與同步字幕仍保留於 `assets/videos/`。
