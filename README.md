@@ -1,4 +1,4 @@
-# 高風險廠場事業單位職災及違規紀錄查詢系統
+# 高風險廠場職災及違規紀錄查詢系統
 
 公開網站：<https://fefe9487.github.io/fire-explosion-risk-site-b/>
 

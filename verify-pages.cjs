@@ -29,9 +29,9 @@ const guide=read('gaps.html');
 assert(guide.includes('<h1>相關規定及指引</h1>'));
 assert(guide.includes('id="regulations"')&&guide.includes('id="technical-guides"'));
 assert(!guide.includes('role="tab"')&&!guide.includes(' hidden')&&!guide.includes('fetch('));
-assert.equal((guide.match(/<li>/g)||[]).length,12);
+assert.equal((guide.match(/<li>/g)||[]).length,14);
 const officialLinks=[...guide.matchAll(/<a href="(https:[^"]+)"/g)].map(m=>new URL(m[1]));
-assert.equal(officialLinks.length,12);
+assert.equal(officialLinks.length,14);
 assert(officialLinks.every(url=>/\.(osha|mol|moj)\.gov\.tw$/.test(url.hostname)));
 for(const name of ['index.html','method.html','query.html','gaps.html']){
   const html=read(name);
@@ -64,4 +64,4 @@ assert(demo.includes('href="#guide"')&&demo.includes('id="page-gaps"'));
 assert(demo.includes('id="regulations"')&&demo.includes('id="technical-guides"'));
 assert(demo.includes('id="page-query"')&&demo.includes('id="page-home"'));
 require("child_process").execFileSync(process.execPath, ["verify-company-names.cjs"], { cwd: root, stdio: "inherit" });
-console.log('PASS: guidance replaces statistics; 12 official resources; source dates, article rules, individual records, local links and offline scripts.');
+console.log('PASS: guidance replaces statistics; 14 official resources; source dates, article rules, individual records, local links and offline scripts.');
