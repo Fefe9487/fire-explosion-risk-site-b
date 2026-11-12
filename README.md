@@ -53,9 +53,3 @@ python verify-browser.py
 本系統是瀏覽器端查詢。公開 JSON 及離線版含完整場所與紀錄資料；頁面不主動列出場所清冊。公開紀錄按同一統編合併，查無紀錄不代表未曾發生事故或違規，歷史紀錄不代表目前的安全程度。實際內容與法規適用請核對官方原文。
 
 首頁、說明頁及離線展示檔使用使用者指定的 YouTube 影片：https://youtu.be/zdOFnnIJDhI 。本機剪輯版與同步字幕仍保留於 `assets/videos/`。
-
-## 介面字型
-
-各頁統一使用隨站提供的 Noto Sans TC 可變字型，字型與 SIL Open Font License 授權位於 `assets/fonts/`。首頁主標題最高36px、字重600，副標與按鈕字重500；手機字級依寬度縮放。離線版內嵌同一字型，不依賴外部字型服務。
-
-`python scripts/build-ui-font.py` 可使用 fontTools 重建字型子集，涵蓋目前頁面與公開資料的文字；新增字元亦可由系統字型補足。重建後再執行 `python pack_demo.py`。
