@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>事業單位查詢｜高風險廠場職災及違規紀錄查詢系統</title>
+  <title>事業單位查詢｜使用大量危險物廠場職災及違規紀錄查詢系統</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -141,15 +141,15 @@
     }
   </style>
 <meta name="description" content="依事業單位名稱或統一編號，查詢所選公司的公開裁罰與職災紀錄。">
-<link rel="stylesheet" href="assets/site.css?v=20261019-video-no-statistics">
+<link rel="stylesheet" href="assets/site.css?v=20261112-fire-only">
 </head>
 <body>
-<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>高風險廠場職災及違規紀錄查詢系統<small>公開紀錄查詢與安全指引</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識高風險廠場</a><a href="gaps.html">相關規定及指引</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
+<a class="skip-link" href="#main-content">跳至主要內容</a><header class="site-header"><div class="header-inner"><a class="site-brand" href="index.html"><img class="brand-image" src="assets/images/factory-search-icon.webp" width="52" height="52" alt="" decoding="async"><span>使用大量危險物廠場<span class="brand-system">職災及違規紀錄查詢系統</span><small>公開紀錄查詢與安全指引</small></span></a><nav class="site-nav" aria-label="主要頁面"><a href="index.html">認識使用大量危險物廠場</a><a href="gaps.html">相關規定及指引</a><a href="query.html" aria-current="page">事業單位查詢</a></nav></div></header>
   <div class="wrap">
     <main class="card" id="main-content">
       <p class="eyebrow">事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
-      <p class="lede">以事業單位名稱或統一編號查詢。選定公司後，才顯示該統編的裁罰、職災與重大職災公開資料。</p>
-      <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>輸入名稱或統一編號，選定公司後顯示紀錄。查詢結果按同一統一編號合計。統編不同的同名公司分成不同筆，名稱後標出場所。查無紀錄不代表未曾發生事故或違規。</p></div>
+      <p class="lede">以事業單位名稱或統一編號查詢。候選名單僅列有火災爆炸相關紀錄的公司；選定後，顯示該統編的相關裁罰及職災處分。</p>
+      <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>輸入名稱或統一編號，候選名單只列有火災爆炸相關紀錄的公司，選定後顯示紀錄。查詢結果按同一統一編號合計。統編不同的同名公司分成不同筆，名稱後標出場所。查無紀錄不代表未曾發生事故或違規。</p></div>
       <hr class="rule" />
       <form id="form">
         <div class="fields">
@@ -164,13 +164,13 @@
       </form>
       <p class="query-note">請輸入事業單位名稱的一部分，或統一編號。選定一筆候選項目後，才會顯示該單位的紀錄。</p>
       <div id="stage"></div>
-      <footer id="foot">資料來源：勞動部職業安全衛生署公開裁罰、職場重大災害檢查訊息，以及<a href="https://pacs.osha.gov.tw/2875/" target="_blank" rel="noopener">重大職災公開網</a>。查無紀錄不代表未曾發生事故或違規。<a href="gaps.html">相關規定及指引</a></footer>
-      <div class="page-links"><a href="gaps.html">返回相關規定及指引</a><a href="index.html">認識高風險廠場</a></div>
+      <footer id="foot">資料來源：勞動部職業安全衛生署公開裁罰、職場重大災害檢查訊息；僅列火災爆炸相關紀錄。查無紀錄不代表未曾發生事故或違規。<a href="gaps.html">相關規定及指引</a></footer>
+      <div class="page-links"><a href="gaps.html">返回相關規定及指引</a><a href="index.html">認識使用大量危險物廠場</a></div>
     </main>
   </div>
   <script>
     const CANDIDATE_LIMIT = 40;
-    const KINDS_17 = ["墜落、滾落","被夾、被捲","物體飛落","物體倒塌、崩塌","跌倒","被刺、割、擦傷","被撞","感電","與高溫、低溫之接觸","與有害物等之接觸","不當動作","衝撞","火災","爆炸","溺斃","踩踏(踏穿)","物體破裂"];
+    const FIRE_KINDS = ["火災", "爆炸"];
     let QUERY_RULES = null;
     let META = null, PLANTS = [], PEN = [], ACC = [];
     let FIRE_ARTICLE_KEYS = new Set();
@@ -178,7 +178,6 @@
     let matches = [];
     let selectedId = "";
     let COMPANIES = [];
-    let PACS = [];
     let ROLL = { penalties: [], accidents: [] };
     const EXCLUDED_NO = new Set(["勞職授字第1130205857號"]);
 
@@ -211,8 +210,7 @@
       return queryDateHit(row[dateKey], view.year);
     }
     function accidentKindPasses(row, view) {
-      return (!view.kinds?.length || view.kinds.includes(row.kind)) &&
-        (!view.acc || (view.acc === "fire" ? row.kind === "火災" : view.acc === "boom" ? row.kind === "爆炸" : view.acc === "other" ? !["火災","爆炸"].includes(row.kind) : false));
+      return FIRE_KINDS.includes(row.kind) && (!view.kinds?.length || view.kinds.includes(row.kind));
     }
     function accPasses(a, view) {
       return recordPasses(a, view, "dispDate") && accidentKindPasses(a, view);
@@ -330,46 +328,29 @@
       const ids = new Set(company.plants.map((plant) => plant.id));
       const tax = company.tax;
       const same = (row) => usable(row) && ((tax && String(row.tax || "") === tax) || (row.plantId && ids.has(row.plantId)));
-      return {
-        pen: dedupeRows([...PEN.filter(same), ...(ROLL.penalties || []).filter(same)]),
-        acc: dedupeRows([...ACC.filter(same), ...(ROLL.accidents || []).filter(same)]),
-        pacs: PACS.filter((row) => tax && row.tax === tax),
-      };
-    }
-    function pacsInView(row, view) {
-      return view.year ? queryDateHit(row.eventDate, view.year) : true;
+      const acc = dedupeRows([...ACC.filter(same), ...(ROLL.accidents || []).filter(same)])
+        .filter((row) => FIRE_KINDS.includes(row.kind));
+      const fireAccidentNos = new Set(acc.map(dispositionKey).filter(Boolean));
+      const pen = dedupeRows([...PEN.filter(same), ...(ROLL.penalties || []).filter(same)])
+        .filter((row) => fireRelatedPenalty(row) || fireAccidentNos.has(dispositionKey(row)));
+      return { pen, acc };
     }
     function bucketsFor(company, view) {
       const all = rowsFor(company);
       const penalties = all.pen.filter((row) => penaltyDateHit(row.date, view.year) && (!view.art || hasArt(row, view.art)));
       const accidents = all.acc.filter((row) => queryDateHit(row.dispDate, view.year) && accidentKindPasses(row, view));
-      const pacs = all.pacs.filter((row) => pacsInView(row, view) && accidentKindPasses(row, view));
-      const fireKind = (row) => row.kind === "火災" || row.kind === "爆炸";
-      const fireAccidentNos = new Set(all.acc.filter(fireKind).map(dispositionKey));
-      const firePenalty = (row) => fireRelatedPenalty(row) || fireAccidentNos.has(dispositionKey(row));
-      return {
-        firePen: penalties.filter(firePenalty),
-        otherPen: penalties.filter((row) => !firePenalty(row)),
-        fireAcc: accidents.filter(fireKind),
-        otherAcc: accidents.filter((row) => !fireKind(row)),
-        firePacs: pacs.filter(fireKind),
-        otherPacs: pacs.filter((row) => !fireKind(row)),
-      };
+      return { firePen: penalties, fireAcc: accidents };
     }
     function fireSummaryHtml(view, buckets) {
       const firePenCount = dispositionCount(buckets.firePen);
       const fireAccCount = dispositionCount(buckets.fireAcc);
-      const otherAccCount = dispositionCount(buckets.otherAcc);
-      const otherPenCount = dispositionCount(buckets.otherPen);
       return `<section class="fire-summary" id="dossier-fire-summary" aria-label="同一統編紀錄件數" tabindex="-1">
         <p class="block-title">同一統編的紀錄件數</p>
         <div class="fire-summary-grid">
-          <div>火災爆炸裁罰<strong>${firePenCount} 件</strong></div>
-          <div>火災爆炸職災<strong>處分 ${fireAccCount} 件；公開網 ${buckets.firePacs.length} 件</strong></div>
-          <div>其他類型職災<strong>處分 ${otherAccCount} 件；公開網 ${buckets.otherPacs.length} 件</strong></div>
-          <div>其他裁罰<strong>${otherPenCount} 件</strong></div>
+          <div>未落實火災爆炸預防裁罰<strong>${firePenCount} 件</strong></div>
+          <div>發生火災爆炸職災<strong>${fireAccCount} 件處分</strong></div>
         </div>
-        <div class="fire-summary-actions"><a href="#sec-fire-pen">火災爆炸裁罰</a><a href="#sec-fire-acc">火災爆炸職災</a><a href="#sec-other-acc">其他類型職災</a><a href="#sec-other-pen">其他裁罰</a></div>
+        <div class="fire-summary-actions"><a href="#sec-fire-pen">未落實火災爆炸預防裁罰</a><a href="#sec-fire-acc">發生火災爆炸職災</a></div>
         ${view.art ? '<p class="block-note">目前的條文篩選只作用在裁罰。下方件數是篩選後的結果。</p>' : ""}
         ${view.kinds?.length ? '<p class="block-note">職災件數已依所選危害類型篩選；裁罰件數不受影響。</p>' : ""}
       </section>`;
@@ -396,20 +377,16 @@
     function kindCell(kind) {
       return ["火災", "爆炸"].includes(kind) ? `<span class="fire-kind-badge">${esc(kind)}</span>` : esc(kind || "");
     }
-    function mixedCaseTable(accidents, pacs) {
+    function accidentTable(accidents) {
       const direction = viewState().sort === "oldest" ? 1 : -1;
       const items = [
         ...accidents.map((row) => ({
           date: row.dispDate,
           html: `<tr><td>${esc(row.dispDate)}</td><td class="code">${esc(row.no)}</td><td>${kindCell(row.kind)}</td><td>${penaltyArticleHtml(row)}${row.link === "host-inferred" ? `<p class="source-note">處分對象可能是承攬人或共同作業單位。</p>` : ""}${row.sourceWarning ? `<p class="source-note">原始資料待核對：${esc(row.sourceWarning)}</p>` : ""}</td></tr>`,
         })),
-        ...pacs.map((row) => ({
-          date: row.eventDate,
-          html: `<tr><td>${esc(row.eventDate)}</td><td>重大職災公開網</td><td>${kindCell(row.kind)}</td><td>${esc(row.harm || "")}</td></tr>`,
-        })),
       ].sort((a, b) => direction * (rocNum(a.date) - rocNum(b.date)));
       if (!items.length) return `<p class="block-note">此範圍沒有紀錄。</p>`;
-      return `<div class="case-scroll"><table class="cases"><caption>職災處分與重大職災公開網分列。不標示清冊中的個別場所。</caption><thead><tr><th>日期</th><th>編號</th><th>災害類型</th><th>內容</th></tr></thead><tbody>${items.map((item) => item.html).join("")}</tbody></table></div>`;
+      return `<div class="case-scroll"><table class="cases"><caption>依職場重大災害檢查訊息的火災、爆炸類型列出處分；處分件數不等於事故場次。不標示清冊中的個別場所。</caption><thead><tr><th>處分日期</th><th>處分字號</th><th>災害類型</th><th>內容</th></tr></thead><tbody>${items.map((item) => item.html).join("")}</tbody></table></div>`;
     }
     function fireArticleKey(article) {
       const short = { "職業安全衛生設施規則": "設規", "高壓氣體勞工安全規則": "高壓則" }[article.law] || article.law;
@@ -458,14 +435,12 @@
     }
     function dossierHtml(company, view) {
       const buckets = bucketsFor(company, view);
-      const host = buckets.fireAcc.concat(buckets.otherAcc).some((row) => row.link === "host-inferred");
+      const host = buckets.fireAcc.some((row) => row.link === "host-inferred");
       return [
         fireSummaryHtml(view, buckets),
         host ? `<p class="block-note">部分職災處分的對象可能是承攬人或共同作業單位，不能據此認定是這家公司本身受罰，也不標示場所。</p>` : "",
-        sectionHtml("sec-fire-pen", "火災爆炸裁罰", penTable(buckets.firePen)),
-        sectionHtml("sec-fire-acc", "火災爆炸職災", mixedCaseTable(buckets.fireAcc, buckets.firePacs)),
-        sectionHtml("sec-other-acc", "其他類型職災", mixedCaseTable(buckets.otherAcc, buckets.otherPacs)),
-        sectionHtml("sec-other-pen", "其他裁罰", penTable(buckets.otherPen)),
+        sectionHtml("sec-fire-pen", "未落實火災爆炸預防裁罰", penTable(buckets.firePen)),
+        sectionHtml("sec-fire-acc", "發生火災爆炸職災", accidentTable(buckets.fireAcc)),
       ].join("");
     }
     function nameHit(p, q) {
@@ -502,7 +477,8 @@
       return COMPANIES.filter((company) => {
         if (tax && !(company.tax || "").includes(tax)) return false;
         if (name && company.name.indexOf(name) < 0 && !company.plants.some((plant) => nameHit(plant, name))) return false;
-        return true;
+        const records = bucketsFor(company, {});
+        return records.firePen.length > 0 || records.fireAcc.length > 0;
       }).sort((a, b) => a.name.localeCompare(b.name, "zh-Hant") || (a.tax || "").localeCompare(b.tax || ""));
     }
     function statusHtml(text) {
@@ -555,9 +531,9 @@
           <button type="button" class="text-btn" id="reset-filters">重設篩選</button>
         </div>
         <p class="block-title" id="accident-quick-title">職災快速查詢</p>
-        <p class="block-note">可選擇多種職災危害類型。危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
-        <div class="chips" id="q-kinds" role="group" aria-labelledby="accident-quick-title"><button type="button" data-all aria-pressed="${!view.kinds.length}">全部</button>${KINDS_17.map((kind) => `<button type="button" data-kind="${esc(kind)}" aria-pressed="${view.kinds.includes(kind)}">${esc(kind)}</button>`).join("")}</div>
-        <p class="block-note">裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。未選單一年份時，重大職災公開網仍列出較早案件。查無紀錄不代表未曾發生事故或違規。</p>
+        <p class="block-note">可篩選火災或爆炸職災。危害類型只篩選此公司的職災紀錄，裁罰紀錄不受影響。</p>
+        <div class="chips" id="q-kinds" role="group" aria-labelledby="accident-quick-title"><button type="button" data-all aria-pressed="${!view.kinds.length}">火災及爆炸</button>${FIRE_KINDS.map((kind) => `<button type="button" data-kind="${esc(kind)}" aria-pressed="${view.kinds.includes(kind)}">${esc(kind)}</button>`).join("")}</div>
+        <p class="block-note">僅列火災爆炸相關紀錄。裁罰可追溯約10年；職災處分依目前收錄的資料期間顯示。年度篩選作用在兩者的處分日期；較早年度可能沒有職災處分。處分件數不等於事故場次；兩類紀錄可能涉及同一處分，請勿相加。查無紀錄不代表未曾發生事故或違規。</p>
         ${dossierHtml(company, view)}
       </article>`;
     }
@@ -579,7 +555,7 @@
       }
       matches = findMatches(name, tax);
       if (!matches.length) {
-        document.getElementById("stage").innerHTML = statusHtml("非屬本網站所稱之高風險廠場");
+        document.getElementById("stage").innerHTML = statusHtml("本網站收錄範圍內查無符合的火災爆炸職災或裁罰紀錄。請確認名稱或統一編號；查無紀錄不代表未曾發生事故或違規。");
         return;
       }
       if (matches.length > CANDIDATE_LIMIT && name.length <= 2 && tax.length < 4) {
@@ -652,14 +628,13 @@
         else if (x.plantId && x.link === "plant") (penByPlant[x.plantId] ||= []).push(x);
       }
     }
-    function initializeQuery(meta, plants, penalties, accidents, rules, pacs, rollup) {
+    function initializeQuery(meta, plants, penalties, accidents, rules, rollup) {
       QUERY_RULES = rules;
       FIRE_ARTICLE_KEYS = new Set((rules.fireCriteria?.groups || []).flatMap((g) => g.articles.map((ref) => g.short + "|" + ref)));
       META = meta;
       PLANTS = plants;
       PEN = penalties;
       ACC = accidents;
-      PACS = pacs || (typeof DEMO !== "undefined" && DEMO.pacs) || [];
       ROLL = rollup || (typeof DEMO !== "undefined" && DEMO["tax-rollup"]) || { penalties: [], accidents: [] };
       indexRows();
       buildCompanies();
@@ -667,7 +642,7 @@
     }
     async function boot() {
       try {
-        const values = await Promise.all(["meta", "plants", "penalties", "accidents", "query-rules", "pacs", "tax-rollup"].map((name) => fetch("data/" + name + ".json", { cache: "no-store" }).then((r) => { if (!r.ok) throw Error(name); return r.json(); })));
+        const values = await Promise.all(["meta", "plants", "penalties", "accidents", "query-rules", "tax-rollup"].map((name) => fetch("data/" + name + ".json", { cache: "no-store" }).then((r) => { if (!r.ok) throw Error(name); return r.json(); })));
         initializeQuery(...values);
       } catch (err) {
         document.getElementById("stage").innerHTML = "<p class=\"load-err\">資料載入失敗，請經由本機網頁伺服器開啟，或使用 demo.html 離線展示檔。</p>";

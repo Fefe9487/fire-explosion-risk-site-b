@@ -1,0 +1,18 @@
+[
+  {
+    "mode": "served",
+    "selection": {
+      "tax": "03707901",
+      "emptyTax": "34164620",
+      "candidates": 141,
+      "kinds": [
+        "火災"
+      ]
+    }
+  },
+  {
+    "mode": "offline",
+    "network": "disabled",
+    "navigation": "passed"
+  }
+]

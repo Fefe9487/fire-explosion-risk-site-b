@@ -1,12 +1,12 @@
 {
-  "builtAt": "2026-10-16 22:28",
-  "plants": 973,
-  "penalties": 1217,
-  "accidents": 214,
-  "hostInferred": 4,
+  "builtAt": "2026-11-12",
+  "plants": 974,
+  "penalties": 195,
+  "accidents": 9,
+  "hostInferred": 0,
   "penaltyPeriod": "裁罰處分日期 105/09/12–115/10/02（約10年）",
   "accidentPeriod": "職災處分日期 113/01/02–115/09/30",
-  "scope": "查詢與統計均限本網站高風險廠場名單所屬事業單位，以統一編號合計紀錄，不標示個別廠址。統計處分年度為113至115年。處分件數不等於事故場次或傷亡人數。",
+  "scope": "僅查詢本網站使用大量危險物廠場名單所屬事業單位的火災爆炸相關紀錄。候選名單須至少有一筆可查的相關裁罰或職災處分。按統一編號合計，不標示個別廠址。處分件數不等於事故場次或傷亡人數，兩類紀錄可能涉及同一處分，請勿相加。",
   "rosterCores": 679,
   "csvYears": [
     105,
@@ -31,9 +31,9 @@
   "accidentSourceThrough": "115/09/30",
   "penaltyPublishedThrough": "115/10/15",
   "fireCriteriaVersion": 4,
-  "methodUpdatedAt": "2026-10-16",
-  "rosterPlaces": 1031,
-  "rosterCompanies": 711,
+  "methodUpdatedAt": "2026-11-12",
+  "rosterPlaces": 974,
+  "rosterCompanies": 680,
   "statisticsBuiltAt": "2026-10-16",
   "sourceSnapshots": {
     "penalty": {
@@ -60,5 +60,10 @@
         "115/09/30"
       ]
     }
-  }
+  },
+  "candidateCompanies": 141,
+  "rollupPenalties": 17,
+  "rollupAccidents": 3,
+  "rosterEntities": 683,
+  "excludedCompanyCount": 28
 }

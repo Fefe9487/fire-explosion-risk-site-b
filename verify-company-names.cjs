@@ -1,7 +1,7 @@
 const fs = require("fs"), vm = require("vm"), assert = require("assert");
 const path = require("path"), root = __dirname;
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
-const data = Object.fromEntries(["meta", "plants", "penalties", "accidents", "query-rules", "pacs", "tax-rollup"].map((name) => [name, JSON.parse(read("data/" + name + ".json"))]));
+const data = Object.fromEntries(["meta", "plants", "penalties", "accidents", "query-rules", "tax-rollup"].map((name) => [name, JSON.parse(read("data/" + name + ".json"))]));
 const html = read("query.html");
 const script = html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/\n\s*boot\(\);\s*$/, "");
 const context = vm.createContext({
@@ -10,7 +10,7 @@ const context = vm.createContext({
 });
 vm.runInContext(script, context);
 context.data = data;
-vm.runInContext("initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['query-rules'],data.pacs,data['tax-rollup'])", context);
+vm.runInContext("initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['query-rules'],data['tax-rollup'])", context);
 const report = vm.runInContext(`(() => {
   const byName = new Map();
   for (const company of COMPANIES) {

@@ -9,6 +9,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #35
 .site-header{background:#fff;border-bottom:1px solid var(--line)}
 .header-inner{max-width:1180px;padding:18px 28px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .site-brand{display:flex;align-items:center;gap:12px;color:var(--navy);font-size:19px;font-weight:700;text-decoration:none;min-width:0;line-height:1.5}
+.brand-system{display:block;font-size:.9em}
 .site-brand small{display:block;font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted)}
 .brand-image{width:52px;height:52px;flex-shrink:0;object-fit:cover;background:#eaf1f6;border:1px solid #d4e1e9;border-radius:10px}
 .site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px!important;margin:0!important;font-size:14px}
@@ -24,6 +25,7 @@ h2{color:var(--navy)}
 .home-main{min-width:0}
 .home-hero{display:grid;grid-template-columns:1.25fr 1fr;align-items:center;gap:30px;padding:42px 44px 36px;background:#eaf1f9;border:1px solid #d8e3f0;border-radius:18px}
 .hero-copy h1{font-size:clamp(30px,4vw,43px);line-height:1.35;margin:0 0 20px;font-weight:700}
+.hero-copy .title-detail{display:block;font-size:.75em;line-height:1.55}
 .hero-lead{max-width:490px;margin:0 0 22px;font-size:16px;line-height:1.9;color:#415d73}
 .hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .button-primary,.button-secondary{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:44px;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:700;text-decoration:none}
@@ -53,7 +55,7 @@ h2{color:var(--navy)}
 .section-heading .eyebrow{margin:0 0 4px}
 .section-card h2{font-size:22px;margin:0}
 .section-intro{color:var(--muted);font-size:14px;margin:0 0 20px;max-width:900px}
-.source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0 16px}
+.source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 16px}
 .source-card{border:1px solid var(--line);border-radius:10px;padding:20px;text-decoration:none;background:#fafcfe;color:var(--text);min-width:0}
 .source-card:hover,.friendly-card:hover{border-color:#8daecf;background:#f4f8fc}
 .source-label{font-size:11px;font-weight:600;color:#55738e;letter-spacing:.04em}

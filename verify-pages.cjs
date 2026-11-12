@@ -1,7 +1,7 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const path=require('path'),root=__dirname;
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
-const data=Object.fromEntries(['meta','plants','penalties','accidents','query-rules','pacs','tax-rollup'].map(n=>[n,JSON.parse(read('data/'+n+'.json'))]));
+const data=Object.fromEntries(['meta','plants','penalties','accidents','query-rules','tax-rollup'].map(n=>[n,JSON.parse(read('data/'+n+'.json'))]));
 function page(name){
   const elements=new Map();
   const get=id=>{
@@ -35,6 +35,8 @@ assert.equal(officialLinks.length,14);
 assert(officialLinks.every(url=>/\.(osha|mol|moj)\.gov\.tw$/.test(url.hostname)));
 for(const name of ['index.html','method.html','query.html','gaps.html']){
   const html=read(name);
+  assert(!/重大職災公開網|pacs\.osha|高風險廠場|其他類型職災|其他裁罰/.test(html),name);
+  assert(html.includes('使用大量危險物廠場'),name);
   assert(!/統計資訊|裁罰統計|職災類型統計|查看統計分析|公開資料查詢與統計/.test(html),name);
   assert(html.includes('href="gaps.html"')&&html.includes('相關規定及指引'),name);
   const markup=html.replace(/<script>[\s\S]*?<\/script>/g,'');
@@ -49,14 +51,14 @@ assert(data['query-rules'].lawGroups.every(g=>Object.keys(g).sort().join(',')===
 assert(!fs.existsSync(path.join(root,'data/gap-penalty.json')));
 assert(!fs.existsSync(path.join(root,'data/gap-accident.json')));
 const query=page('query.html');
-vm.runInContext('initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data["query-rules"],data.pacs,data["tax-rollup"])',query.context);
+vm.runInContext('initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data["query-rules"],data["tax-rollup"])',query.context);
 const summaries=vm.runInContext(`(()=>{
  const company=COMPANIES.find(c=>rowsFor(c).acc.some(a=>['火災','爆炸'].includes(a.kind)));
  return [fireSummaryHtml({},bucketsFor(company,{})),fireSummaryHtml({art:'設規|173'},bucketsFor(company,{art:'設規|173'}))];
 })()`,query.context);
 assert(!summaries[0].includes('本頁資料期間'));
 assert(home.get('query-counting-note').textContent.includes('105/09/12')&&home.get('query-counting-note').textContent.includes('113/01/02'));
-assert(summaries[0].includes('火災爆炸職災')&&summaries[1].includes('條文篩選只作用在裁罰'));
+assert(summaries[0].includes('發生火災爆炸職災')&&summaries[0].includes('未落實火災爆炸預防裁罰')&&summaries[1].includes('條文篩選只作用在裁罰'));
 const demo=read('demo.html');
 new vm.Script(demo.match(/<script>([\s\S]*?)<\/script>/)[1]);
 assert(!/tab-pen|panel-pen|tab-acc|panel-acc|applyGapData|gapsShowTab|"gap-penalty"|"gap-accident"/.test(demo));

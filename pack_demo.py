@@ -29,10 +29,10 @@ def extract(name):
     return style,body,script
 
 def main():
-    payload={name:load(name) for name in ['plants','meta','penalties','accidents','query-rules','pacs','tax-rollup']}
+    payload={name:load(name) for name in ['plants','meta','penalties','accidents','query-rules','tax-rollup']}
     styles=[];bodies=[];scripts=[]
     boots={
-      'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['query-rules'],DEMO.pacs,DEMO['tax-rollup']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
+      'query':"initializeQuery(DEMO.meta,DEMO.plants,DEMO.penalties,DEMO.accidents,DEMO['query-rules'],DEMO['tax-rollup']);document.getElementById('foot').insertAdjacentHTML('afterbegin','離線資料快照：'+esc(DEMO.meta.builtAt)+'。 ');",
       'home':"initializeOverview([],DEMO.meta);renderFireRules(DEMO['query-rules'].fireCriteria);",
     }
     for name,file in [('home','index.html'),('gaps','gaps.html'),('query','query.html')]:
@@ -65,7 +65,7 @@ def main():
     window.addEventListener('hashchange',applyHash);applyHash();
     """
     styles.append((ROOT/'assets/site.css').read_text(encoding='utf-8'))
-    html='''<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高風險廠場職災及違規紀錄查詢系統（離線版）</title><style>'''+ '\n'.join(styles)+'''\n.page[hidden]{display:none!important}</style></head><body>'''+ '\n'.join(bodies)+'<script>\nconst DEMO='+raw+';\n'+'\n'.join(scripts)+'\n'+router+'\n</script></body></html>'
+    html='''<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>使用大量危險物廠場職災及違規紀錄查詢系統（離線版）</title><style>'''+ '\n'.join(styles)+'''\n.page[hidden]{display:none!important}</style></head><body>'''+ '\n'.join(bodies)+'<script>\nconst DEMO='+raw+';\n'+'\n'.join(scripts)+'\n'+router+'\n</script></body></html>'
     html='\n'.join(line.rstrip() for line in html.splitlines())+'\n'
     (ROOT/'demo.html').write_text(html,encoding='utf-8')
     print('Packed offline pages:',len(payload['plants']),'places;',len(html.encode('utf-8')),'bytes')

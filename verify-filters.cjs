@@ -6,110 +6,98 @@ const el = id => {
   if (!elements.has(id)) elements.set(id, {value:'', checked:false, innerHTML:'', addEventListener(){}, replaceChildren(){this.innerHTML='';}});
   return elements.get(id);
 };
-const document = {getElementById:el, querySelectorAll:()=>[]};
-const context = vm.createContext({document, console});
-const script = html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/    boot\(\);/, '');
-vm.runInContext(script, context);
-const data = Object.fromEntries(['meta','plants','penalties','accidents','query-rules','pacs','tax-rollup'].map(n=>[n,JSON.parse(fs.readFileSync(root+'/data/'+n+'.json','utf8'))]));
+const context = vm.createContext({document: {getElementById:el, querySelectorAll:()=>[]}, console});
+vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/\n\s*boot\(\);\s*$/, ''), context);
+const data = Object.fromEntries(['meta','plants','penalties','accidents','query-rules','tax-rollup'].map(n=>[n,JSON.parse(fs.readFileSync(root+'/data/'+n+'.json','utf8'))]));
 context.data = data;
-vm.runInContext("initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['query-rules'],data.pacs,data['tax-rollup'])",context);
-assert.equal(el('stage').innerHTML,'');
-vm.runInContext("runQuery()",context);
-assert(!el('stage').innerHTML.includes('q-sort'));
-el('q-name').value = data.plants[0].name;
+const initialize = "initializeQuery(data.meta,data.plants,data.penalties,data.accidents,data['query-rules'],data['tax-rollup'])";
+vm.runInContext(initialize, context);
+const excluded = JSON.parse(fs.readFileSync(root+'/data/company-exclusions.json','utf8')).companies;
+assert.equal(excluded.length, 28);
+assert.equal(data.meta.candidateCompanies, 141);
+for (const company of excluded) {
+  assert(!data.plants.some(plant => plant.tax === company.tax), 'excluded company still in roster: '+company.tax);
+  assert.equal(vm.runInContext('findMatches("",'+JSON.stringify(company.tax)+').length',context), 0);
+}
+assert.deepEqual(data.meta.penaltyQueryYears, [105,115]);
+assert(vm.runInContext('findMatches("","11332202").length>0 && findMatches("","94654805").length>0 && findMatches("","58650902").length>0 && findMatches("國防部軍備局","").length>0',context), 'unrequested scope changes');
+assert.equal(el('stage').innerHTML, '');
 vm.runInContext('runQuery()', context);
-assert(el('stage').innerHTML.includes('candidate'));
-assert(!el('stage').innerHTML.includes('q-sort'));
-const result=vm.runInContext(`(()=>{
-  let checked=0;
-  for(const p of PLANTS){
-    for(const year of ["","113","114","115"]){
-      for(const acc of ["","fire","boom","other","none"]){
-        const view={year,acc,host:true,kinds:[]};
-        const a=accBundle(p,view).shown;
-        for(const r of a){
-          if(r.plantId!==p.id||!queryDateHit(r.dispDate,year))throw Error("scope/year");
-          if(acc==="none")throw Error("none");
-          if(acc==="fire"&&r.kind!=="火災")throw Error("fire");
-          if(acc==="boom"&&r.kind!=="爆炸")throw Error("boom");
-          if(acc==="other"&&["火災","爆炸"].includes(r.kind))throw Error("other");
+assert(!el('stage').innerHTML.includes('candidate'));
+const result = vm.runInContext(`(() => {
+  const candidates = findMatches('', '');
+  if(candidates.length !== META.candidateCompanies) throw Error('candidate metadata');
+  let combinations = 0;
+  for(const company of COMPANIES) {
+    const all = bucketsFor(company, {});
+    const visible = all.firePen.length + all.fireAcc.length > 0;
+    if(candidates.includes(company) !== visible) throw Error('empty company in candidates');
+    if(company.tax && findMatches('', company.tax).includes(company) !== visible) throw Error('tax lookup');
+    const same = (row) => row.plantId && company.plants.some(p => p.id === row.plantId) || company.tax && row.tax === company.tax;
+    for(const year of ['', '105', '111', '113', '114', '115']) {
+      for(const kinds of [[], ['火災'], ['爆炸'], ['火災','爆炸'], ['墜落、滾落']]) {
+        const rows = bucketsFor(company, {year, kinds});
+        for(const row of rows.fireAcc) {
+          if(!same(row) || !queryDateHit(row.dispDate, year) || !FIRE_KINDS.includes(row.kind)) throw Error('accident scope');
+          if(kinds.length && !kinds.includes(row.kind)) throw Error('accident kind');
         }
-        checked++;
-      }
-      for(const viol of ["","direct","other","none"]){
-        for(const art of ["",...(QUERY_RULES.articles||[]).map(a=>a.key)]){
-          const records=penBundle(p,{year,viol,art}).plant;
-          for(const r of records){
-            if(r.plantId!==p.id||!penaltyDateHit(r.date,year))throw Error("pen scope/year");
-            if(viol==="none")throw Error("pen none");
-            const fire=["direct","broad"].includes(r.tagFire);
-            if(viol==="direct"&&!fire||viol==="other"&&fire)throw Error("violation");
-            if(art&&!hasArt(r,art))throw Error("article");
-          }
-          checked++;
+        for(const row of rows.firePen) {
+          if(!same(row) || !penaltyDateHit(row.date, year)) throw Error('penalty scope');
         }
+        const base = bucketsFor(company, {year});
+        if(rows.firePen.map(r=>r.id).join() !== base.firePen.map(r=>r.id).join()) throw Error('kind filter changed penalties');
+        combinations++;
       }
     }
-    const kinds=accBundle(p,{year:"",host:true,kinds:["火災","爆炸"]}).shown;
-    if(kinds.some(r=>!["火災","爆炸"].includes(r.kind)))throw Error("kinds");
   }
-  selectedId=COMPANIES[0].id;
+  const company = candidates.find(c => rowsFor(c).pen.some(p => p.date.startsWith('105/')));
+  if(!company || !bucketsFor(company, {year:'105'}).firePen.length) throw Error('older fire penalty missing');
+  selectedId = candidates[0].id;
   renderDetail();
-  return checked;
-})()`,context);
-for(const id of ['q-sort','q-year','q-kinds'])assert(el('stage').innerHTML.includes('id="'+id+'"'));
-assert(!el('stage').innerHTML.includes('id="q-acc"'));
-assert(!el('stage').innerHTML.includes('id="q-art"'));
+  return {candidates: candidates.length, combinations};
+})()`, context);
+for(const id of ['q-sort', 'q-year', 'q-kinds', 'sec-fire-pen', 'sec-fire-acc']) assert(el('stage').innerHTML.includes('id="'+id+'"'));
+assert.equal((el('stage').innerHTML.match(/data-kind=/g)||[]).length, 2);
+assert(el('stage').innerHTML.includes('未落實火災爆炸預防裁罰'));
+assert(el('stage').innerHTML.includes('發生火災爆炸職災'));
 assert(el('stage').innerHTML.includes('<option value="105">105年</option>'));
-assert(el('stage').innerHTML.includes('職災快速查詢'));
-assert.equal((el('stage').innerHTML.match(/data-kind=/g)||[]).length,17);
-const quickFilter=vm.runInContext(`(()=>{
-  const company=COMPANIES.find(c=>{
-    const rows=rowsFor(c);
-    return rows.acc.some(a=>a.kind==='火災')&&rows.acc.some(a=>a.kind!=='火災');
-  });
-  if(!company)throw Error('no company with mixed accident kinds');
-  const all=bucketsFor(company,{year:'',acc:'',kinds:[]});
-  const fire=bucketsFor(company,{year:'',acc:'fire',kinds:['火災']});
-  if(!fire.fireAcc.length||fire.fireAcc.some(a=>a.kind!=='火災')||fire.otherAcc.length)throw Error('accident quick filter');
-  if(fire.firePacs.some(a=>a.kind!=='火災')||fire.otherPacs.length)throw Error('public accident quick filter');
-  if(fire.firePen.length!==all.firePen.length||fire.otherPen.length!==all.otherPen.length)throw Error('penalties changed by accident filter');
-  const fall=bucketsFor(company,{year:'',acc:'other',kinds:[]});
-  if(fall.fireAcc.length||fall.firePacs.length||!fall.otherAcc.length)throw Error('other accident filter');
-  const publicCompany=COMPANIES.find(c=>rowsFor(c).pacs.length>1);
-  if(!publicCompany)throw Error('no company with public accident cases');
-  const publicRows=rowsFor(publicCompany).pacs;
-  const publicKind=publicRows[0].kind;
-  const publicView=bucketsFor(publicCompany,{year:'',acc:'',kinds:[publicKind]});
-  const shownPublic=publicView.firePacs.concat(publicView.otherPacs);
-  if(!shownPublic.length||shownPublic.some(a=>a.kind!==publicKind)||shownPublic.length>=publicRows.length)throw Error('public accident kind filter');
-  return company.id;
-})()`,context);
-const olderPenalty=vm.runInContext(`(()=>{
-  const company=COMPANIES.find(c=>rowsFor(c).pen.some(p=>(p.date||'').startsWith('105/')));
-  if(!company)throw Error('no first-year company penalty');
-  const older=rowsFor(company).pen.find(p=>(p.date||'').startsWith('105/'));
-  const year=older.date.split('/')[0];
-  const all=bucketsFor(company,{year:'',acc:'',kinds:[]});
-  const selected=bucketsFor(company,{year,acc:'',kinds:[]});
-  if(!all.firePen.concat(all.otherPen).some(p=>p.id===older.id))throw Error('older penalty missing from default');
-  if(!selected.firePen.concat(selected.otherPen).some(p=>p.id===older.id))throw Error('older penalty missing from selected year');
-  return year;
-})()`,context);
-assert(!el('stage').innerHTML.includes('id="q-city"'));
-assert(!el('stage').innerHTML.includes('本資料未查得'));
-assert(data['query-rules'].fireCriteria.groups.length);
-assert(data['query-rules'].articles.every(a => !('y' in a) && !('n' in a)));
-assert(!html.includes('高風險清冊'));
-assert(html.includes('非屬本網站所稱之高風險廠場'));
-vm.runInContext('renderCandidates()',context);
+assert(!/sec-other|otherPacs|firePacs|PACS|重大職災公開網|高風險廠場/.test(html));
+// Fresh imports must also reject unrelated records before a data rebuild.
+vm.runInContext(`(() => {
+  const plants = ['11111111','22222222','33333333','44444444','55555555','66666666','77777777','88888888']
+    .map((tax,i)=>({id:'p'+i,tax,name:'測試'+i+'股份有限公司'}));
+  const pen = (id,plantId,props={})=>({id,no:id,plantId,date:'115/01/02',arts:[],tagFire:'other',...props});
+  const acc = (id,plantId,props={})=>({id,no:id,plantId,dispDate:'115/01/02',kind:'火災',...props});
+  const penalties = [pen('fall','p1'), pen('law','p2',{arts:[{law:'設規',n:173}]}),
+    pen('same-no','p3'), pen('unrelated-company','p1',{no:'same-no'}),
+    pen('excluded','p5',{no:'勞職授字第1130205857號',tagFire:'broad'}),
+    pen('old','p6',{date:'104/01/01',tagFire:'broad'})];
+  const accidents = [acc('fall-acc','p1',{kind:'墜落、滾落'}),acc('same-no','p3'),acc('only-acc','p4')];
+  const rollup = {penalties:[pen('roll',null,{tax:'88888888',article6Fire:true})],accidents:[]};
+  initializeQuery(data.meta,plants,penalties,accidents,data['query-rules'],rollup);
+  const taxes = findMatches('', '').map(c=>c.tax).sort().join();
+  if(taxes !== ['33333333','44444444','55555555','88888888'].join()) throw Error('fixture candidates: '+taxes);
+  if(rowsFor(COMPANIES.find(c=>c.tax==='22222222')).pen.length) throw Error('same number leaked across companies');
+  if(dispositionCount([{no:'a'},{no:'a'},{no:'b'}])!==2) throw Error('disposition dedupe');
+})()`, context);
+el('q-tax').value = '11111111';
+vm.runInContext('runQuery()', context);
+assert(!el('stage').innerHTML.includes('class="candidate"'));
+assert(el('stage').innerHTML.includes('查無符合的火災爆炸職災或裁罰紀錄'));
+assert(!el('stage').innerHTML.includes('非屬'));
+vm.runInContext(initialize, context);
+const tax = vm.runInContext("findMatches('','')[0].tax", context);
+el('q-tax').value = tax;
+vm.runInContext('runQuery()', context);
+assert(el('stage').innerHTML.includes('class="candidate"'));
 assert(!el('stage').innerHTML.includes('q-sort'));
-el('q-sort').value='oldest';
+el('q-sort').value = 'oldest';
 assert.equal(vm.runInContext('recentFirst([{date:"115/01/01"},{date:"113/01/01"}],"date")[0].date',context),'113/01/01');
-el('q-sort').value='';
+el('q-sort').value = '';
 assert.equal(vm.runInContext('recentFirst([{date:"115/01/01"},{date:"113/01/01"}],"date")[0].date',context),'115/01/01');
-const demo=fs.readFileSync(root+'/demo.html','utf8');
+assert(!fs.existsSync(root+'/data/pacs.json'));
+for(const row of [...data.accidents,...data['tax-rollup'].accidents]) assert(['火災','爆炸'].includes(row.kind));
+const demo = fs.readFileSync(root+'/demo.html','utf8');
 new vm.Script(demo.match(/<script>([\s\S]*?)<\/script>/)[1]);
-assert(demo.includes('id="q-sort"'));
-assert(demo.includes('職災快速查詢'));
-console.log('PASS:',result,'real-data filter combinations; company quick filter',quickFilter,'older penalty year',olderPenalty,'selection gate, return, sorting, offline syntax.');
+assert(!/"pacs"|DEMO\.pacs|重大職災公開網|高風險廠場|sec-other/.test(demo));
+console.log('PASS:', result.candidates, 'candidate companies;', result.combinations, 'real-data filter combinations; empty/unrelated/excluded/year/tax-rollup fixtures; sort and offline scope.');
