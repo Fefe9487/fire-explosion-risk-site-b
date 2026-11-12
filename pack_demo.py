@@ -64,7 +64,11 @@ def main():
     }
     window.addEventListener('hashchange',applyHash);applyHash();
     """
-    styles.append((ROOT/'assets/site.css').read_text(encoding='utf-8'))
+    shared_style=(ROOT/'assets/site.css').read_text(encoding='utf-8')
+    for font_path in set(re.findall(r'url\("(fonts/[^\"]+)"\)',shared_style)):
+        encoded=base64.b64encode((ROOT/'assets'/font_path).read_bytes()).decode('ascii')
+        shared_style=shared_style.replace(f'url("{font_path}")',f'url("data:font/woff;base64,{encoded}")')
+    styles.append(shared_style)
     html='''<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>使用大量危險物廠場職災及違規紀錄查詢系統（離線版）</title><style>'''+ '\n'.join(styles)+'''\n.page[hidden]{display:none!important}</style></head><body>'''+ '\n'.join(bodies)+'<script>\nconst DEMO='+raw+';\n'+'\n'.join(scripts)+'\n'+router+'\n</script></body></html>'
     html='\n'.join(line.rstrip() for line in html.splitlines())+'\n'
     (ROOT/'demo.html').write_text(html,encoding='utf-8')
