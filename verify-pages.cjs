@@ -17,7 +17,7 @@ function page(name){
 const home=page('index.html');
 vm.runInContext('initializeOverview([],data.meta);renderFireRules(data["query-rules"].fireCriteria)',home.context);
 assert(home.get('data-periods').innerHTML.includes(data.meta.accidentSourceThrough));
-assert(home.get('data-periods').innerHTML.includes('105/09/12'));
+assert(home.get('data-periods').innerHTML.includes('106–115年'));
 assert(home.get('data-periods').innerHTML.includes('113/01/02'));
 assert(!home.get('data-periods').innerHTML.includes('統計'));
 assert(home.get('m-fire-rules').innerHTML.includes('第186條（歷史條文）'));
@@ -57,7 +57,7 @@ const summaries=vm.runInContext(`(()=>{
  return [fireSummaryHtml({},bucketsFor(company,{})),fireSummaryHtml({art:'設規|173'},bucketsFor(company,{art:'設規|173'}))];
 })()`,query.context);
 assert(!summaries[0].includes('本頁資料期間'));
-assert(home.get('query-counting-note').textContent.includes('105/09/12')&&home.get('query-counting-note').textContent.includes('113/01/02'));
+assert(home.get('query-counting-note').textContent.includes('106–115年')&&home.get('query-counting-note').textContent.includes('113/01/02'));
 assert(summaries[0].includes('發生火災爆炸職災')&&summaries[0].includes('未落實火災爆炸預防裁罰')&&summaries[1].includes('條文篩選只作用在裁罰'));
 const demo=read('demo.html');
 new vm.Script(demo.match(/<script>([\s\S]*?)<\/script>/)[1]);

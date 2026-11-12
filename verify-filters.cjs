@@ -14,13 +14,25 @@ const initialize = "initializeQuery(data.meta,data.plants,data.penalties,data.ac
 vm.runInContext(initialize, context);
 const excluded = JSON.parse(fs.readFileSync(root+'/data/company-exclusions.json','utf8')).companies;
 assert.equal(excluded.length, 28);
-assert.equal(data.meta.candidateCompanies, 141);
+assert.equal(data.meta.candidateCompanies, 137);
+assert.equal(data.meta.firePenaltyDispositions, 207);
+assert.equal(data.meta.fireAccidentCompanies, 9);
+const policy = JSON.parse(fs.readFileSync(root+'/data/public-scope.json','utf8'));
+assert.deepEqual(JSON.parse(vm.runInContext("JSON.stringify(findMatches('','').map(c=>c.tax).sort())",context)), policy.companyTaxIds);
+assert.deepEqual(data.plants.map(plant=>plant.id).sort(), policy.rosterPlaceIds);
+assert.equal(new Set(data.plants.map(plant=>plant.tax).filter(tax=>/^[0-9]{8}$/.test(tax))).size, 679);
+const publicTaxes = new Set(policy.companyTaxIds), plantTax = new Map(data.plants.map(plant=>[plant.id,plant.tax]));
+for (const row of [...data.penalties,...data.accidents,...data['tax-rollup'].penalties,...data['tax-rollup'].accidents]) {
+  assert(publicTaxes.has(row.tax || plantTax.get(row.plantId)), 'record outside the 137 public companies: '+row.id);
+}
+assert.equal(vm.runInContext("findMatches('','').reduce((sum,c)=>sum+dispositionCount(bucketsFor(c,{}).firePen),0)",context),207);
+assert.equal(vm.runInContext("findMatches('','').filter(c=>bucketsFor(c,{}).fireAcc.length).length",context),9);
 for (const company of excluded) {
   assert(!data.plants.some(plant => plant.tax === company.tax), 'excluded company still in roster: '+company.tax);
   assert.equal(vm.runInContext('findMatches("",'+JSON.stringify(company.tax)+').length',context), 0);
 }
-assert.deepEqual(data.meta.penaltyQueryYears, [105,115]);
-assert(vm.runInContext('findMatches("","11332202").length>0 && findMatches("","94654805").length>0 && findMatches("","58650902").length>0 && findMatches("國防部軍備局","").length>0',context), 'unrequested scope changes');
+assert.deepEqual(data.meta.penaltyQueryYears, [106,115]);
+assert(vm.runInContext('findMatches("","11332202").length===0 && findMatches("","94654805").length===0 && findMatches("","58650902").length===0 && findMatches("國防部軍備局","").length===0',context), 'companies outside image scope remain visible');
 assert.equal(el('stage').innerHTML, '');
 vm.runInContext(`(() => {
   const company = COMPANIES.find(c=>c.tax==='03707901');
@@ -47,11 +59,11 @@ const result = vm.runInContext(`(() => {
   let combinations = 0;
   for(const company of COMPANIES) {
     const all = bucketsFor(company, {});
-    const visible = all.firePen.length + all.fireAcc.length > 0;
+    const visible = /^[0-9]{8}$/.test(company.tax) && all.firePen.length > 0;
     if(candidates.includes(company) !== visible) throw Error('empty company in candidates');
     if(company.tax && findMatches('', company.tax).includes(company) !== visible) throw Error('tax lookup');
     const same = (row) => row.plantId && company.plants.some(p => p.id === row.plantId) || company.tax && row.tax === company.tax;
-    for(const year of ['', '105', '111', '113', '114', '115']) {
+    for(const year of ['', '105', '106', '111', '113', '114', '115']) {
       for(const kinds of [[], ['火災'], ['爆炸'], ['火災','爆炸'], ['墜落、滾落']]) {
         const rows = bucketsFor(company, {year, kinds});
         for(const row of rows.fireAcc) {
@@ -67,8 +79,9 @@ const result = vm.runInContext(`(() => {
       }
     }
   }
-  const company = candidates.find(c => rowsFor(c).pen.some(p => p.date.startsWith('105/')));
-  if(!company || !bucketsFor(company, {year:'105'}).firePen.length) throw Error('older fire penalty missing');
+  const company = candidates.find(c => rowsFor(c).pen.some(p => p.date.startsWith('106/')));
+  if(!company || !bucketsFor(company, {year:'106'}).firePen.length) throw Error('first-year fire penalty missing');
+  if(candidates.some(c=>bucketsFor(c,{year:'105'}).firePen.length)) throw Error('105-year records remain public');
   selectedId = candidates[0].id;
   renderDetail();
   return {candidates: candidates.length, combinations};
@@ -77,7 +90,8 @@ for(const id of ['q-sort', 'q-year', 'q-kinds', 'sec-fire-pen', 'sec-fire-acc'])
 assert.equal((el('stage').innerHTML.match(/data-kind=/g)||[]).length, 2);
 assert(el('stage').innerHTML.includes('未落實火災爆炸預防裁罰'));
 assert(el('stage').innerHTML.includes('發生火災爆炸職災'));
-assert(el('stage').innerHTML.includes('<option value="105">105年</option>'));
+assert(el('stage').innerHTML.includes('<option value="106">106年</option>'));
+assert(!el('stage').innerHTML.includes('<option value="105">105年</option>'));
 assert(!/sec-other|otherPacs|firePacs|PACS|重大職災公開網|高風險廠場/.test(html));
 // Fresh imports must also reject unrelated records before a data rebuild.
 vm.runInContext(`(() => {
@@ -93,7 +107,7 @@ vm.runInContext(`(() => {
   const rollup = {penalties:[pen('roll',null,{tax:'88888888',article6Fire:true})],accidents:[]};
   initializeQuery(data.meta,plants,penalties,accidents,data['query-rules'],rollup);
   const taxes = findMatches('', '').map(c=>c.tax).sort().join();
-  if(taxes !== ['33333333','44444444','55555555','88888888'].join()) throw Error('fixture candidates: '+taxes);
+  if(taxes !== ['33333333','44444444','88888888'].join()) throw Error('fixture candidates: '+taxes);
   if(rowsFor(COMPANIES.find(c=>c.tax==='22222222')).pen.length) throw Error('same number leaked across companies');
   if(dispositionCount([{no:'a'},{no:'a'},{no:'b'}])!==2) throw Error('disposition dedupe');
 })()`, context);

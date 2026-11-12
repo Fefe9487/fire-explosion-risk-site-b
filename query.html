@@ -148,8 +148,8 @@
   <div class="wrap">
     <main class="card" id="main-content">
       <p class="eyebrow">事業單位查詢</p><h1>查詢事業單位公開紀錄</h1>
-      <p class="lede">以事業單位名稱或統一編號查詢。候選名單僅列有火災爆炸相關紀錄的公司；選定後，顯示該統編的相關裁罰及職災處分。</p>
-      <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>輸入名稱或統一編號，候選名單只列有火災爆炸相關紀錄的公司，選定後顯示紀錄。查詢結果按同一統一編號合計。統編不同的同名公司分成不同筆，名稱後標出場所。查無紀錄不代表未曾發生事故或違規。</p></div>
+      <p class="lede">公開查詢名單共137家公司，均有106–115年火災爆炸相關裁罰紀錄。輸入名稱或統一編號，選定公司後查看相關裁罰及職災處分。</p>
+      <div class="notice-soft"><img class="illustrated-icon" src="assets/images/factory-search-icon.webp" width="80" height="80" alt="" loading="lazy" decoding="async"><p>名單以原973個廠場清冊為範圍，按有效統編合併，僅列有106–115年火災爆炸相關裁罰的137家公司。職災處分查詢期間為111–115年。統編不同的同名公司分開呈現，名稱後標出場所。查無紀錄不代表未曾發生事故或違規。</p></div>
       <hr class="rule" />
       <form id="form">
         <div class="fields">
@@ -203,7 +203,7 @@
       return inYearWindow(date, start, end, year || "");
     }
     function penaltyDateHit(date, year) {
-      const [start, end] = META.penaltyQueryYears || META.csvYears || [105, 115];
+      const [start, end] = META.penaltyQueryYears || META.csvYears || [106, 115];
       return inYearWindow(date, start, end, year || "");
     }
     function recordPasses(row, view, dateKey) {
@@ -480,7 +480,7 @@
         if (tax && !(company.tax || "").includes(tax)) return false;
         if (name && company.name.indexOf(name) < 0 && !company.plants.some((plant) => nameHit(plant, name))) return false;
         const records = bucketsFor(company, {});
-        return records.firePen.length > 0 || records.fireAcc.length > 0;
+        return /^\d{8}$/.test(company.tax) && records.firePen.length > 0;
       }).sort((a, b) => a.name.localeCompare(b.name, "zh-Hant") || (a.tax || "").localeCompare(b.tax || ""));
     }
     function statusHtml(text) {
@@ -515,7 +515,7 @@
       const company = COMPANIES.find((item) => item.id === selectedId);
       if (!company) return;
       const view = viewState();
-      const [start, end] = META.penaltyQueryYears || META.csvYears || [105, 115];
+      const [start, end] = META.penaltyQueryYears || META.csvYears || [106, 115];
       const years = Array.from({ length: end - start + 1 }, (_, i) => end - i);
       const yearOptions = `<option value=""${view.year ? "" : " selected"}>全部可查年度</option>` +
         years.map((y) => `<option value="${y}"${String(view.year) === String(y) ? " selected" : ""}>${y}年</option>`).join("");

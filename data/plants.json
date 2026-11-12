@@ -35782,37 +35782,5 @@
     "industry": "未取得行業資料",
     "industryDescription": "",
     "industrySource": "未提供"
-  },
-  {
-    "id": "p-mfg-99620249",
-    "name": "台灣水泥股份有限公司蘇澳廠",
-    "core": "台灣水泥股份有限公司",
-    "tax": "41886209",
-    "city": "宜蘭縣",
-    "addr": "宜蘭縣蘇澳鎮長安里永昌路46號",
-    "rosterCity": "宜蘭縣",
-    "industry": "非金屬礦物製品製造業",
-    "industryDescription": "233水泥及其製品",
-    "industrySource": "經濟部登記工廠名錄（115年8月）",
-    "factoryId": "99620249",
-    "factoryName": "台灣水泥股份有限公司蘇澳廠",
-    "factoryAddress": "宜蘭縣蘇澳鎮長安里永昌路46號",
-    "industryCodes": [
-      "23"
-    ],
-    "industryLabels": [
-      "非金屬礦物製品"
-    ],
-    "industrySourceUrl": "https://data.gov.tw/dataset/6569",
-    "industryDate": "115/08",
-    "publicMatchMethod": "近5年火災或爆炸，且為製造業工廠",
-    "companyIndustryCodes": [],
-    "companyIndustryLabels": [],
-    "companyIndustryName": "台灣水泥股份有限公司",
-    "companyIndustryAddress": "宜蘭縣蘇澳鎮長安里永昌路46號",
-    "companyIndustrySource": "經濟部登記工廠名錄（115年8月）",
-    "companyIndustrySourceUrl": "https://data.gov.tw/dataset/6569",
-    "companyIndustryDate": "115/08",
-    "industryLevel": "場所"
   }
 ]

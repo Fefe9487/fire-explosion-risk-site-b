@@ -37,6 +37,11 @@ def query_checks(page, offline):
     # selected in the served page, without reading its private runtime state.
     if offline:
         selection = results[0]['selection']
+    assert selection['candidates'] == 137
+    for tax in ['11332202', '94654805', '58650902']:
+        page.locator('#q-tax').fill(tax)
+        page.locator('#form .go').click()
+        assert page.locator('.candidate').count() == 0, tax
     page.locator('#q-tax').fill(selection['emptyTax'])
     page.locator('#form .go').click()
     assert page.locator('.candidate').count() == 0
@@ -57,9 +62,10 @@ def query_checks(page, offline):
         assert all(text.strip() == kind for text in kinds)
         assert bool(kinds) == (kind in selection['kinds'])
         page.locator('#q-kinds [data-all]').click()
-    page.locator('#q-year').select_option('105')
+    assert page.locator('#q-year option[value="105"]').count() == 0
+    page.locator('#q-year').select_option('106')
     dates = page.locator('#sec-fire-pen tbody tr td:first-child').all_inner_texts()
-    assert all(date.startswith('105/') for date in dates)
+    assert all(date.startswith('106/') for date in dates)
     assert page.locator('#sec-fire-acc tbody tr').count() == 0
     page.locator('#reset-filters').click()
     assert page.locator('#q-year').input_value() == ''
