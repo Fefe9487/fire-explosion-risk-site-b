@@ -681,7 +681,8 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['query-rules'].fireCriteri
         .filter((row) => FIRE_KINDS.includes(row.kind));
       const fireAccidentNos = new Set(acc.map(dispositionKey).filter(Boolean));
       const pen = dedupeRows([...PEN.filter(same), ...(ROLL.penalties || []).filter(same)])
-        .filter((row) => fireRelatedPenalty(row) || fireAccidentNos.has(dispositionKey(row)));
+        .filter((row) => fireRelatedPenalty(row) || fireAccidentNos.has(dispositionKey(row)))
+        .map((row) => ({ ...row, fireAccidentMatched: fireAccidentNos.has(dispositionKey(row)) }));
       return { pen, acc };
     }
     function bucketsFor(company, view) {
@@ -746,7 +747,8 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['query-rules'].fireCriteri
       const labels = new Map();
       for (const a of row.arts || []) if (a.law && Number.isInteger(Number(a.n)) && Number(a.n) > 0) {
         const label = `${names[a.law] || a.law}第${Number(a.n)}條${a.sub == null ? "" : "之" + Number(a.sub)}`;
-        const article6 = row.article6Fire && (a.law === "職安法" || a.law === "職業安全衛生法") && Number(a.n) === 6;
+        const article6 = (row.article6Fire || row.fireAccidentMatched || FIRE_KINDS.includes(row.kind)) &&
+          (a.law === "職安法" || a.law === "職業安全衛生法") && Number(a.n) === 6;
         labels.set(label, FIRE_ARTICLE_KEYS.has(fireArticleKey(a)) || article6);
       }
       return labels.size ? [...labels].map(([label, related]) => related ? `<span class="fire-law">${esc(label)}</span>` : esc(label)).join("；") : esc(row.art || "");
@@ -777,7 +779,7 @@ initializeOverview([],DEMO.meta);renderFireRules(DEMO['query-rules'].fireCriteri
         <td>${penaltyArticleHtml(c)}</td>
         <td class="case-text">${penaltyDescription(c)}</td>
       </tr>`).join("");
-      return `<div class="case-scroll"><table class="cases pen-cases"><caption>紅字為火災爆炸相關條文；粗體為可對應相關條文的說明。預設顯示前200字，點「查看更多」展開全文；表格可左右捲動。不標示清冊中的個別場所。</caption><colgroup><col style="width:100px"><col style="width:190px"><col style="width:240px"><col></colgroup><thead><tr><th>處分日期</th><th>處分字號</th><th>條文</th><th>裁罰說明</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      return `<div class="case-scroll"><table class="cases pen-cases"><caption>琥珀色為火災爆炸相關條文；同公司同處分字號的職災類型為火災或爆炸時，對應的職安法第6條也以琥珀色標示。粗體為可對應相關條文的說明。預設顯示前200字，點「查看更多」展開全文；表格可左右捲動。不標示清冊中的個別場所。</caption><colgroup><col style="width:100px"><col style="width:190px"><col style="width:240px"><col></colgroup><thead><tr><th>處分日期</th><th>處分字號</th><th>條文</th><th>裁罰說明</th></tr></thead><tbody>${body}</tbody></table></div>`;
     }
     function sectionHtml(id, title, body) {
       return `<section id="${id}"><p class="block-title">${title}</p>${body}</section>`;

@@ -22,6 +22,23 @@ for (const company of excluded) {
 assert.deepEqual(data.meta.penaltyQueryYears, [105,115]);
 assert(vm.runInContext('findMatches("","11332202").length>0 && findMatches("","94654805").length>0 && findMatches("","58650902").length>0 && findMatches("國防部軍備局","").length>0',context), 'unrequested scope changes');
 assert.equal(el('stage').innerHTML, '');
+vm.runInContext(`(() => {
+  const company = COMPANIES.find(c=>c.tax==='03707901');
+  const no = '高市勞檢字第11370613200號';
+  const penalty = rowsFor(company).pen.find(r=>r.no===no);
+  const accident = rowsFor(company).acc.find(r=>r.no===no);
+  if(!penalty?.fireAccidentMatched || !penaltyArticleHtml(penalty).includes('class="fire-law"')) throw Error('matched fire accident article 6 lost emphasis');
+  if(!penaltyArticleHtml(accident).includes('class="fire-law"')) throw Error('fire accident article 6 lost emphasis');
+  if(PEN.find(r=>r.no===no).fireAccidentMatched!==undefined) throw Error('source penalty mutated');
+  const general = {arts:[{law:'職安法',n:6}]};
+  if(penaltyArticleHtml(general).includes('fire-law')) throw Error('unconfirmed general article 6 emphasized');
+  if(penaltyArticleHtml({...general,kind:'墜落、滾落'}).includes('fire-law')) throw Error('unrelated accident emphasized');
+  const mixed = {arts:[{law:'設規',n:197},{law:'職安法',n:6},{law:'設規',n:224}]};
+  const direct = penaltyArticleHtml(mixed);
+  if((direct.match(/class="fire-law"/g)||[]).length!==1) throw Error('general co-cited laws emphasized');
+  const matched = penaltyArticleHtml({...mixed,fireAccidentMatched:true});
+  if((matched.match(/class="fire-law"/g)||[]).length!==2 || matched.includes('class="fire-law">職業安全衛生設施規則第224條')) throw Error('unrelated co-cited article emphasized');
+})()`, context);
 vm.runInContext('runQuery()', context);
 assert(!el('stage').innerHTML.includes('candidate'));
 const result = vm.runInContext(`(() => {
